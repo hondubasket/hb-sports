@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: hb-sports
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: AIRTABLE_TOKEN
+        sync: false
+      - key: PLAYERS_BASE
+        value: appeSfTpQN0rm03K1
+      - key: PLAYERS_TABLE
+        value: tblyoZQvvWdbwCdwj
+      - key: CLUBS_BASE
+        value: appWAZgIGnaS2kSm3
+      - key: CLUBS_TABLE
+        value: tblnUhNw4kpVuuhem
+      - key: ADMIN_PIN
+        value: hb2026
