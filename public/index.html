@@ -374,6 +374,7 @@
         <div class="fmt-opt" data-fmt="rr1"><h4>Todos contra todos · una vuelta</h4><p>Cada equipo juega una vez contra los demás.</p></div>
         <div class="fmt-opt" data-fmt="rr2"><h4>Todos contra todos · ida y vuelta</h4><p>Cada equipo juega dos veces. Temporada completa.</p></div>
         <div class="fmt-opt" data-fmt="rrplayoffs"><h4>Todos contra todos + Playoffs</h4><p>Fase regular y los mejores avanzan a semifinales y final.</p></div>
+        <div class="fmt-opt" data-fmt="rr2playoffs"><h4>Ida y vuelta + Playoffs</h4><p>Fase regular a doble vuelta y los mejores avanzan a semifinales y final.</p></div>
       </div>
       <div class="qual-config" id="qualConfig">
         <div class="field" style="margin-bottom:0;"><label>¿Cuántos equipos clasifican a playoffs?</label>
@@ -510,12 +511,12 @@ function generateTournament(){
   const teams=clubsInCat(catId).map(c=>c.id);
   if(teams.length<2){toast('Se necesitan al menos 2 equipos',true);return;}
   let matches=[],mid=1;
-  const double=fmt==='rr2';
+  const double=fmt==='rr2'||fmt==='rr2playoffs';
   roundRobin(teams,double).forEach((round,ri)=>round.forEach(([home,away])=>{
     matches.push({id:mid++,home,away,phase:'Jornada '+(ri+1),stage:'regular',date:null,time:'',venue:'',hs:null,as:null,played:false,protest:false});
   }));
   let qualCount=0;
-  if(fmt==='rrplayoffs'){
+  if(fmt==='rrplayoffs'||fmt==='rr2playoffs'){
     qualCount=parseInt(document.getElementById('qualCount').value);
     qualCount=Math.min(qualCount,teams.length);
   }
@@ -532,7 +533,7 @@ function deleteTournament(catId){
 
 // ---------- PLAYOFFS ----------
 function generatePlayoffs(catId){
-  const t=TOURNAMENTS[catId];if(!t||t.format!=='rrplayoffs')return;
+  const t=TOURNAMENTS[catId];if(!t||(t.format!=='rrplayoffs'&&t.format!=='rr2playoffs'))return;
   // remove existing playoff matches
   t.matches=t.matches.filter(m=>m.stage==='regular');
   const standings=computeStandings(catId);
@@ -590,7 +591,7 @@ document.getElementById('adminToggle').onclick=async()=>{
 };
 
 function fmtDate(d){if(!d)return null;const dt=new Date(d);return dt.toLocaleDateString('es-HN',{weekday:'short',day:'2-digit',month:'short'});}
-function fmtLabel(f){return{rr1:'Todos contra todos',rr2:'Ida y vuelta',rrplayoffs:'Todos contra todos + Playoffs'}[f];}
+function fmtLabel(f){return{rr1:'Todos contra todos',rr2:'Ida y vuelta',rrplayoffs:'Todos contra todos + Playoffs',rr2playoffs:'Ida y vuelta + Playoffs'}[f];}
 
 // ----- HOME -----
 function allMatches(){const out=[];Object.keys(TOURNAMENTS).forEach(c=>TOURNAMENTS[c].matches.forEach(m=>out.push({...m,catId:c})));return out;}
@@ -654,7 +655,7 @@ function renderCalendar(){
     <div style="display:flex;align-items:center;gap:14px;">
       <div style="text-align:right;"><div style="font-size:22px;font-weight:800;font-family:Sora;">${playedN}/${t.matches.length}</div><div style="font-size:11px;color:#CDBEEC;">jugados</div></div>
       <div class="admin-only tourn-actions">
-        ${t.format==='rrplayoffs'?`<button class="btn white sm" onclick="generatePlayoffs('${currentCalCat}')">${t.playoffsGenerated?'Regenerar':'Generar'} playoffs</button>`:''}
+        ${(t.format==='rrplayoffs'||t.format==='rr2playoffs')?`<button class="btn white sm" onclick="generatePlayoffs('${currentCalCat}')">${t.playoffsGenerated?'Regenerar':'Generar'} playoffs</button>`:''}
         <button class="btn danger sm" onclick="deleteTournament('${currentCalCat}')">Borrar torneo</button>
       </div>
     </div>
@@ -823,7 +824,7 @@ function openCreateTournament(){
   document.getElementById('qualConfig').classList.remove('show');
   document.getElementById('createModal').classList.add('open');
 }
-document.querySelectorAll('.fmt-opt').forEach(o=>o.onclick=()=>{document.querySelectorAll('.fmt-opt').forEach(x=>x.classList.remove('sel'));o.classList.add('sel');document.getElementById('qualConfig').classList.toggle('show',o.dataset.fmt==='rrplayoffs');});
+document.querySelectorAll('.fmt-opt').forEach(o=>o.onclick=()=>{document.querySelectorAll('.fmt-opt').forEach(x=>x.classList.remove('sel'));o.classList.add('sel');document.getElementById('qualConfig').classList.toggle('show',o.dataset.fmt==='rrplayoffs'||o.dataset.fmt==='rr2playoffs');});
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 document.querySelectorAll('.modal-bg').forEach(bg=>bg.onclick=e=>{if(e.target===bg)bg.classList.remove('open');});
 
