@@ -258,6 +258,54 @@
   .footer-bottom{padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:#9888BC;}
   .footer-bottom a{color:#CDBEEC;text-decoration:none;}
 
+
+  /* WEEK / JORNADA VIEW */
+  .week-cta{background:linear-gradient(120deg,var(--orange),var(--orange-bright));border:none;border-radius:var(--radius);padding:18px 24px;display:flex;align-items:center;gap:16px;cursor:pointer;width:100%;text-align:left;color:#fff;box-shadow:0 8px 24px rgba(232,97,10,.28);transition:all .2s;margin-bottom:28px;font-family:inherit;}
+  .week-cta:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(232,97,10,.38);}
+  .week-cta .wc-ico{width:48px;height:48px;border-radius:13px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:24px;flex-shrink:0;}
+  .week-cta .wc-txt{flex:1;}
+  .week-cta .wc-txt h3{font-size:19px;font-weight:800;color:#fff;}
+  .week-cta .wc-txt p{font-size:13px;color:rgba(255,255,255,.9);margin-top:2px;}
+  .week-cta .wc-arrow{font-size:22px;}
+
+  .team-search{position:relative;margin-bottom:22px;}
+  .team-search input{width:100%;padding:14px 16px 14px 44px;border:1px solid var(--line);border-radius:12px;font-size:15px;font-family:inherit;background:#fff;}
+  .team-search input:focus{outline:none;border-color:var(--purple-mid);}
+  .team-search .si{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:17px;color:var(--slate);}
+  .team-search .clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--slate);background:var(--paper);border:none;border-radius:7px;padding:5px 10px;font-size:12px;font-weight:600;}
+
+  .day-block{margin-bottom:30px;}
+  .day-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+  .day-head .day-badge{background:var(--purple);color:#fff;border-radius:12px;padding:10px 16px;text-align:center;min-width:62px;}
+  .day-head .day-badge .dn{font-family:'Sora';font-size:22px;font-weight:800;line-height:1;}
+  .day-head .day-badge .dm{font-size:10px;text-transform:uppercase;letter-spacing:.08em;margin-top:2px;}
+  .day-head .day-title{font-size:20px;font-weight:800;text-transform:capitalize;}
+  .day-head .day-count{font-size:13px;color:var(--slate);margin-top:1px;}
+
+  .venue-block{margin-bottom:18px;}
+  .venue-bar{display:flex;align-items:center;gap:10px;padding:11px 18px;background:linear-gradient(120deg,var(--purple-deep),var(--purple-mid));color:#fff;border-radius:12px 12px 0 0;font-weight:700;font-size:14px;}
+  .venue-bar .vico{font-size:15px;}
+  .venue-matches{background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 12px 12px;overflow:hidden;}
+  .wk-match{display:flex;align-items:center;gap:14px;padding:13px 18px;}
+  .wk-match+.wk-match{border-top:1px solid var(--line);}
+  .wk-time{font-family:'Sora';font-weight:800;color:var(--orange);font-size:15px;min-width:74px;text-align:center;line-height:1.1;}
+  .wk-time .ap{font-size:10px;display:block;color:var(--orange);font-weight:700;}
+  .wk-cat{font-size:10px;font-weight:700;padding:4px 9px;border-radius:6px;background:var(--purple-soft);color:var(--purple);white-space:nowrap;min-width:96px;text-align:center;}
+  .wk-teams{flex:1;display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:600;flex-wrap:wrap;}
+  .wk-teams .vs{color:var(--orange);font-weight:800;font-size:12px;margin:0 2px;}
+  .wk-status{font-size:11px;font-weight:800;padding:3px 9px;border-radius:6px;}
+  .wk-status.ft{background:var(--good-soft);color:var(--good);}
+  .wk-status.prog{background:var(--orange-soft);color:var(--orange);}
+
+  .team-result-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px;display:flex;align-items:center;gap:16px;box-shadow:var(--shadow);}
+  .team-result-card .trc-date{text-align:center;min-width:60px;}
+  .team-result-card .trc-date .d{font-family:'Sora';font-size:18px;font-weight:800;color:var(--purple);line-height:1;}
+  .team-result-card .trc-date .m{font-size:10px;text-transform:uppercase;color:var(--slate);margin-top:2px;}
+  .team-result-card .trc-body{flex:1;}
+  .team-result-card .trc-cat{font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.06em;}
+  .team-result-card .trc-match{font-size:15px;font-weight:700;margin-top:3px;}
+  .team-result-card .trc-meta{font-size:12px;color:var(--slate);margin-top:4px;display:flex;gap:12px;flex-wrap:wrap;}
+
   @media (max-width:860px){
     .nav{display:none;}
     .hero h1{font-size:30px;}
@@ -277,6 +325,7 @@
     </div>
     <nav class="nav">
       <button class="active" data-view="home">Inicio</button>
+      <button data-view="week">Jornada</button>
       <button data-view="calendar">Calendario</button>
       <button data-view="standings">Tablas</button>
       <button data-view="clubs">Clubes</button>
@@ -303,6 +352,12 @@
       </div>
     </div>
 
+    <button class="week-cta" data-goto="week">
+      <div class="wc-ico">🗓️</div>
+      <div class="wc-txt"><h3>Ver jornada de la semana</h3><p>Todos los partidos por día, lugar y hora</p></div>
+      <div class="wc-arrow">→</div>
+    </button>
+
     <!-- PROXIMOS PARTIDOS (primero) -->
     <div class="section-title"><h3>Próximos partidos</h3><span class="link" data-goto="calendar">Ver todo →</span></div>
     <div id="homeUpcoming"></div>
@@ -323,6 +378,17 @@
       <img id="spLiga" alt="Liga de las Estrellas"><div class="sep"></div>
       <img id="spFen" alt="FENABAH">
     </div>
+  </section>
+
+  <!-- WEEK / JORNADA -->
+  <section class="view" id="week">
+    <div class="page-head"><div class="eyebrow">Esta semana</div><h2>Jornada de la semana</h2><p>Partidos programados organizados por día, lugar y hora.</p></div>
+    <div class="team-search">
+      <span class="si">🔍</span>
+      <input type="text" id="teamSearch" placeholder="Busca tu equipo (ej: Atlántida) para ver todos sus partidos..." oninput="renderWeek()">
+      <button class="clear" id="teamSearchClear" onclick="clearTeamSearch()" style="display:none;">Limpiar</button>
+    </div>
+    <div id="weekContent"></div>
   </section>
 
   <!-- CALENDAR -->
@@ -575,7 +641,7 @@ function computeStandings(catId){
 
 // ---------- RENDER ----------
 let currentView='home',currentCalCat=null,currentStCat=null;
-function renderAll(){renderHome();renderClubs();renderCalendar();renderStandings();renderConnBanner();}
+function renderAll(){renderHome();renderClubs();renderCalendar();renderStandings();renderConnBanner();renderWeek();}
 function switchView(v){document.querySelectorAll('.view').forEach(s=>s.classList.remove('active'));document.getElementById(v).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===v));currentView=v;window.scrollTo({top:0,behavior:'smooth'});}
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>switchView(b.dataset.view));
 document.querySelectorAll('[data-goto]').forEach(el=>el.onclick=()=>switchView(el.dataset.goto));
@@ -592,6 +658,83 @@ document.getElementById('adminToggle').onclick=async()=>{
 
 function fmtDate(d){if(!d)return null;const dt=new Date(d);return dt.toLocaleDateString('es-HN',{weekday:'short',day:'2-digit',month:'short'});}
 function fmtLabel(f){return{rr1:'Todos contra todos',rr2:'Ida y vuelta',rrplayoffs:'Todos contra todos + Playoffs',rr2playoffs:'Ida y vuelta + Playoffs'}[f];}
+
+
+// ----- WEEK / JORNADA -----
+function startOfToday(){const d=new Date();d.setHours(0,0,0,0);return d;}
+function parseTime(t){if(!t)return 9999;const m=t.match(/(\d{1,2}):(\d{2})/);if(!m)return 9999;return parseInt(m[1])*60+parseInt(m[2]);}
+function fmtTime12(t){if(!t)return{h:'',ap:''};const m=t.match(/(\d{1,2}):(\d{2})/);if(!m)return{h:t,ap:''};let hh=parseInt(m[1]);const mm=m[2];const ap=hh>=12?'PM':'AM';hh=hh%12;if(hh===0)hh=12;return{h:hh+':'+mm,ap};}
+function dayKey(d){const dt=new Date(d);dt.setHours(0,0,0,0);return dt.getTime();}
+function fmtDayTitle(d){return new Date(d).toLocaleDateString('es-HN',{weekday:'long',day:'numeric',month:'long'});}
+function fmtDayBadge(d){const dt=new Date(d);return{dn:dt.getDate(),dm:dt.toLocaleDateString('es-HN',{month:'short'})};}
+
+function clearTeamSearch(){document.getElementById('teamSearch').value='';renderWeek();}
+
+function renderWeek(){
+  const cont=document.getElementById('weekContent');
+  if(!cont)return;
+  const search=(document.getElementById('teamSearch')?.value||'').trim().toLowerCase();
+  document.getElementById('teamSearchClear').style.display=search?'block':'none';
+  const today=startOfToday();
+  // upcoming matches with a date >= today
+  let matches=allMatches().filter(m=>m.date&&new Date(m.date)>=today);
+
+  // ----- TEAM FILTER MODE -----
+  if(search){
+    const norm=s=>(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    const ns=norm(search);
+    const teamMatches=matches.filter(m=>{const h=clubById(m.home),a=clubById(m.away);return (h&&norm(h.name).includes(ns))||(a&&norm(a.name).includes(ns));})
+      .sort((x,y)=>new Date(x.date)-new Date(y.date)||parseTime(x.time)-parseTime(y.time));
+    if(!teamMatches.length){
+      cont.innerHTML=`<div class="card">${emptyHTML('🔍','Sin partidos esta semana','No hay partidos programados para tu equipo esta semana.')}</div>`;
+      return;
+    }
+    cont.innerHTML=teamMatches.map(m=>{const h=clubById(m.home),a=clubById(m.away);const b=fmtDayBadge(m.date);const tt=fmtTime12(m.time);
+      return `<div class="team-result-card">
+        <div class="trc-date"><div class="d">${b.dn}</div><div class="m">${b.dm}</div></div>
+        <div class="trc-body">
+          <div class="trc-cat">${catLabel(m.catId)} · ${m.phase}</div>
+          <div class="trc-match">${h.name} <span style="color:var(--orange);">vs</span> ${a.name}</div>
+          <div class="trc-meta">${m.time?`<span>🕐 ${tt.h} ${tt.ap}</span>`:''}${m.venue?`<span>📍 ${m.venue}</span>`:''}${m.played?`<span style="color:var(--good);font-weight:700;">✓ Final ${m.hs}-${m.as}</span>`:''}</div>
+        </div>
+      </div>`;}).join('');
+    return;
+  }
+
+  // ----- NORMAL MODE: group by day -> venue -> time -----
+  if(!matches.length){
+    cont.innerHTML=`<div class="card">${emptyHTML('🗓️','No hay jornada programada',isAdmin?'Programa partidos con fecha desde el calendario para que aparezcan aquí.':'Aún no hay partidos programados. Vuelve pronto.')}</div>`;
+    return;
+  }
+  // group by day
+  const byDay={};
+  matches.forEach(m=>{const k=dayKey(m.date);(byDay[k]||=[]).push(m);});
+  const dayKeys=Object.keys(byDay).map(Number).sort((a,b)=>a-b);
+
+  let html='';
+  dayKeys.forEach(dk=>{
+    const dayMatches=byDay[dk];
+    const badge=fmtDayBadge(dk);
+    html+=`<div class="day-block"><div class="day-head"><div class="day-badge"><div class="dn">${badge.dn}</div><div class="dm">${badge.dm}</div></div><div><div class="day-title">${fmtDayTitle(dk)}</div><div class="day-count">${dayMatches.length} partido${dayMatches.length!==1?'s':''}</div></div></div>`;
+    // group by venue
+    const byVenue={};
+    dayMatches.forEach(m=>{const v=m.venue||'Lugar por definir';(byVenue[v]||=[]).push(m);});
+    Object.keys(byVenue).sort().forEach(venue=>{
+      const vm=byVenue[venue].sort((a,b)=>parseTime(a.time)-parseTime(b.time));
+      html+=`<div class="venue-block"><div class="venue-bar"><span class="vico">📍</span>${venue}</div><div class="venue-matches">`;
+      html+=vm.map(m=>{const h=clubById(m.home),a=clubById(m.away);if(!h||!a)return'';const tt=fmtTime12(m.time);
+        return `<div class="wk-match">
+          <div class="wk-time">${m.time?`${tt.h}<span class="ap">${tt.ap}</span>`:'—'}</div>
+          <div class="wk-cat">${catLabel(m.catId)}</div>
+          <div class="wk-teams">${h.name} <span class="vs">VS</span> ${a.name}</div>
+          <div class="wk-status ${m.played?'ft':'prog'}">${m.played?'FINAL '+m.hs+'-'+m.as:'PROGRAMADO'}</div>
+        </div>`;}).join('');
+      html+=`</div></div>`;
+    });
+    html+=`</div>`;
+  });
+  cont.innerHTML=html;
+}
 
 // ----- HOME -----
 function allMatches(){const out=[];Object.keys(TOURNAMENTS).forEach(c=>TOURNAMENTS[c].matches.forEach(m=>out.push({...m,catId:c})));return out;}
