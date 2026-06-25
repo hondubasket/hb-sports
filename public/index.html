@@ -395,7 +395,12 @@
   <section class="view" id="calendar">
     <div class="page-head"><div class="eyebrow">Programación</div><h2>Calendario de partidos</h2><p>Filtra por categoría para ver los encuentros de cada torneo.</p></div>
     <div class="filters" id="calFilters"></div>
-    <div class="admin-only" style="margin-bottom:18px;"><button class="btn orange" onclick="openCreateTournament()">＋ Crear torneo</button></div>
+    <div class="admin-only" style="margin-bottom:18px;display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn orange" onclick="openCreateTournament()">＋ Crear torneo</button>
+      <button class="btn ghost" onclick="downloadBackup()">⬇️ Descargar respaldo</button>
+      <button class="btn ghost" onclick="document.getElementById('backupFile').click()">⬆️ Cargar respaldo</button>
+      <input type="file" id="backupFile" accept="application/json,.json" style="display:none;" onchange="loadBackup(event)">
+    </div>
     <div id="calContent"></div>
   </section>
 
@@ -973,6 +978,60 @@ document.querySelectorAll('.modal-bg').forEach(bg=>bg.onclick=e=>{if(e.target===
 
 function emptyHTML(i,t,x){return`<div class="empty"><div class="ico">${i}</div><h3>${t}</h3><p>${x}</p></div>`;}
 let toastTimer;function toast(msg,err){document.getElementById('toastMsg').textContent=msg;const t=document.getElementById('toast');t.classList.toggle('err',!!err);t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2800);}
+
+
+// ----- BACKUP / RESTORE -----
+function downloadBackup(){
+  const backup={
+    version:2,
+    exported:new Date().toISOString(),
+    tournaments:TOURNAMENTS
+  };
+  const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const stamp=new Date().toISOString().slice(0,16).replace('T','_').replace(':','');
+  a.href=url;a.download='hb-sports-respaldo_'+stamp+'.json';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  const nT=Object.keys(TOURNAMENTS).length;
+  let nM=0;Object.values(TOURNAMENTS).forEach(t=>nM+=t.matches.length);
+  toast('Respaldo descargado · '+nT+' torneos, '+nM+' partidos');
+}
+
+function loadBackup(event){
+  const file=event.target.files[0];
+  if(!file){return;}
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      const incoming=data.tournaments||data; // accept raw or wrapped
+      if(typeof incoming!=='object'){throw new Error('Formato inválido');}
+      const nT=Object.keys(incoming).length;
+      let nM=0;Object.values(incoming).forEach(t=>{if(t.matches)nM+=t.matches.length;});
+      const curT=Object.keys(TOURNAMENTS).length;
+      if(!confirm(`¿Cargar este respaldo?\n\nEl respaldo contiene ${nT} torneos y ${nM} partidos.\nReemplazará los ${curT} torneos que hay ahora en la plataforma.\n\nEsta acción no se puede deshacer.`)){
+        event.target.value='';return;
+      }
+      // clear & load
+      Object.keys(TOURNAMENTS).forEach(k=>delete TOURNAMENTS[k]);
+      Object.keys(incoming).forEach(k=>{
+        const t=incoming[k];
+        if(t.matches){t.matches.forEach(m=>{if(m.date)m.date=new Date(m.date);});}
+        if(!t.adjustments)t.adjustments={};
+        TOURNAMENTS[k]=t;
+      });
+      saveTournaments();
+      toast('✓ Respaldo cargado · '+nT+' torneos restaurados');
+      renderAll();
+    }catch(err){
+      toast('Error al leer el respaldo: '+err.message,true);
+    }
+    event.target.value='';
+  };
+  reader.readAsText(file);
+}
 
 // init
 seedDemo();renderAll();serverLoad();
