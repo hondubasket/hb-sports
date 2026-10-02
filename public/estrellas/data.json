@@ -322,7 +322,93 @@
    "id": "u18f",
    "nombre": "U18 Femenino",
    "score7": "https://www.score7.io/tournaments/hkst0dyxo9",
-   "rondas": []
+   "rondas": [
+    {
+     "ronda": 1,
+     "partidos": [
+      {
+       "local": "SOLEDAD",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 7,
+       "pv": 81
+      },
+      {
+       "local": "MILLA SELVA",
+       "visita": "ANTARES",
+       "pl": null,
+       "pv": null
+      }
+     ]
+    },
+    {
+     "ronda": 2,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "SOLEDAD",
+       "pl": 72,
+       "pv": 9
+      },
+      {
+       "local": "ANTARES",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 20,
+       "pv": 57
+      }
+     ]
+    },
+    {
+     "ronda": 3,
+     "partidos": [
+      {
+       "local": "MILLA SELVA",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 12,
+       "pv": 36
+      },
+      {
+       "local": "ANTARES",
+       "visita": "SOLEDAD",
+       "pl": 33,
+       "pv": 5
+      }
+     ]
+    },
+    {
+     "ronda": 4,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "ANTARES",
+       "pl": 56,
+       "pv": 23
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "MILLA SELVA",
+       "pl": 61,
+       "pv": 30
+      }
+     ]
+    },
+    {
+     "ronda": 5,
+     "partidos": [
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 36,
+       "pv": 32
+      },
+      {
+       "local": "SOLEDAD",
+       "visita": "MILLA SELVA",
+       "pl": 3,
+       "pv": 35
+      }
+     ]
+    }
+   ]
   }
  ]
 }
