@@ -31,7 +31,212 @@
    "id": "u14m",
    "nombre": "U14 Masculino",
    "score7": "https://www.score7.io/tournaments/xtsobxy9h3",
-   "rondas": []
+   "rondas": [
+    {
+     "ronda": 1,
+     "partidos": [
+      {
+       "local": "VILLA DE LOS NINOS",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 70,
+       "pv": 73
+      },
+      {
+       "local": "BUFALO",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 24,
+       "pv": 32
+      },
+      {
+       "local": "PANTERAS",
+       "visita": "ENERGY",
+       "pl": 41,
+       "pv": 63
+      },
+      {
+       "local": "MACRIS",
+       "visita": "AST",
+       "pl": null,
+       "pv": null
+      }
+     ]
+    },
+    {
+     "ronda": 2,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "BUFALO",
+       "pl": 39,
+       "pv": 28
+      },
+      {
+       "local": "PANTERAS",
+       "visita": "VILLA DE LOS NINOS",
+       "pl": 39,
+       "pv": 63
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "MACRIS",
+       "pl": 20,
+       "pv": 0,
+       "wo": true
+      },
+      {
+       "local": "AST",
+       "visita": "ENERGY",
+       "pl": null,
+       "pv": null
+      }
+     ]
+    },
+    {
+     "ronda": 3,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "PANTERAS",
+       "pl": 61,
+       "pv": 43
+      },
+      {
+       "local": "MACRIS",
+       "visita": "BUFALO",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "AST",
+       "visita": "VILLA DE LOS NINOS",
+       "pl": 54,
+       "pv": 52
+      },
+      {
+       "local": "ENERGY",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 22,
+       "pv": 53
+      }
+     ]
+    },
+    {
+     "ronda": 4,
+     "partidos": [
+      {
+       "local": "MACRIS",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 37,
+       "pv": 50
+      },
+      {
+       "local": "AST",
+       "visita": "PANTERAS",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "ENERGY",
+       "visita": "BUFALO",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "VILLA DE LOS NINOS",
+       "pl": null,
+       "pv": null
+      }
+     ]
+    },
+    {
+     "ronda": 5,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "AST",
+       "pl": 51,
+       "pv": 27
+      },
+      {
+       "local": "ENERGY",
+       "visita": "MACRIS",
+       "pl": 53,
+       "pv": 54
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "PANTERAS",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "VILLA DE LOS NINOS",
+       "visita": "BUFALO",
+       "pl": 52,
+       "pv": 32
+      }
+     ]
+    },
+    {
+     "ronda": 6,
+     "partidos": [
+      {
+       "local": "ENERGY",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 36,
+       "pv": 38
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "AST",
+       "pl": 56,
+       "pv": 22
+      },
+      {
+       "local": "VILLA DE LOS NINOS",
+       "visita": "MACRIS",
+       "pl": 49,
+       "pv": 43
+      },
+      {
+       "local": "BUFALO",
+       "visita": "PANTERAS",
+       "pl": 37,
+       "pv": 22
+      }
+     ]
+    },
+    {
+     "ronda": 7,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 45,
+       "pv": 46
+      },
+      {
+       "local": "VILLA DE LOS NINOS",
+       "visita": "ENERGY",
+       "pl": 46,
+       "pv": 50
+      },
+      {
+       "local": "BUFALO",
+       "visita": "AST",
+       "pl": 55,
+       "pv": 25
+      },
+      {
+       "local": "PANTERAS",
+       "visita": "MACRIS",
+       "pl": 29,
+       "pv": 61
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "u14f",
