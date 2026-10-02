@@ -115,7 +115,129 @@
    "id": "u12f",
    "nombre": "U12 Femenino",
    "score7": "https://www.score7.io/tournaments/4kvwi90g8z",
-   "rondas": []
+   "rondas": [
+    {
+     "ronda": 1,
+     "partidos": [
+      {
+       "local": "BUFALO",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 11,
+       "pv": 22
+      },
+      {
+       "local": "HONDURAS KING",
+       "visita": "ENERGY",
+       "pl": 7,
+       "pv": 25
+      },
+      {
+       "local": "AST",
+       "visita": "ANTARES",
+       "pl": 0,
+       "pv": 20,
+       "wo": true
+      }
+     ]
+    },
+    {
+     "ronda": 2,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "HONDURAS KING",
+       "pl": 37,
+       "pv": 4
+      },
+      {
+       "local": "AST",
+       "visita": "BUFALO",
+       "pl": 0,
+       "pv": 20,
+       "wo": true
+      },
+      {
+       "local": "ANTARES",
+       "visita": "ENERGY",
+       "pl": 0,
+       "pv": 20,
+       "wo": true
+      }
+     ]
+    },
+    {
+     "ronda": 3,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "AST",
+       "pl": 20,
+       "pv": 0,
+       "wo": true
+      },
+      {
+       "local": "ANTARES",
+       "visita": "HONDURAS KING",
+       "pl": 19,
+       "pv": 20
+      },
+      {
+       "local": "ENERGY",
+       "visita": "BUFALO",
+       "pl": 18,
+       "pv": 17
+      }
+     ]
+    },
+    {
+     "ronda": 4,
+     "partidos": [
+      {
+       "local": "ANTARES",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "ENERGY",
+       "visita": "AST",
+       "pl": 20,
+       "pv": 0,
+       "wo": true
+      },
+      {
+       "local": "BUFALO",
+       "visita": "HONDURAS KING",
+       "pl": null,
+       "pv": null
+      }
+     ]
+    },
+    {
+     "ronda": 5,
+     "partidos": [
+      {
+       "local": "ENERGY",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 19,
+       "pv": 28
+      },
+      {
+       "local": "BUFALO",
+       "visita": "ANTARES",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "HONDURAS KING",
+       "visita": "AST",
+       "pl": 20,
+       "pv": 0,
+       "wo": true
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "u14m",
