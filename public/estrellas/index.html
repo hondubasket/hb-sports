@@ -91,29 +91,30 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 const MES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
 const fdate=d=>{if(!d)return"";const[y,m,dd]=d.split("-");return `${+dd} ${MES[+m-1]} ${y}`};
 const played=p=>p.pl!=null&&p.pv!=null;
-const tc=s=>String(s).toLowerCase().replace(/(^|\s)\S/g,m=>m.toUpperCase()).replace(/ (De|Del|La|Las|Los|Y) /g,m=>m.toLowerCase());
+const isWO=p=>!!p.wo||(played(p)&&((p.pl===20&&p.pv===0)||(p.pl===0&&p.pv===20)));
+const tc=s=>String(s).toLowerCase().replace(/(^|\s)\S/g,m=>m.toUpperCase()).replace(/ (De|Del|La|Las|Los|Y)(?= )/g,m=>m.toLowerCase());
 function allGames(c){return(c.rondas||[]).flatMap(r=>r.partidos.map(p=>({...p,ronda:r.ronda})))}
 function table(c){
-  const W=D.puntos?.victoria??2,L=D.puntos?.derrota??1,t={};
-  const add=n=>t[n]??=(t[n]={team:n,pj:0,g:0,p:0,pf:0,pc:0});
+  const W=D.puntos?.victoria??2,L=D.puntos?.derrota??1,LW=D.puntos?.derrotaWO??0,t={};
+  const add=n=>t[n]??=(t[n]={team:n,pj:0,g:0,p:0,pf:0,pc:0,wo:0});
   allGames(c).forEach(p=>{add(p.local);add(p.visita);if(!played(p))return;const a=t[p.local],b=t[p.visita];
-    a.pj++;b.pj++;a.pf+=p.pl;a.pc+=p.pv;b.pf+=p.pv;b.pc+=p.pl;if(p.pl>p.pv){a.g++;b.p++}else if(p.pv>p.pl){b.g++;a.p++}});
-  return Object.values(t).map(x=>({...x,dif:x.pf-x.pc,pts:W*x.g+L*x.p})).sort((x,y)=>y.pts-x.pts||y.dif-x.dif||y.pf-x.pf||x.team.localeCompare(y.team));
+    a.pj++;b.pj++;a.pf+=p.pl;a.pc+=p.pv;b.pf+=p.pv;b.pc+=p.pl;const wo=isWO(p),lo=p.pl>p.pv?b:a;if(p.pl>p.pv){a.g++;b.p++}else if(p.pv>p.pl){b.g++;a.p++}if(wo)lo.wo++});
+  return Object.values(t).map(x=>({...x,dif:x.pf-x.pc,pts:W*x.g+L*(x.p-x.wo)+LW*x.wo})).sort((x,y)=>y.pts-x.pts||y.dif-x.dif||y.pf-x.pf||x.team.localeCompare(y.team));
 }
 function standTable(c){
   const st=table(c);
   return `<div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Equipo</th><th>PJ</th><th>G</th><th>P</th><th>PF</th><th>PC</th><th>DIF</th><th>PTS</th></tr></thead><tbody>${st.map((t,i)=>`<tr class="${i<4?"top4":""}"><td class="l">${i+1}</td><td class="l"><b>${esc(tc(t.team))}</b></td><td>${t.pj}</td><td>${t.g}</td><td>${t.p}</td><td>${t.pf}</td><td>${t.pc}</td><td style="color:${t.dif>0?"var(--good)":t.dif<0?"var(--bad)":"inherit"}">${t.dif>0?"+":""}${t.dif}</td><td class="b">${t.pts}</td></tr>`).join("")}</tbody></table></div>`;
 }
 function game(p){
-  const f=played(p),w=(x,y)=>f&&x<y?"l":"",wo=f&&((p.pl===20&&p.pv===0)||(p.pl===0&&p.pv===20));
+  const f=played(p),w=(x,y)=>f&&x<y?"l":"",wo=isWO(p);
   return `<div class="game${wo?" wo":""}"><span class="t ${w(p.pl,p.pv)}">${esc(tc(p.local))}</span>${f?`<span class="s">${p.pl}</span>`:`<span class="p">Pendiente</span>`}<span class="t ${w(p.pv,p.pl)}">${esc(tc(p.visita))}</span>${f?`<span class="s">${p.pv}</span>`:""}</div>`;
 }
 function viewCat(c){
   if(!(c.rondas||[]).length)return `<div class="head"><div class="eyebrow">Categoría</div><h2>${esc(c.nombre)}</h2></div><div class="empty"><b>Resultados por publicar</b>La tabla y los partidos de esta categoría aparecen aquí en cuanto se carguen.</div>`;
   const g=allGames(c),pj=g.filter(played).length;
-  return `<div class="stack"><div class="head"><div class="eyebrow">Categoría · ${pj} de ${g.length} partidos jugados</div><h2>${esc(c.nombre)}</h2><p>Tabla de posiciones y resultados por ronda. Victoria 2 puntos, derrota 1.</p></div>
+  return `<div class="stack"><div class="head"><div class="eyebrow">Categoría · ${pj} de ${g.length} partidos jugados</div><h2>${esc(c.nombre)}</h2><p>Tabla de posiciones y resultados por ronda. Victoria 2 puntos, derrota 1, derrota por W.O. 0 (reglamento FIBA).</p></div>
   <div class="grid2" style="grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)">
-    <section><h3 style="font-size:19px;margin-bottom:10px">Tabla de posiciones</h3>${standTable(c)}<p class="note" style="margin-top:8px">Desempate por diferencia de puntos y luego puntos a favor. W.O.: partido ganado por incomparecencia (20-0).</p></section>
+    <section><h3 style="font-size:19px;margin-bottom:10px">Tabla de posiciones</h3>${standTable(c)}<p class="note" style="margin-top:8px">Desempate por diferencia de puntos y luego puntos a favor. W.O.: partido ganado por incomparecencia (20-0); el equipo que no se presenta suma 0 puntos.</p></section>
     <section><h3 style="font-size:19px;margin-bottom:10px">Partidos por ronda</h3>${[...c.rondas].sort((a,b)=>b.ronda-a.ronda).map(r=>`<div class="round"><h4>Ronda ${r.ronda}</h4>${r.partidos.map(game).join("")}</div>`).join("")}</section>
   </div></div>`;
 }

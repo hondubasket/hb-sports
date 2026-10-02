@@ -5,7 +5,8 @@
  "actualizado": "2026-10-02",
  "puntos": {
   "victoria": 2,
-  "derrota": 1
+  "derrota": 1,
+  "derrotaWO": 0
  },
  "categorias": [
   {
@@ -91,7 +92,8 @@
        "local": "LEONES KIDS",
        "visita": "HONDURAS KING",
        "pl": 0,
-       "pv": 20
+       "pv": 20,
+       "wo": true
       },
       {
        "local": "NACIONAL DE INGENIEROS",
@@ -173,7 +175,8 @@
        "local": "REAPERS",
        "visita": "HONDURAS KING",
        "pl": 20,
-       "pv": 0
+       "pv": 0,
+       "wo": true
       },
       {
        "local": "ENERGY",
@@ -214,7 +217,8 @@
        "local": "NACIONAL DE INGENIEROS",
        "visita": "HONDURAS KING",
        "pl": 20,
-       "pv": 0
+       "pv": 0,
+       "wo": true
       }
      ]
     },
@@ -278,7 +282,8 @@
        "local": "HONDURAS KING",
        "visita": "MACRIS",
        "pl": 0,
-       "pv": 20
+       "pv": 20,
+       "wo": true
       },
       {
        "local": "BUFALO",
@@ -307,7 +312,8 @@
        "local": "HONDURAS KING",
        "visita": "ATLANTIDA",
        "pl": 0,
-       "pv": 20
+       "pv": 20,
+       "wo": true
       },
       {
        "local": "BUFALO",
@@ -336,7 +342,8 @@
        "local": "HONDURAS KING",
        "visita": "ENERGY",
        "pl": 0,
-       "pv": 20
+       "pv": 20,
+       "wo": true
       },
       {
        "local": "BUFALO",
@@ -378,7 +385,8 @@
        "local": "ENERGY",
        "visita": "NACIONAL DE INGENIEROS",
        "pl": 0,
-       "pv": 20
+       "pv": 20,
+       "wo": true
       },
       {
        "local": "VILLA DE LAS NINAS",
@@ -395,7 +403,8 @@
        "local": "HONDUBASKET TEGUZ",
        "visita": "ENERGY",
        "pl": 20,
-       "pv": 0
+       "pv": 0,
+       "wo": true
       },
       {
        "local": "VILLA DE LAS NINAS",
@@ -424,7 +433,8 @@
        "local": "AST",
        "visita": "ENERGY",
        "pl": 20,
-       "pv": 0
+       "pv": 0,
+       "wo": true
       },
       {
        "local": "NACIONAL DE INGENIEROS",
@@ -453,7 +463,8 @@
        "local": "BUFALO",
        "visita": "ENERGY",
        "pl": 20,
-       "pv": 0
+       "pv": 0,
+       "wo": true
       }
      ]
     },
@@ -476,7 +487,8 @@
        "local": "ENERGY",
        "visita": "VILLA DE LAS NINAS",
        "pl": 0,
-       "pv": 20
+       "pv": 20,
+       "wo": true
       }
      ]
     }

@@ -199,11 +199,11 @@ fetch("/lnbm/data.json",{cache:"no-store"}).then(r=>r.json()).then(D=>{
 
 /* ---- Liga de las Estrellas (resultados de Score7) ---- */
 fetch("/estrellas/data.json",{cache:"no-store"}).then(r=>r.json()).then(E=>{
-  const tc=s=>String(s).toLowerCase().replace(/(^|\s)\S/g,m=>m.toUpperCase()).replace(/ (De|Del|La|Las|Los|Y) /g,m=>m.toLowerCase());
+  const tc=s=>String(s).toLowerCase().replace(/(^|\s)\S/g,m=>m.toUpperCase()).replace(/ (De|Del|La|Las|Los|Y)(?= )/g,m=>m.toLowerCase());
   const done=p=>p.pl!=null&&p.pv!=null;let played=0,teams=new Set();const leaders=[];
   E.categorias.forEach(c=>{const t={};(c.rondas||[]).forEach(r=>r.partidos.forEach(p=>{teams.add(p.local);teams.add(p.visita);
-    [p.local,p.visita].forEach(n=>t[n]??=(t[n]={n,g:0,p:0,d:0}));if(!done(p))return;played++;const a=t[p.local],b=t[p.visita];a.d+=p.pl-p.pv;b.d+=p.pv-p.pl;if(p.pl>p.pv){a.g++;b.p++}else{b.g++;a.p++}}));
-    const st=Object.values(t).sort((x,y)=>(2*y.g+y.p)-(2*x.g+x.p)||y.d-x.d);if(st.length&&st[0].g+st[0].p)leaders.push({cat:c.nombre,id:c.id,l:st[0]});});
+    [p.local,p.visita].forEach(n=>t[n]??=(t[n]={n,g:0,p:0,d:0}));if(!done(p))return;played++;const a=t[p.local],b=t[p.visita];a.d+=p.pl-p.pv;b.d+=p.pv-p.pl;const w=p.pl>p.pv?a:b,l=p.pl>p.pv?b:a;w.g++;l.p++;if(p.wo)l.pts=(l.pts||0)-1}));
+    const P=x=>2*x.g+x.p+(x.pts||0);const st=Object.values(t).sort((x,y)=>P(y)-P(x)||y.d-x.d);if(st.length&&st[0].g+st[0].p)leaders.push({cat:c.nombre,id:c.id,l:st[0]});});
   $("#estFacts").innerHTML=`<div><b>${E.categorias.length}</b><span>Categorías</span></div><div><b>${E.categorias.filter(c=>(c.rondas||[]).length).length}</b><span>Con resultados</span></div><div><b>${played}</b><span>Jugados</span></div>`;
   $("#estBody").innerHTML=leaders.length?`<div class="mini"><h4>Líderes por categoría</h4>${leaders.map(x=>`<a class="row" href="/estrellas/#${x.id}" style="text-decoration:none"><span class="n"><span>${esc(x.cat)}</span></span><span class="m"><b style="color:var(--ink)">${esc(tc(x.l.n))}</b> · ${x.l.g}-${x.l.p}</span></a>`).join("")}</div>`:`<p class="muted">Los resultados por categoría se publican aquí.</p>`;
 }).catch(()=>{$("#estBody").innerHTML=`<p class="muted">No se pudo cargar la información.</p>`});
