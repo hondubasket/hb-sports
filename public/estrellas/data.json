@@ -37,7 +37,124 @@
    "id": "u14f",
    "nombre": "U14 Femenino",
    "score7": "https://www.score7.io/tournaments/lofrvgea7z",
-   "rondas": []
+   "rondas": [
+    {
+     "ronda": 1,
+     "partidos": [
+      {
+       "local": "BUFALO",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 6,
+       "pv": 51
+      },
+      {
+       "local": "ANTARES",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 0,
+       "pv": 20,
+       "wo": true
+      },
+      {
+       "local": "AST",
+       "visita": "ENERGY",
+       "pl": null,
+       "pv": null
+      }
+     ]
+    },
+    {
+     "ronda": 2,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "ANTARES",
+       "pl": 42,
+       "pv": 4
+      },
+      {
+       "local": "AST",
+       "visita": "BUFALO",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "ENERGY",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 10,
+       "pv": 77
+      }
+     ]
+    },
+    {
+     "ronda": 3,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "AST",
+       "pl": 56,
+       "pv": 5
+      },
+      {
+       "local": "ENERGY",
+       "visita": "ANTARES",
+       "pl": 15,
+       "pv": 33
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "BUFALO",
+       "pl": 68,
+       "pv": 20
+      }
+     ]
+    },
+    {
+     "ronda": 4,
+     "partidos": [
+      {
+       "local": "ENERGY",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 10,
+       "pv": 37
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "AST",
+       "pl": 63,
+       "pv": 19
+      },
+      {
+       "local": "BUFALO",
+       "visita": "ANTARES",
+       "pl": 22,
+       "pv": 23
+      }
+     ]
+    },
+    {
+     "ronda": 5,
+     "partidos": [
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 32,
+       "pv": 57
+      },
+      {
+       "local": "BUFALO",
+       "visita": "ENERGY",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "ANTARES",
+       "visita": "AST",
+       "pl": null,
+       "pv": null
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "u16m",
