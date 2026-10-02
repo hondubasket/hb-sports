@@ -19,7 +19,97 @@
    "id": "u12m",
    "nombre": "U12 Masculino",
    "score7": "https://www.score7.io/tournaments/sojcjr0pt8",
-   "rondas": []
+   "rondas": [
+    {
+     "ronda": 1,
+     "partidos": [
+      {
+       "local": "AST",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 0,
+       "pv": 20,
+       "wo": true
+      },
+      {
+       "local": "BUFALO",
+       "visita": "ENERGY",
+       "pl": 44,
+       "pv": 17
+      }
+     ]
+    },
+    {
+     "ronda": 2,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "AST",
+       "pl": 20,
+       "pv": 0,
+       "wo": true
+      },
+      {
+       "local": "ENERGY",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 7,
+       "pv": 85
+      }
+     ]
+    },
+    {
+     "ronda": 3,
+     "partidos": [
+      {
+       "local": "BUFALO",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 28,
+       "pv": 46
+      },
+      {
+       "local": "ENERGY",
+       "visita": "AST",
+       "pl": 20,
+       "pv": 0,
+       "wo": true
+      }
+     ]
+    },
+    {
+     "ronda": 4,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "ENERGY",
+       "pl": 40,
+       "pv": 31
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "BUFALO",
+       "pl": 54,
+       "pv": 40
+      }
+     ]
+    },
+    {
+     "ronda": 5,
+     "partidos": [
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 68,
+       "pv": 38
+      },
+      {
+       "local": "AST",
+       "visita": "BUFALO",
+       "pl": 0,
+       "pv": 20,
+       "wo": true
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "u12f",
