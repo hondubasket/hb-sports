@@ -13,7 +13,93 @@
    "id": "u10",
    "nombre": "U10",
    "score7": "https://www.score7.io/tournaments/09dfypzoze",
-   "rondas": []
+   "rondas": [
+    {
+     "ronda": 1,
+     "partidos": [
+      {
+       "local": "AMADORES",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 4,
+       "pv": 34
+      },
+      {
+       "local": "BUFALO",
+       "visita": "ENERGY",
+       "pl": 48,
+       "pv": 25
+      }
+     ]
+    },
+    {
+     "ronda": 2,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "AMADORES",
+       "pl": 26,
+       "pv": 16
+      },
+      {
+       "local": "ENERGY",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 31,
+       "pv": 40
+      }
+     ]
+    },
+    {
+     "ronda": 3,
+     "partidos": [
+      {
+       "local": "BUFALO",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 42,
+       "pv": 6
+      },
+      {
+       "local": "ENERGY",
+       "visita": "AMADORES",
+       "pl": 41,
+       "pv": 6
+      }
+     ]
+    },
+    {
+     "ronda": 4,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "ENERGY",
+       "pl": 16,
+       "pv": 42
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "BUFALO",
+       "pl": 28,
+       "pv": 4
+      }
+     ]
+    },
+    {
+     "ronda": 5,
+     "partidos": [
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 37,
+       "pv": 4
+      },
+      {
+       "local": "AMADORES",
+       "visita": "BUFALO",
+       "pl": 4,
+       "pv": 27
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "u12m",
