@@ -79,7 +79,8 @@
      "nombre": "Jairo Pineda",
      "cargo": "Asistente"
     }
-   ]
+   ],
+   "logo": "img/hondubasket.png"
   },
   {
    "nombre": "Nacional de Ingenieros",
@@ -167,7 +168,8 @@
      "nombre": "Orlany Hernandez",
      "cargo": "Preparador Físico"
     }
-   ]
+   ],
+   "logo": "img/nacional-de-ingenieros.png"
   },
   {
    "nombre": "Policía Nacional",
@@ -243,7 +245,8 @@
      "nombre": "Jose Flores",
      "cargo": "Utilero"
     }
-   ]
+   ],
+   "logo": "img/policia-nacional.png"
   },
   {
    "nombre": "Siguatepeque",
@@ -303,7 +306,8 @@
      "nombre": "Guillermo Consuegra",
      "cargo": "Asistente"
     }
-   ]
+   ],
+   "logo": "img/siguatepeque.png"
   },
   {
    "nombre": "UNAH",
@@ -375,7 +379,8 @@
      "nombre": "Yoerleny Rodriguez",
      "cargo": "Fisioterapeuta"
     }
-   ]
+   ],
+   "logo": "img/unah.png"
   }
  ],
  "partidos": [
@@ -1610,5 +1615,6 @@
    "fecha": "2026-11-21",
    "hora": "7:30 PM"
   }
- ]
+ ],
+ "logoLiga": "img/lnb-icn.png"
 }

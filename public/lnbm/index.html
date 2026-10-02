@@ -5,34 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Estadísticas | Liga Nacional de Baloncesto Masculino</title>
 <meta name="description" content="Estadísticas oficiales de la LNBM 2026: calendario, resultados, box scores, jugadores, líderes y posiciones. Datos servidos por HB Sports.">
+<link rel="icon" href="img/lnb-icn.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap">
 <style>
 :root{
-  --purple:#4B2E83;--purple-deep:#2A1659;--purple-dark:#1C0E3D;--purple-soft:#F2EDFA;
-  --orange:#E8610A;--orange-soft:#FFF3E8;
-  --ink:#1A1430;--slate:#6B6480;--line:#E7E1F0;--paper:#FBFAFD;--white:#FFFFFF;
+  /* Colores LNB · ICN: gris carbón, naranja, verde lima, azul marino */
+  --purple:#353535;--purple-deep:#1F1F1F;--purple-dark:#121856;--purple-soft:#F1F2F7;
+  --orange:#EC8400;--orange-soft:#FFF4E5;--lime:#99D900;--lime-soft:#EEF9D6;--navy:#121856;
+  --ink:#222222;--slate:#66676E;--line:#E4E5EA;--paper:#F7F7F8;--white:#FFFFFF;
   --good:#1E8A6F;--bad:#C0395E;--radius:14px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',-apple-system,'Segoe UI',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:'Sora','Inter',sans-serif;letter-spacing:-.02em;line-height:1.15}
 a{color:inherit}
-.top{background:var(--purple-dark);color:#fff}
-.top-in{max-width:1200px;margin:0 auto;padding:18px 20px 0}
+.top{background:#fff;color:var(--ink);border-bottom:4px solid var(--lime)}
+.top-in{max-width:1200px;margin:0 auto;padding:14px 20px 0}
+.brandl{display:flex;align-items:center;gap:18px;min-width:0}
+.brandl img{height:58px;width:auto;flex:none}
+.navbar{background:var(--purple);margin-top:14px}
+.navbar nav{max-width:1200px;margin:0 auto;padding:0 12px}
 .brand{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px}
 .brand small{display:block;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
-.brand h1{font-size:clamp(22px,4vw,32px);font-weight:800;margin-top:4px}
-.brand .back{font-size:13px;color:#cfc6e6;text-decoration:none}
-.brand .back:hover{color:#fff}
-nav{display:flex;gap:4px;overflow-x:auto;margin-top:16px;scrollbar-width:none}
-nav a{flex:none;text-decoration:none;color:#cfc6e6;font-weight:600;font-size:14px;padding:11px 15px;border-bottom:3px solid transparent}
+.brand h1{font-size:clamp(18px,3vw,26px);font-weight:800;margin-top:3px;color:var(--purple)}
+@media(max-width:600px){.brandl img{height:40px}.brand h1{font-size:17px}}
+.brand .back{font-size:13px;color:var(--slate);text-decoration:none;font-weight:600}
+.brand .back:hover{color:var(--orange)}
+nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav a{flex:none;text-decoration:none;color:#C9C9CC;font-weight:600;font-size:14px;padding:11px 15px;border-bottom:3px solid transparent}
 nav a:hover{color:#fff}
 nav a.on{color:#fff;border-bottom-color:var(--orange)}
 .wrap{max-width:1200px;margin:0 auto;padding:26px 20px 70px}
 .head{margin-bottom:20px}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
-.head h2{font-size:28px;font-weight:800}
+.head h2{font-size:28px;font-weight:800;color:var(--navy)}
 .head p{color:var(--slate);margin-top:6px;max-width:68ch}
 .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
@@ -60,21 +67,21 @@ a.game:hover{border-color:var(--purple)}
 .mu .l{color:var(--slate);font-weight:500}
 .mu .s{font-family:Sora;font-weight:800}
 .tag{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:99px;white-space:nowrap}
-.tag.fin{background:#E6F5F0;color:var(--good)}
+.tag.fin{background:var(--lime-soft);color:#4E7300}
 .tag.prog{background:var(--orange-soft);color:var(--orange)}
-.jhead{font-family:Sora;font-weight:700;font-size:15px;margin:18px 0 8px;color:var(--purple)}
+.jhead{font-family:Sora;font-weight:700;font-size:15px;margin:18px 0 8px;color:var(--navy)}
 @media(max-width:560px){.game{grid-template-columns:1fr auto}.game .when{grid-column:1/-1;display:flex;gap:8px}.game .when b{display:inline}}
 
 /* tables */
 .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--white)}
 table{border-collapse:collapse;width:100%;font-size:13.5px}
 th,td{padding:8px 9px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
-th{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--slate);background:#F7F4FB}
+th{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--slate);background:#F3F4F7}
 th.l,td.l{text-align:left}
 tbody tr:last-child td{border-bottom:0}
-tbody tr:hover td{background:#FBF9FE}
-tfoot td{font-weight:700;background:#F7F4FB}
-th.s{cursor:pointer}th.s.on{color:var(--purple)}
+tbody tr:hover td{background:#FAFAFB}
+tfoot td{font-weight:700;background:#F3F4F7}
+th.s{cursor:pointer}th.s.on{color:var(--orange)}
 td.b{font-weight:700}
 
 /* leaders */
@@ -92,32 +99,42 @@ td.b{font-weight:700}
 .board h3 small{font:500 12px Inter;color:var(--slate)}
 
 /* scoreboard */
-.sb{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;background:var(--purple-dark);color:#fff;border-radius:var(--radius);padding:22px}
+.sb{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;background:var(--navy);color:#fff;border-radius:var(--radius);padding:22px;border-bottom:5px solid var(--lime)}
+.sb .t{display:flex;align-items:center;gap:12px}.sb .t:last-child{justify-content:flex-end}
+.sb .t .tl{width:64px;height:64px;padding:6px}
+@media(max-width:560px){.sb .t,.sb .t:last-child{flex-direction:column;text-align:center;justify-content:center}.sb .t .tl{order:-1}.sb .t .tl{width:46px;height:46px}}
 .sb .t{font-family:Sora;font-weight:700;font-size:clamp(15px,3vw,22px)}
 .sb .t:last-child{text-align:right}
 .sb .sc{font-family:Sora;font-weight:800;font-size:clamp(30px,6vw,48px);white-space:nowrap}
-.sb .meta{grid-column:1/-1;text-align:center;color:#cfc6e6;font-size:13px}
+.sb .meta{grid-column:1/-1;text-align:center;color:#C8CBE0;font-size:13px}
+.sb .sc{color:#fff}
 
 .foot{border-top:1px solid var(--line);padding:22px 20px;text-align:center;color:var(--slate);font-size:13px}
-.foot b{color:var(--purple)}
-.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--purple-dark);color:#fff;padding:10px 16px;border-radius:9px;font-weight:600;font-size:14px}
+.foot b{color:var(--orange)}
+.tl{display:inline-block;flex:none;width:30px;height:30px;object-fit:contain;background:#fff;border-radius:8px;padding:2px;vertical-align:middle}
+.tl.sm{width:22px;height:22px;border-radius:6px;padding:1px}
+.tn{display:inline-flex;align-items:center;gap:9px;min-width:0}
+.mu .tn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.board .v{color:var(--navy)}
+.toast{background:var(--navy)!important}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);color:#fff;padding:10px 16px;border-radius:9px;font-weight:600;font-size:14px}
 </style>
 </head>
 <body>
 <header class="top"><div class="top-in">
   <div class="brand">
-    <div><small>Temporada 2026 · Estadísticas oficiales</small><h1>Liga Nacional de Baloncesto Masculino</h1></div>
+    <div class="brandl"><img src="img/lnb-icn.png" alt="LNB · ICN"><div><small>Temporada 2026 · Estadísticas oficiales</small><h1>Liga Nacional de Baloncesto Masculino</h1></div></div>
     <a class="back" href="/">← HB Sports</a>
-  </div>
-  <nav id="nav">
+  </div></div>
+  <div class="navbar"><nav id="nav">
     <a href="#inicio" data-v="inicio">Inicio</a>
     <a href="#calendario" data-v="calendario">Calendario</a>
     <a href="#posiciones" data-v="posiciones">Posiciones</a>
     <a href="#equipos" data-v="equipos">Equipos</a>
     <a href="#jugadores" data-v="jugadores">Jugadores</a>
     <a href="#lideres" data-v="lideres">Líderes</a>
-  </nav>
-</div></header>
+  </nav></div>
+</header>
 <main class="wrap" id="view"><div class="empty"><b>Cargando estadísticas</b>Un momento…</div></main>
 <footer class="foot">Datos oficiales servidos por <b>HB Sports</b> · Hondubasket · © 2026 LNBM<br><span id="upd"></span></footer>
 <div class="toast" id="toast" hidden></div>
@@ -137,6 +154,9 @@ const fmin=m=>{const t=Math.round(n(m)*60);return `${Math.floor(t/60)}:${String(
 const pct=(m,a)=>a?(100*m/a).toFixed(1):"–";
 const MES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
 const fdate=d=>{if(!d)return"Por definir";const[y,m,dd]=d.split("-");return `${+dd} ${MES[+m-1]} ${y}`};
+const LOGO=t=>(D.equipos.find(e=>e.nombre===t)||{}).logo;
+const lg=(t,c="")=>{const u=LOGO(t);return u?`<img class="tl ${c}" src="${esc(u)}" alt="" loading="lazy">`:""};
+const tn=(t,c="")=>`<span class="tn">${lg(t,c)}<span>${esc(t)}</span></span>`;
 const fin=()=>D.partidos.filter(g=>g.estado==="final");
 const score=g=>[sum(g.boxLocal).pts||n(g.ptsLocal),sum(g.boxVisita).pts||n(g.ptsVisita)];
 let tt;const toast=m=>{const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,2600)};
@@ -160,15 +180,15 @@ function standings(){
 function gameRow(g){
   const[a,b]=score(g),f=g.estado==="final",w=(x,y)=>!f||x>=y?"":"l";
   const inner=`<div class="when"><b>${esc(fdate(g.fecha))}</b>${esc(g.hora||"")} · J${esc(g.jornada)}</div>
-  <div class="mu"><div class="${w(a,b)}"><span>${esc(g.local)}</span><span class="s">${f?a:""}</span></div><div class="${w(b,a)}"><span>${esc(g.visita)}</span><span class="s">${f?b:""}</span></div></div>
+  <div class="mu"><div class="${w(a,b)}">${tn(g.local,"sm")}<span class="s">${f?a:""}</span></div><div class="${w(b,a)}">${tn(g.visita,"sm")}<span class="s">${f?b:""}</span></div></div>
   <span class="tag ${f?"fin":"prog"}">${f?"Final":"Programado"}</span>`;
   return f?`<a class="game" href="#partido-${esc(g.id)}">${inner}</a>`:`<div class="game">${inner}</div>`;
 }
 function standTable(){
-  return `<div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Equipo</th><th>PJ</th><th>G</th><th>P</th><th>PF</th><th>PC</th><th>DIF</th><th>PTS</th></tr></thead><tbody>${standings().map((t,i)=>`<tr><td class="l">${i+1}</td><td class="l"><b>${esc(t.team)}</b></td><td>${t.pj}</td><td>${t.g}</td><td>${t.p}</td><td>${t.pf}</td><td>${t.pc}</td><td style="color:${t.dif>0?"var(--good)":t.dif<0?"var(--bad)":"inherit"}">${t.dif>0?"+":""}${t.dif}</td><td class="b">${t.pts}</td></tr>`).join("")}</tbody></table></div>`;
+  return `<div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Equipo</th><th>PJ</th><th>G</th><th>P</th><th>PF</th><th>PC</th><th>DIF</th><th>PTS</th></tr></thead><tbody>${standings().map((t,i)=>`<tr><td class="l">${i+1}</td><td class="l"><b>${tn(t.team,"sm")}</b></td><td>${t.pj}</td><td>${t.g}</td><td>${t.p}</td><td>${t.pf}</td><td>${t.pc}</td><td style="color:${t.dif>0?"var(--good)":t.dif<0?"var(--bad)":"inherit"}">${t.dif>0?"+":""}${t.dif}</td><td class="b">${t.pts}</td></tr>`).join("")}</tbody></table></div>`;
 }
 function board(title,unit,list,v,sub){
-  return `<section class="card board"><h3>${title}<small>${unit}</small></h3>${list.length?`<ol>${list.map((p,i)=>`<li><span class="rk">${i+1}</span><span class="who"><b>${esc(p.nombre)}</b><span>${esc(p.team)} · ${p.gp} PJ</span></span><span class="v">${v(p)}<small>${sub(p)}</small></span></li>`).join("")}</ol>`:`<p style="color:var(--slate);font-size:14px;padding-top:10px">Disponible con el primer partido final.</p>`}</section>`;
+  return `<section class="card board"><h3>${title}<small>${unit}</small></h3>${list.length?`<ol>${list.map((p,i)=>`<li><span class="rk">${i+1}</span><span class="who"><b>${esc(p.nombre)}</b><span>${tn(p.team,"sm")} · ${p.gp} PJ</span></span><span class="v">${v(p)}<small>${sub(p)}</small></span></li>`).join("")}</ol>`:`<p style="color:var(--slate);font-size:14px;padding-top:10px">Disponible con el primer partido final.</p>`}</section>`;
 }
 
 const V={
@@ -201,11 +221,11 @@ const V={
     const plant=(eq.plantilla||[]).map(j=>({...j,s:stat.get(String(j.num))}));
     const dash=`<td>–</td>`.repeat(7);
     return head("Temporada 2026","Equipos","Promedios por partido de cada equipo, plantilla oficial inscrita y cuerpo técnico.")+
-    `<div class="tbl"><table><thead><tr><th class="l">Equipo</th><th>PJ</th><th>PTS</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th><th>PER</th><th>TC%</th><th>3P%</th><th>TL%</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="l"><b>${esc(r.e.nombre)}</b></td><td>${r.pj}</td>${[r.ppg,r.rpg,r.apg,r.spg,r.bpg,r.tpg].map(x=>`<td>${r.pj?x.toFixed(1):"–"}</td>`).join("")}<td>${r.fg}</td><td>${r.p3}</td><td>${r.ft}</td></tr>`).join("")}</tbody></table></div>
+    `<div class="tbl"><table><thead><tr><th class="l">Equipo</th><th>PJ</th><th>PTS</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th><th>PER</th><th>TC%</th><th>3P%</th><th>TL%</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="l"><b>${tn(r.e.nombre)}</b></td><td>${r.pj}</td>${[r.ppg,r.rpg,r.apg,r.spg,r.bpg,r.tpg].map(x=>`<td>${r.pj?x.toFixed(1):"–"}</td>`).join("")}<td>${r.fg}</td><td>${r.p3}</td><td>${r.ft}</td></tr>`).join("")}</tbody></table></div>
     <div class="filters" style="margin-top:26px"><h3 style="font-size:20px;margin-right:8px">Plantilla</h3><select id="cTeam">${D.equipos.map(e=>`<option ${e.nombre===sel?"selected":""}>${esc(e.nombre)}</option>`).join("")}</select></div>
     <div class="grid2" style="grid-template-columns:minmax(0,2.2fr) minmax(240px,1fr);align-items:start">
     <div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Jugador</th><th>PJ</th><th>MIN</th><th>PTS</th><th>REB</th><th>AST</th><th>ROB</th><th>VAL</th></tr></thead><tbody>${plant.map(j=>`<tr><td class="l">${esc(j.num)}</td><td class="l"><b>${esc(j.nombre)}</b></td>${j.s?`<td>${j.s.gp}</td><td>${fmin(j.s.mpg)}</td>${[j.s.ppg,j.s.rpg,j.s.apg,j.s.spg,j.s.vpg].map(x=>`<td>${x.toFixed(1)}</td>`).join("")}`:`<td>0</td>${`<td>–</td>`.repeat(6)}`}</tr>`).join("")}</tbody></table></div>
-    <section class="card"><h3>Cuerpo técnico</h3>${(eq.tecnico||[]).map(t=>`<div style="padding:7px 0;border-bottom:1px solid var(--line)"><b style="font-size:14px">${esc(t.nombre)}</b><div style="font-size:12px;color:var(--slate)">${esc(t.cargo)}</div></div>`).join("")||`<p style="color:var(--slate)">Sin registrar.</p>`}</section>
+    <section class="card">${eq.logo?`<img src="${esc(eq.logo)}" alt="${esc(eq.nombre)}" style="height:120px;width:auto;max-width:100%;object-fit:contain;display:block;margin:0 auto 14px">`:""}<h3>Cuerpo técnico</h3>${(eq.tecnico||[]).map(t=>`<div style="padding:7px 0;border-bottom:1px solid var(--line)"><b style="font-size:14px">${esc(t.nombre)}</b><div style="font-size:12px;color:var(--slate)">${esc(t.cargo)}</div></div>`).join("")||`<p style="color:var(--slate)">Sin registrar.</p>`}</section>
     </div>`;
   },
   jugadores(){
@@ -241,9 +261,9 @@ const V={
   partido(id){
     const g=D.partidos.find(x=>x.id===id);if(!g)return`<div class="empty"><b>Partido no encontrado</b><a href="#calendario">Volver al calendario</a></div>`;
     const[a,b]=score(g);
-    const box=(team,rows)=>{const t=sum(rows);return `<section class="stack" style="gap:10px"><h3 style="font-size:19px">${esc(team)}</h3><div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Jugador</th><th>MIN</th><th>PTS</th><th>2P</th><th>3P</th><th>TL</th><th>RO</th><th>RD</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th><th>PER</th><th>FP</th><th>VAL</th></tr></thead><tbody>${(rows||[]).map(r=>`<tr><td class="l">${esc(r.num)}</td><td class="l"><b>${esc(r.nombre)}</b></td><td>${fmin(r.min)}</td><td class="b">${pts(r)}</td><td>${n(r.p2m)}/${n(r.p2a)}</td><td>${n(r.p3m)}/${n(r.p3a)}</td><td>${n(r.ftm)}/${n(r.fta)}</td><td>${n(r.oreb)}</td><td>${n(r.dreb)}</td><td>${n(r.oreb)+n(r.dreb)}</td><td>${n(r.ast)}</td><td>${n(r.stl)}</td><td>${n(r.blk)}</td><td>${n(r.tov)}</td><td>${n(r.pf)}</td><td>${val(r)}</td></tr>`).join("")}</tbody><tfoot><tr><td></td><td class="l">Totales</td><td>${fmin(t.min)}</td><td>${t.pts}</td><td>${t.p2m}/${t.p2a}</td><td>${t.p3m}/${t.p3a}</td><td>${t.ftm}/${t.fta}</td><td>${t.oreb}</td><td>${t.dreb}</td><td>${t.reb}</td><td>${t.ast}</td><td>${t.stl}</td><td>${t.blk}</td><td>${t.tov}</td><td>${t.pf}</td><td></td></tr></tfoot></table></div></section>`};
+    const box=(team,rows)=>{const t=sum(rows);return `<section class="stack" style="gap:10px"><h3 style="font-size:19px">${tn(team)}</h3><div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Jugador</th><th>MIN</th><th>PTS</th><th>2P</th><th>3P</th><th>TL</th><th>RO</th><th>RD</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th><th>PER</th><th>FP</th><th>VAL</th></tr></thead><tbody>${(rows||[]).map(r=>`<tr><td class="l">${esc(r.num)}</td><td class="l"><b>${esc(r.nombre)}</b></td><td>${fmin(r.min)}</td><td class="b">${pts(r)}</td><td>${n(r.p2m)}/${n(r.p2a)}</td><td>${n(r.p3m)}/${n(r.p3a)}</td><td>${n(r.ftm)}/${n(r.fta)}</td><td>${n(r.oreb)}</td><td>${n(r.dreb)}</td><td>${n(r.oreb)+n(r.dreb)}</td><td>${n(r.ast)}</td><td>${n(r.stl)}</td><td>${n(r.blk)}</td><td>${n(r.tov)}</td><td>${n(r.pf)}</td><td>${val(r)}</td></tr>`).join("")}</tbody><tfoot><tr><td></td><td class="l">Totales</td><td>${fmin(t.min)}</td><td>${t.pts}</td><td>${t.p2m}/${t.p2a}</td><td>${t.p3m}/${t.p3a}</td><td>${t.ftm}/${t.fta}</td><td>${t.oreb}</td><td>${t.dreb}</td><td>${t.reb}</td><td>${t.ast}</td><td>${t.stl}</td><td>${t.blk}</td><td>${t.tov}</td><td>${t.pf}</td><td></td></tr></tfoot></table></div></section>`};
     return `<div class="stack"><a href="#calendario" style="color:var(--purple);font-weight:600;text-decoration:none">← Calendario</a>
-    <div class="sb"><div class="t">${esc(g.local)}</div><div class="sc">${a} – ${b}</div><div class="t">${esc(g.visita)}</div><div class="meta">Jornada ${esc(g.jornada)} · ${esc(fdate(g.fecha))} · ${esc(g.sede||"")}${g.parciales?`<br>Parciales: ${g.parciales.map(esc).join(" · ")}`:""}${g.arbitros?`<br>Árbitros: ${g.arbitros.map(esc).join(", ")}`:""}</div></div>
+    <div class="sb"><div class="t">${lg(g.local)}<span>${esc(g.local)}</span></div><div class="sc">${a} – ${b}</div><div class="t"><span>${esc(g.visita)}</span>${lg(g.visita)}</div><div class="meta">Jornada ${esc(g.jornada)} · ${esc(fdate(g.fecha))} · ${esc(g.sede||"")}${g.parciales?`<br>Parciales: ${g.parciales.map(esc).join(" · ")}`:""}${g.arbitros?`<br>Árbitros: ${g.arbitros.map(esc).join(", ")}`:""}</div></div>
     ${box(g.local,g.boxLocal)}${box(g.visita,g.boxVisita)}</div>`;
   }
 };
