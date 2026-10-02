@@ -1,0 +1,1614 @@
+{
+ "liga": "Liga Nacional de Baloncesto Masculino",
+ "sigla": "LNBM",
+ "temporada": "2026",
+ "sedePrincipal": "Coliseo Nacional de Ingenieros",
+ "actualizado": "2026-10-02",
+ "equipos": [
+  {
+   "nombre": "Hondubasket",
+   "corto": "HB",
+   "plantilla": [
+    {
+     "num": "1",
+     "nombre": "Jose Argeñal"
+    },
+    {
+     "num": "3",
+     "nombre": "Justin Morety"
+    },
+    {
+     "num": "5",
+     "nombre": "Alejandro José Andrade Maradiaga"
+    },
+    {
+     "num": "6",
+     "nombre": "Leroy Fernández"
+    },
+    {
+     "num": "7",
+     "nombre": "Eric Joel Ortiz Rosado"
+    },
+    {
+     "num": "8",
+     "nombre": "Saad Mena Zepeda"
+    },
+    {
+     "num": "9",
+     "nombre": "Edgardo José García Núñez"
+    },
+    {
+     "num": "10",
+     "nombre": "Samuel Chavez"
+    },
+    {
+     "num": "11",
+     "nombre": "Machiel Ramon Martínez"
+    },
+    {
+     "num": "14",
+     "nombre": "Cristhian Isaac Williams Araujo"
+    },
+    {
+     "num": "20",
+     "nombre": "Fernando Antonio Reina Interiano"
+    },
+    {
+     "num": "24",
+     "nombre": "Erasmo Javier Sierra García"
+    },
+    {
+     "num": "25",
+     "nombre": "Adrian Acevedo"
+    },
+    {
+     "num": "29",
+     "nombre": "Carlos Alberto Chinchilla Navarrete"
+    },
+    {
+     "num": "30",
+     "nombre": "Daniel Sosa"
+    }
+   ],
+   "tecnico": [
+    {
+     "nombre": "Mario Alvarez",
+     "cargo": "Entrenador Principal"
+    },
+    {
+     "nombre": "Jairo Pineda",
+     "cargo": "Asistente"
+    }
+   ]
+  },
+  {
+   "nombre": "Nacional de Ingenieros",
+   "corto": "CNI",
+   "plantilla": [
+    {
+     "num": "0",
+     "nombre": "Gabriel Enrique Facusse"
+    },
+    {
+     "num": "4",
+     "nombre": "Kelvin Malik Williams Bodden"
+    },
+    {
+     "num": "5",
+     "nombre": "Aaron Jafeth Peralta Ucles"
+    },
+    {
+     "num": "6",
+     "nombre": "Elias Antonio Barralaga Trujillo"
+    },
+    {
+     "num": "7",
+     "nombre": "Mauro Guerrero"
+    },
+    {
+     "num": "10",
+     "nombre": "Josue Samuel Valladares Carbajal"
+    },
+    {
+     "num": "11",
+     "nombre": "Aaron Antonio Lacayo Tabora"
+    },
+    {
+     "num": "12",
+     "nombre": "Diego Zuniga Caceres"
+    },
+    {
+     "num": "13",
+     "nombre": "Juan Pablo Lacayo Tabora"
+    },
+    {
+     "num": "14",
+     "nombre": "Fabio Jose Aguilar de Nueda"
+    },
+    {
+     "num": "15",
+     "nombre": "Jose Alberto Liriano Ramirez"
+    },
+    {
+     "num": "17",
+     "nombre": "Edmer Jafeth Flores Villeda"
+    },
+    {
+     "num": "22",
+     "nombre": "Tyrone Joel González Meléndez"
+    },
+    {
+     "num": "34",
+     "nombre": "Adonis de Jesus Lopez Mateo"
+    }
+   ],
+   "tecnico": [
+    {
+     "nombre": "Carlos Padilla",
+     "cargo": "Entrenador Principal"
+    },
+    {
+     "nombre": "Neptaly Figueroa",
+     "cargo": "Asistente 1"
+    },
+    {
+     "nombre": "Juan Reyes",
+     "cargo": "Asistente 2"
+    },
+    {
+     "nombre": "Luis Bejarano",
+     "cargo": "Asistente 3"
+    },
+    {
+     "nombre": "Marco Antonio Joya",
+     "cargo": "Fisioterapeuta"
+    },
+    {
+     "nombre": "Orlany Hernandez",
+     "cargo": "Preparador Físico"
+    }
+   ]
+  },
+  {
+   "nombre": "Policía Nacional",
+   "corto": "PN",
+   "plantilla": [
+    {
+     "num": "0",
+     "nombre": "Alwyn Amaniel Rivaz Gonzalez"
+    },
+    {
+     "num": "1",
+     "nombre": "Tyreese Avione"
+    },
+    {
+     "num": "2",
+     "nombre": "Alex Renan Alfaro Lopez"
+    },
+    {
+     "num": "3",
+     "nombre": "Salomón Castro"
+    },
+    {
+     "num": "4",
+     "nombre": "Josue Francisco Alfaro Lopez"
+    },
+    {
+     "num": "7",
+     "nombre": "Jorge Alberto García Gonzales"
+    },
+    {
+     "num": "8",
+     "nombre": "Bryan Powell"
+    },
+    {
+     "num": "9",
+     "nombre": "Dominique Fisher"
+    },
+    {
+     "num": "10",
+     "nombre": "Jose Ernesto Rapalo July"
+    },
+    {
+     "num": "11",
+     "nombre": "Heyson David Centeno Figueroa"
+    },
+    {
+     "num": "13",
+     "nombre": "Francisco Armando Forbs Palacios"
+    },
+    {
+     "num": "21",
+     "nombre": "Hector Eduardo Flores Nuñez"
+    },
+    {
+     "num": "23",
+     "nombre": "Junior Bodden"
+    }
+   ],
+   "tecnico": [
+    {
+     "nombre": "Ernesto Leva",
+     "cargo": "Entrenador Principal"
+    },
+    {
+     "nombre": "Rolando Rivera",
+     "cargo": "Asistente 1"
+    },
+    {
+     "nombre": "Leonardo Amador",
+     "cargo": "Asistente 2"
+    },
+    {
+     "nombre": "Jose Flores",
+     "cargo": "Utilero"
+    }
+   ]
+  },
+  {
+   "nombre": "Siguatepeque",
+   "corto": "SIG",
+   "plantilla": [
+    {
+     "num": "0",
+     "nombre": "Diego José Flores Hernandez"
+    },
+    {
+     "num": "1",
+     "nombre": "Henry Jared Morales Santos"
+    },
+    {
+     "num": "6",
+     "nombre": "Pedro Daniel Mendoza Amador"
+    },
+    {
+     "num": "7",
+     "nombre": "Jorge Sosa"
+    },
+    {
+     "num": "8",
+     "nombre": "Cristhian Joel Donaire Donaire"
+    },
+    {
+     "num": "11",
+     "nombre": "Rodrigo Corea Ruiz"
+    },
+    {
+     "num": "13",
+     "nombre": "Jaymar Neshawn Warren Mcglocklin"
+    },
+    {
+     "num": "14",
+     "nombre": "David Edoardo Velásquez Villatoro"
+    },
+    {
+     "num": "19",
+     "nombre": "Francisco Alejandro López Lara"
+    },
+    {
+     "num": "21",
+     "nombre": "Guillermo Abel Consuegra Orellana"
+    },
+    {
+     "num": "24",
+     "nombre": "Samir Jonathan Cabrera Romero"
+    }
+   ],
+   "tecnico": [
+    {
+     "nombre": "Franklin Chavez",
+     "cargo": "Entrenador Principal"
+    },
+    {
+     "nombre": "Guillermo Consuegra",
+     "cargo": "Asistente"
+    }
+   ]
+  },
+  {
+   "nombre": "UNAH",
+   "corto": "UNAH",
+   "plantilla": [
+    {
+     "num": "1",
+     "nombre": "Fernando Padilla Castellanos"
+    },
+    {
+     "num": "2",
+     "nombre": "Nestor Alejandro Maradiaga Valeriano"
+    },
+    {
+     "num": "3",
+     "nombre": "Andres Maradiaga Valeriano"
+    },
+    {
+     "num": "5",
+     "nombre": "Ethan Hernandez Escalante"
+    },
+    {
+     "num": "6",
+     "nombre": "Samuel Lopez Barahona"
+    },
+    {
+     "num": "7",
+     "nombre": "Luis Martinez"
+    },
+    {
+     "num": "8",
+     "nombre": "Alejandro Jafet Santos Barahona"
+    },
+    {
+     "num": "9",
+     "nombre": "Jared Oneal Kelly Alvarez"
+    },
+    {
+     "num": "10",
+     "nombre": "Juan Diego Barahona Moreno"
+    },
+    {
+     "num": "11",
+     "nombre": "Allan Fearron Hernandez"
+    },
+    {
+     "num": "12",
+     "nombre": "Narciso Antonio Posadas"
+    },
+    {
+     "num": "25",
+     "nombre": "Josh Whittaker Bodden"
+    }
+   ],
+   "tecnico": [
+    {
+     "nombre": "Alvin Cacho",
+     "cargo": "Entrenador Principal"
+    },
+    {
+     "nombre": "Steven Cacho",
+     "cargo": "Asistente 1"
+    },
+    {
+     "nombre": "Oscar Centeno",
+     "cargo": "Asistente 2"
+    },
+    {
+     "nombre": "Yoerleny Rodriguez",
+     "cargo": "Fisioterapeuta"
+    }
+   ]
+  }
+ ],
+ "partidos": [
+  {
+   "id": "j1-cni-pn",
+   "jornada": 1,
+   "fase": "Vuelta 1",
+   "fecha": "2026-09-30",
+   "hora": "7:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Nacional de Ingenieros",
+   "visita": "Policía Nacional",
+   "descansa": "Siguatepeque",
+   "estado": "final",
+   "ptsLocal": 60,
+   "ptsVisita": 82,
+   "parciales": [
+    "12-34",
+    "19-14",
+    "18-14",
+    "11-20"
+   ],
+   "arbitros": [
+    "Mikaela Rodriguez",
+    "Martin Villeda",
+    "Nelson Lobo"
+   ],
+   "asistencia": 100,
+   "boxLocal": [
+    {
+     "num": "0",
+     "nombre": "Gabriel Facusse",
+     "titular": true,
+     "min": 21.07,
+     "p2m": 2,
+     "p2a": 4,
+     "p3m": 0,
+     "p3a": 3,
+     "ftm": 0,
+     "fta": 1,
+     "oreb": 2,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 2,
+     "tov": 2,
+     "pf": 2
+    },
+    {
+     "num": "4",
+     "nombre": "Kelvin Bodden",
+     "titular": true,
+     "min": 20.27,
+     "p2m": 0,
+     "p2a": 2,
+     "p3m": 3,
+     "p3a": 5,
+     "ftm": 2,
+     "fta": 4,
+     "oreb": 1,
+     "dreb": 1,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 2,
+     "pf": 4
+    },
+    {
+     "num": "5",
+     "nombre": "Aaron Peralta",
+     "titular": false,
+     "min": 6.23,
+     "p2m": 1,
+     "p2a": 1,
+     "p3m": 0,
+     "p3a": 2,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 2,
+     "ast": 2,
+     "stl": 1,
+     "blk": 0,
+     "tov": 0,
+     "pf": 1
+    },
+    {
+     "num": "6",
+     "nombre": "Elias Barralaga",
+     "titular": false,
+     "min": 9.43,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 1,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 1,
+     "ast": 2,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    },
+    {
+     "num": "7",
+     "nombre": "Mauro Guerrero",
+     "titular": false,
+     "min": 16.97,
+     "p2m": 1,
+     "p2a": 3,
+     "p3m": 0,
+     "p3a": 1,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 1,
+     "dreb": 3,
+     "ast": 1,
+     "stl": 0,
+     "blk": 0,
+     "tov": 2,
+     "pf": 5
+    },
+    {
+     "num": "10",
+     "nombre": "Josue Valladares",
+     "titular": false,
+     "min": 13.57,
+     "p2m": 0,
+     "p2a": 1,
+     "p3m": 2,
+     "p3a": 7,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 1,
+     "ast": 0,
+     "stl": 1,
+     "blk": 0,
+     "tov": 1,
+     "pf": 0
+    },
+    {
+     "num": "11",
+     "nombre": "Aaron Lacayo",
+     "titular": false,
+     "min": 11.0,
+     "p2m": 2,
+     "p2a": 5,
+     "p3m": 0,
+     "p3a": 1,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 2,
+     "dreb": 2,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 2,
+     "pf": 0
+    },
+    {
+     "num": "12",
+     "nombre": "Diego Zuniga",
+     "titular": true,
+     "min": 27.6,
+     "p2m": 1,
+     "p2a": 4,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 5,
+     "dreb": 10,
+     "ast": 0,
+     "stl": 0,
+     "blk": 4,
+     "tov": 2,
+     "pf": 2
+    },
+    {
+     "num": "13",
+     "nombre": "Juan Lacayo",
+     "titular": false,
+     "min": 15.98,
+     "p2m": 1,
+     "p2a": 4,
+     "p3m": 0,
+     "p3a": 4,
+     "ftm": 0,
+     "fta": 1,
+     "oreb": 3,
+     "dreb": 2,
+     "ast": 1,
+     "stl": 0,
+     "blk": 1,
+     "tov": 2,
+     "pf": 2
+    },
+    {
+     "num": "14",
+     "nombre": "Fabio Aguilar",
+     "titular": false,
+     "min": 2.88,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    },
+    {
+     "num": "15",
+     "nombre": "Jose Liriano",
+     "titular": true,
+     "min": 32.98,
+     "p2m": 7,
+     "p2a": 15,
+     "p3m": 2,
+     "p3a": 10,
+     "ftm": 7,
+     "fta": 9,
+     "oreb": 2,
+     "dreb": 6,
+     "ast": 0,
+     "stl": 0,
+     "blk": 3,
+     "tov": 6,
+     "pf": 3
+    },
+    {
+     "num": "17",
+     "nombre": "Edmer Flores",
+     "titular": true,
+     "min": 19.62,
+     "p2m": 0,
+     "p2a": 1,
+     "p3m": 0,
+     "p3a": 2,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 1,
+     "dreb": 1,
+     "ast": 6,
+     "stl": 2,
+     "blk": 0,
+     "tov": 2,
+     "pf": 1
+    },
+    {
+     "num": "22",
+     "nombre": "Tyrone Gonzales",
+     "titular": false,
+     "min": 2.4,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    }
+   ],
+   "boxVisita": [
+    {
+     "num": "0",
+     "nombre": "Alwyn Rivas",
+     "titular": false,
+     "min": 14.15,
+     "p2m": 1,
+     "p2a": 4,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 2,
+     "fta": 4,
+     "oreb": 1,
+     "dreb": 2,
+     "ast": 0,
+     "stl": 1,
+     "blk": 2,
+     "tov": 1,
+     "pf": 1
+    },
+    {
+     "num": "2",
+     "nombre": "Alex Alfaro",
+     "titular": true,
+     "min": 35.92,
+     "p2m": 5,
+     "p2a": 11,
+     "p3m": 0,
+     "p3a": 1,
+     "ftm": 3,
+     "fta": 5,
+     "oreb": 3,
+     "dreb": 4,
+     "ast": 4,
+     "stl": 2,
+     "blk": 0,
+     "tov": 2,
+     "pf": 3
+    },
+    {
+     "num": "3",
+     "nombre": "Salomón Castro",
+     "titular": true,
+     "min": 30.9,
+     "p2m": 3,
+     "p2a": 8,
+     "p3m": 1,
+     "p3a": 2,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 4,
+     "dreb": 5,
+     "ast": 0,
+     "stl": 0,
+     "blk": 1,
+     "tov": 3,
+     "pf": 3
+    },
+    {
+     "num": "4",
+     "nombre": "Josue Alfaro",
+     "titular": false,
+     "min": 11.03,
+     "p2m": 1,
+     "p2a": 2,
+     "p3m": 1,
+     "p3a": 2,
+     "ftm": 1,
+     "fta": 2,
+     "oreb": 0,
+     "dreb": 2,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 2,
+     "pf": 2
+    },
+    {
+     "num": "7",
+     "nombre": "Jorge Garcia",
+     "titular": false,
+     "min": 7.75,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 1,
+     "pf": 1
+    },
+    {
+     "num": "10",
+     "nombre": "Ernesto Rapalo",
+     "titular": true,
+     "min": 23.25,
+     "p2m": 2,
+     "p2a": 5,
+     "p3m": 3,
+     "p3a": 6,
+     "ftm": 3,
+     "fta": 4,
+     "oreb": 0,
+     "dreb": 2,
+     "ast": 2,
+     "stl": 1,
+     "blk": 0,
+     "tov": 2,
+     "pf": 0
+    },
+    {
+     "num": "11",
+     "nombre": "Heyson Centeno",
+     "titular": true,
+     "min": 40.0,
+     "p2m": 4,
+     "p2a": 8,
+     "p3m": 0,
+     "p3a": 1,
+     "ftm": 2,
+     "fta": 4,
+     "oreb": 0,
+     "dreb": 6,
+     "ast": 1,
+     "stl": 1,
+     "blk": 0,
+     "tov": 0,
+     "pf": 1
+    },
+    {
+     "num": "13",
+     "nombre": "Francisco Forbs",
+     "titular": true,
+     "min": 28.15,
+     "p2m": 6,
+     "p2a": 12,
+     "p3m": 3,
+     "p3a": 7,
+     "ftm": 3,
+     "fta": 5,
+     "oreb": 3,
+     "dreb": 6,
+     "ast": 2,
+     "stl": 3,
+     "blk": 0,
+     "tov": 2,
+     "pf": 0
+    },
+    {
+     "num": "21",
+     "nombre": "Hector Flores",
+     "titular": false,
+     "min": 8.85,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 3,
+     "ast": 1,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 2
+    }
+   ]
+  },
+  {
+   "id": "j1-hb-unah",
+   "jornada": 1,
+   "fase": "Vuelta 1",
+   "fecha": "2026-09-30",
+   "hora": "8:30 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Hondubasket",
+   "visita": "UNAH",
+   "descansa": "Siguatepeque",
+   "estado": "final",
+   "ptsLocal": 74,
+   "ptsVisita": 61,
+   "parciales": [
+    "9-19",
+    "19-15",
+    "26-12",
+    "20-15"
+   ],
+   "arbitros": [
+    "Mikaela Rodriguez",
+    "Martin Villeda",
+    "Ena Lobo"
+   ],
+   "asistencia": 100,
+   "boxLocal": [
+    {
+     "num": "1",
+     "nombre": "Jose Argeñal",
+     "titular": false,
+     "min": 9.82,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 1,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 1,
+     "ast": 1,
+     "stl": 1,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    },
+    {
+     "num": "3",
+     "nombre": "Justin Morety",
+     "titular": true,
+     "min": 40.0,
+     "p2m": 6,
+     "p2a": 15,
+     "p3m": 2,
+     "p3a": 7,
+     "ftm": 0,
+     "fta": 1,
+     "oreb": 1,
+     "dreb": 5,
+     "ast": 3,
+     "stl": 1,
+     "blk": 0,
+     "tov": 3,
+     "pf": 1
+    },
+    {
+     "num": "6",
+     "nombre": "Leroy Fernandez",
+     "titular": false,
+     "min": 1.22,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    },
+    {
+     "num": "7",
+     "nombre": "Eric Ortiz",
+     "titular": true,
+     "min": 38.1,
+     "p2m": 7,
+     "p2a": 16,
+     "p3m": 2,
+     "p3a": 10,
+     "ftm": 5,
+     "fta": 7,
+     "oreb": 6,
+     "dreb": 6,
+     "ast": 1,
+     "stl": 1,
+     "blk": 2,
+     "tov": 0,
+     "pf": 0
+    },
+    {
+     "num": "8",
+     "nombre": "Saad Mena",
+     "titular": false,
+     "min": 11.98,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 2,
+     "p3a": 4,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 1,
+     "dreb": 1,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 1,
+     "pf": 0
+    },
+    {
+     "num": "9",
+     "nombre": "Edgardo Garcia",
+     "titular": true,
+     "min": 21.78,
+     "p2m": 2,
+     "p2a": 5,
+     "p3m": 0,
+     "p3a": 1,
+     "ftm": 0,
+     "fta": 1,
+     "oreb": 0,
+     "dreb": 3,
+     "ast": 7,
+     "stl": 2,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    },
+    {
+     "num": "10",
+     "nombre": "Samuel Chavez",
+     "titular": false,
+     "min": 5.55,
+     "p2m": 0,
+     "p2a": 1,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 2,
+     "ast": 0,
+     "stl": 1,
+     "blk": 0,
+     "tov": 0,
+     "pf": 1
+    },
+    {
+     "num": "11",
+     "nombre": "Machiel Martinez",
+     "titular": false,
+     "min": 28.65,
+     "p2m": 2,
+     "p2a": 3,
+     "p3m": 1,
+     "p3a": 1,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 1,
+     "dreb": 4,
+     "ast": 0,
+     "stl": 2,
+     "blk": 1,
+     "tov": 1,
+     "pf": 0
+    },
+    {
+     "num": "14",
+     "nombre": "Cristian Williams",
+     "titular": true,
+     "min": 31.17,
+     "p2m": 3,
+     "p2a": 14,
+     "p3m": 2,
+     "p3a": 4,
+     "ftm": 2,
+     "fta": 2,
+     "oreb": 4,
+     "dreb": 5,
+     "ast": 1,
+     "stl": 2,
+     "blk": 0,
+     "tov": 1,
+     "pf": 0
+    },
+    {
+     "num": "20",
+     "nombre": "Fernando Reina",
+     "titular": false,
+     "min": 4.15,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 1,
+     "ast": 0,
+     "stl": 2,
+     "blk": 0,
+     "tov": 0,
+     "pf": 1
+    },
+    {
+     "num": "24",
+     "nombre": "Erasmo Sierra",
+     "titular": true,
+     "min": 2.03,
+     "p2m": 0,
+     "p2a": 1,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    },
+    {
+     "num": "25",
+     "nombre": "Adrian Acevedo",
+     "titular": false,
+     "min": 1.9,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 1,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    },
+    {
+     "num": "29",
+     "nombre": "Carlos Chinchilla",
+     "titular": false,
+     "min": 3.02,
+     "p2m": 0,
+     "p2a": 1,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    },
+    {
+     "num": "30",
+     "nombre": "Daniel Sosa",
+     "titular": false,
+     "min": 0.63,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    }
+   ],
+   "boxVisita": [
+    {
+     "num": "2",
+     "nombre": "Nestor Maradiaga",
+     "titular": true,
+     "min": 39.28,
+     "p2m": 3,
+     "p2a": 7,
+     "p3m": 0,
+     "p3a": 4,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 6,
+     "ast": 7,
+     "stl": 4,
+     "blk": 0,
+     "tov": 2,
+     "pf": 2
+    },
+    {
+     "num": "3",
+     "nombre": "Andres Maradiaga",
+     "titular": true,
+     "min": 33.28,
+     "p2m": 3,
+     "p2a": 3,
+     "p3m": 1,
+     "p3a": 3,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 10,
+     "ast": 4,
+     "stl": 0,
+     "blk": 0,
+     "tov": 4,
+     "pf": 0
+    },
+    {
+     "num": "5",
+     "nombre": "Ethan Hernandez",
+     "titular": false,
+     "min": 0.63,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    },
+    {
+     "num": "6",
+     "nombre": "Samuel Lopez",
+     "titular": true,
+     "min": 37.08,
+     "p2m": 1,
+     "p2a": 4,
+     "p3m": 1,
+     "p3a": 1,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 1,
+     "dreb": 6,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 4,
+     "pf": 0
+    },
+    {
+     "num": "7",
+     "nombre": "Luis Martinez",
+     "titular": false,
+     "min": 1.93,
+     "p2m": 0,
+     "p2a": 1,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    },
+    {
+     "num": "8",
+     "nombre": "Alejandro Santos",
+     "titular": true,
+     "min": 30.5,
+     "p2m": 7,
+     "p2a": 17,
+     "p3m": 1,
+     "p3a": 8,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 4,
+     "dreb": 5,
+     "ast": 2,
+     "stl": 0,
+     "blk": 0,
+     "tov": 3,
+     "pf": 4
+    },
+    {
+     "num": "9",
+     "nombre": "Jared Kelly",
+     "titular": true,
+     "min": 36.42,
+     "p2m": 3,
+     "p2a": 5,
+     "p3m": 5,
+     "p3a": 8,
+     "ftm": 1,
+     "fta": 5,
+     "oreb": 1,
+     "dreb": 5,
+     "ast": 3,
+     "stl": 0,
+     "blk": 0,
+     "tov": 5,
+     "pf": 2
+    },
+    {
+     "num": "10",
+     "nombre": "Juan Barahona",
+     "titular": false,
+     "min": 9.5,
+     "p2m": 0,
+     "p2a": 1,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 1,
+     "pf": 2
+    },
+    {
+     "num": "11",
+     "nombre": "Allan Fearron",
+     "titular": false,
+     "min": 0.72,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 0,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 1
+    },
+    {
+     "num": "12",
+     "nombre": "Narciso Posada",
+     "titular": false,
+     "min": 7.83,
+     "p2m": 0,
+     "p2a": 0,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 0,
+     "dreb": 1,
+     "ast": 1,
+     "stl": 0,
+     "blk": 0,
+     "tov": 0,
+     "pf": 0
+    },
+    {
+     "num": "25",
+     "nombre": "Josh Whittaker",
+     "titular": false,
+     "min": 2.82,
+     "p2m": 1,
+     "p2a": 2,
+     "p3m": 0,
+     "p3a": 0,
+     "ftm": 0,
+     "fta": 0,
+     "oreb": 2,
+     "dreb": 1,
+     "ast": 0,
+     "stl": 0,
+     "blk": 0,
+     "tov": 1,
+     "pf": 0
+    }
+   ]
+  },
+  {
+   "id": "j2-pn-unah",
+   "jornada": 2,
+   "fase": "Vuelta 1",
+   "fecha": "2026-10-03",
+   "hora": "4:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Policía Nacional",
+   "visita": "UNAH",
+   "descansa": "Hondubasket",
+   "estado": "programado"
+  },
+  {
+   "id": "j2-cni-sig",
+   "jornada": 2,
+   "fase": "Vuelta 1",
+   "fecha": "2026-10-03",
+   "hora": "6:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Nacional de Ingenieros",
+   "visita": "Siguatepeque",
+   "descansa": "Hondubasket",
+   "estado": "programado"
+  },
+  {
+   "id": "j3-unah-cni",
+   "jornada": 3,
+   "fase": "Vuelta 1",
+   "fecha": "2026-10-07",
+   "hora": "7:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "UNAH",
+   "visita": "Nacional de Ingenieros",
+   "descansa": "Policía Nacional",
+   "estado": "programado"
+  },
+  {
+   "id": "j3-sig-hb",
+   "jornada": 3,
+   "fase": "Vuelta 1",
+   "fecha": "2026-10-07",
+   "hora": "8:30 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Siguatepeque",
+   "visita": "Hondubasket",
+   "descansa": "Policía Nacional",
+   "estado": "programado"
+  },
+  {
+   "id": "j4-unah-sig",
+   "jornada": 4,
+   "fase": "Vuelta 1",
+   "fecha": "2026-10-13",
+   "hora": "7:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "UNAH",
+   "visita": "Siguatepeque",
+   "descansa": "Nacional de Ingenieros",
+   "estado": "programado"
+  },
+  {
+   "id": "j4-pn-hb",
+   "jornada": 4,
+   "fase": "Vuelta 1",
+   "fecha": "2026-10-13",
+   "hora": "8:30 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Policía Nacional",
+   "visita": "Hondubasket",
+   "descansa": "Nacional de Ingenieros",
+   "estado": "programado"
+  },
+  {
+   "id": "j5-hb-cni",
+   "jornada": 5,
+   "fase": "Vuelta 1",
+   "fecha": "2026-10-15",
+   "hora": "7:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Hondubasket",
+   "visita": "Nacional de Ingenieros",
+   "descansa": "UNAH",
+   "estado": "programado"
+  },
+  {
+   "id": "j5-sig-pn",
+   "jornada": 5,
+   "fase": "Vuelta 1",
+   "fecha": "2026-10-15",
+   "hora": "8:30 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Siguatepeque",
+   "visita": "Policía Nacional",
+   "descansa": "UNAH",
+   "estado": "programado"
+  },
+  {
+   "id": "j6-cni-unah",
+   "jornada": 6,
+   "fase": "Vuelta 2",
+   "fecha": "2026-10-21",
+   "hora": "7:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Nacional de Ingenieros",
+   "visita": "UNAH",
+   "descansa": "Policía Nacional",
+   "estado": "programado"
+  },
+  {
+   "id": "j6-hb-sig",
+   "jornada": 6,
+   "fase": "Vuelta 2",
+   "fecha": "2026-10-21",
+   "hora": "8:30 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Hondubasket",
+   "visita": "Siguatepeque",
+   "descansa": "Policía Nacional",
+   "estado": "programado"
+  },
+  {
+   "id": "j7-cni-hb",
+   "jornada": 7,
+   "fase": "Vuelta 2",
+   "fecha": "2026-10-24",
+   "hora": "4:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Nacional de Ingenieros",
+   "visita": "Hondubasket",
+   "descansa": "UNAH",
+   "estado": "programado"
+  },
+  {
+   "id": "j7-pn-sig",
+   "jornada": 7,
+   "fase": "Vuelta 2",
+   "fecha": "2026-10-24",
+   "hora": "6:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Policía Nacional",
+   "visita": "Siguatepeque",
+   "descansa": "UNAH",
+   "estado": "programado"
+  },
+  {
+   "id": "j8-unah-pn",
+   "jornada": 8,
+   "fase": "Vuelta 2",
+   "fecha": "2026-10-28",
+   "hora": "7:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "UNAH",
+   "visita": "Policía Nacional",
+   "descansa": "Hondubasket",
+   "estado": "programado"
+  },
+  {
+   "id": "j8-sig-cni",
+   "jornada": 8,
+   "fase": "Vuelta 2",
+   "fecha": "2026-10-28",
+   "hora": "8:30 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Siguatepeque",
+   "visita": "Nacional de Ingenieros",
+   "descansa": "Hondubasket",
+   "estado": "programado"
+  },
+  {
+   "id": "j9-sig-unah",
+   "jornada": 9,
+   "fase": "Vuelta 2",
+   "fecha": "2026-10-31",
+   "hora": "4:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Siguatepeque",
+   "visita": "UNAH",
+   "descansa": "Nacional de Ingenieros",
+   "estado": "programado"
+  },
+  {
+   "id": "j9-hb-pn",
+   "jornada": 9,
+   "fase": "Vuelta 2",
+   "fecha": "2026-10-31",
+   "hora": "6:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Hondubasket",
+   "visita": "Policía Nacional",
+   "descansa": "Nacional de Ingenieros",
+   "estado": "programado"
+  },
+  {
+   "id": "j10-unah-hb",
+   "jornada": 10,
+   "fase": "Vuelta 2",
+   "fecha": "2026-11-03",
+   "hora": "7:00 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "UNAH",
+   "visita": "Hondubasket",
+   "descansa": "Siguatepeque",
+   "estado": "programado"
+  },
+  {
+   "id": "j10-pn-cni",
+   "jornada": 10,
+   "fase": "Vuelta 2",
+   "fecha": "2026-11-03",
+   "hora": "8:30 PM",
+   "sede": "Coliseo Nacional de Ingenieros",
+   "local": "Policía Nacional",
+   "visita": "Nacional de Ingenieros",
+   "descansa": "Siguatepeque",
+   "estado": "programado"
+  }
+ ],
+ "playoffs": [
+  {
+   "ronda": "Semifinal 1 (1° vs 4°)",
+   "juego": "Juego 1",
+   "fecha": "2026-11-07",
+   "hora": "4:00 PM"
+  },
+  {
+   "ronda": "Semifinal 2 (2° vs 3°)",
+   "juego": "Juego 1",
+   "fecha": "2026-11-07",
+   "hora": "6:00 PM"
+  },
+  {
+   "ronda": "Semifinal 2 (2° vs 3°)",
+   "juego": "Juego 2",
+   "fecha": "2026-11-10",
+   "hora": "7:00 PM"
+  },
+  {
+   "ronda": "Semifinal 1 (1° vs 4°)",
+   "juego": "Juego 2",
+   "fecha": "2026-11-10",
+   "hora": "8:30 PM"
+  },
+  {
+   "ronda": "Semifinal 1 (1° vs 4°)",
+   "juego": "Juego 3 (si es necesario)",
+   "fecha": "2026-11-12",
+   "hora": "7:00 PM"
+  },
+  {
+   "ronda": "Semifinal 2 (2° vs 3°)",
+   "juego": "Juego 3 (si es necesario)",
+   "fecha": "2026-11-12",
+   "hora": "8:30 PM"
+  },
+  {
+   "ronda": "Final",
+   "juego": "Juego 1",
+   "fecha": "2026-11-14",
+   "hora": "7:30 PM"
+  },
+  {
+   "ronda": "Tercer lugar",
+   "juego": "Juego único",
+   "fecha": "2026-11-17",
+   "hora": "7:00 PM"
+  },
+  {
+   "ronda": "Final",
+   "juego": "Juego 2",
+   "fecha": "2026-11-17",
+   "hora": "8:30 PM"
+  },
+  {
+   "ronda": "Final",
+   "juego": "Juego 3 (si es necesario)",
+   "fecha": "2026-11-21",
+   "hora": "7:30 PM"
+  }
+ ]
+}

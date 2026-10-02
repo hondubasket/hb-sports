@@ -133,6 +133,7 @@ const n=v=>{const x=Number(v);return Number.isFinite(x)?x:0};
 const pts=r=>2*n(r.p2m)+3*n(r.p3m)+n(r.ftm);
 const val=r=>pts(r)+n(r.oreb)+n(r.dreb)+n(r.ast)+n(r.stl)+n(r.blk)-(n(r.p2a)+n(r.p3a)-n(r.p2m)-n(r.p3m))-(n(r.fta)-n(r.ftm))-n(r.tov);
 const sum=b=>{const t={pts:0};K.forEach(k=>t[k]=0);(b||[]).forEach(r=>{K.forEach(k=>t[k]+=n(r[k]));t.pts+=pts(r)});t.reb=t.oreb+t.dreb;return t};
+const fmin=m=>{const t=Math.round(n(m)*60);return `${Math.floor(t/60)}:${String(t%60).padStart(2,"0")}`};
 const pct=(m,a)=>a?(100*m/a).toFixed(1):"–";
 const MES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
 const fdate=d=>{if(!d)return"Por definir";const[y,m,dd]=d.split("-");return `${+dd} ${MES[+m-1]} ${y}`};
@@ -143,7 +144,7 @@ let tt;const toast=m=>{const t=$("#toast");t.textContent=m;t.hidden=false;clearT
 function players(){
   const map=new Map();
   for(const g of fin())for(const[side,team]of[["boxLocal",g.local],["boxVisita",g.visita]])for(const r of g[side]||[]){
-    if(!r.nombre)continue;const key=team+"|"+r.nombre.trim().toLowerCase();let p=map.get(key);
+    if(!r.nombre)continue;const key=team+"|"+(r.num!==undefined&&r.num!==""?"#"+r.num:r.nombre.trim().toLowerCase());let p=map.get(key);
     if(!p){p={team,nombre:r.nombre.trim(),num:r.num||"",gp:0,pts:0,val:0};K.forEach(k=>p[k]=0);map.set(key,p)}
     p.gp++;p.pts+=pts(r);p.val+=val(r);K.forEach(k=>p[k]+=n(r[k]));if(r.num)p.num=r.num;
   }
@@ -188,7 +189,7 @@ const V={
     const list=[...D.partidos].sort((a,b)=>n(a.jornada)-n(b.jornada)||(a.fecha||"").localeCompare(b.fecha||""));
     if(!list.length)return head("Temporada 2026","Calendario y resultados","Todos los partidos de la temporada con su resultado y box score.")+`<div class="empty"><b>Calendario en preparación</b>Los partidos se publican aquí con fecha, hora y resultado.</div>`;
     const byJ={};list.forEach(g=>(byJ[g.jornada]??=[]).push(g));
-    return head("Temporada 2026","Calendario y resultados","Tocá un partido final para ver su box score completo.")+Object.entries(byJ).map(([j,gs])=>`<div class="jhead">Jornada ${esc(j)}</div><div class="games">${gs.map(gameRow).join("")}</div>`).join("");
+    return head("Temporada 2026","Calendario y resultados","Tocá un partido final para ver su box score completo.")+Object.entries(byJ).map(([j,gs])=>`<div class="jhead">Jornada ${esc(j)} · ${esc(fdate(gs[0].fecha))}${gs[0].descansa?` <span style="color:var(--slate);font-weight:500;font-size:13px">· Descansa: ${esc(gs[0].descansa)}</span>`:""}</div><div class="games">${gs.map(gameRow).join("")}</div>`).join("")+playoffs();
   },
   posiciones(){return head("Temporada 2026","Tabla de posiciones","Sistema FIBA: 2 puntos por victoria y 1 por derrota. Desempate por diferencia de puntos.")+standTable()},
   equipos(){
@@ -196,18 +197,23 @@ const V={
     const rows=D.equipos.map(e=>{const gs=fin().filter(g=>g.local===e.nombre||g.visita===e.nombre),t={pts:0};K.forEach(k=>t[k]=0);
       gs.forEach(g=>{const s=sum(g.local===e.nombre?g.boxLocal:g.boxVisita);t.pts+=s.pts;K.forEach(k=>t[k]+=s[k])});const c=gs.length||1;
       return{e,pj:gs.length,ppg:t.pts/c,rpg:(t.oreb+t.dreb)/c,apg:t.ast/c,spg:t.stl/c,bpg:t.blk/c,tpg:t.tov/c,fg:pct(t.p2m+t.p3m,t.p2a+t.p3a),p3:pct(t.p3m,t.p3a),ft:pct(t.ftm,t.fta)}});
-    const sel=S.cTeam||D.equipos[0]?.nombre,roster=ps.filter(p=>p.team===sel).sort((a,b)=>b.ppg-a.ppg);
-    return head("Temporada 2026","Equipos","Promedios por partido de cada equipo y su plantilla con estadísticas.")+
+    const sel=S.cTeam||D.equipos[0]?.nombre,eq=D.equipos.find(e=>e.nombre===sel)||{},stat=new Map(ps.filter(p=>p.team===sel).map(p=>[String(p.num),p]));
+    const plant=(eq.plantilla||[]).map(j=>({...j,s:stat.get(String(j.num))}));
+    const dash=`<td>–</td>`.repeat(7);
+    return head("Temporada 2026","Equipos","Promedios por partido de cada equipo, plantilla oficial inscrita y cuerpo técnico.")+
     `<div class="tbl"><table><thead><tr><th class="l">Equipo</th><th>PJ</th><th>PTS</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th><th>PER</th><th>TC%</th><th>3P%</th><th>TL%</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="l"><b>${esc(r.e.nombre)}</b></td><td>${r.pj}</td>${[r.ppg,r.rpg,r.apg,r.spg,r.bpg,r.tpg].map(x=>`<td>${r.pj?x.toFixed(1):"–"}</td>`).join("")}<td>${r.fg}</td><td>${r.p3}</td><td>${r.ft}</td></tr>`).join("")}</tbody></table></div>
     <div class="filters" style="margin-top:26px"><h3 style="font-size:20px;margin-right:8px">Plantilla</h3><select id="cTeam">${D.equipos.map(e=>`<option ${e.nombre===sel?"selected":""}>${esc(e.nombre)}</option>`).join("")}</select></div>
-    ${roster.length?`<div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Jugador</th><th>PJ</th><th>MIN</th><th>PTS</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th><th>VAL</th></tr></thead><tbody>${roster.map(p=>`<tr><td class="l">${esc(p.num)}</td><td class="l"><b>${esc(p.nombre)}</b></td><td>${p.gp}</td>${[p.mpg,p.ppg,p.rpg,p.apg,p.spg,p.bpg,p.vpg].map(x=>`<td>${x.toFixed(1)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`:`<div class="empty"><b>Sin estadísticas todavía</b>La plantilla aparece con el primer partido final del equipo.</div>`}`;
+    <div class="grid2" style="grid-template-columns:minmax(0,2.2fr) minmax(240px,1fr);align-items:start">
+    <div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Jugador</th><th>PJ</th><th>MIN</th><th>PTS</th><th>REB</th><th>AST</th><th>ROB</th><th>VAL</th></tr></thead><tbody>${plant.map(j=>`<tr><td class="l">${esc(j.num)}</td><td class="l"><b>${esc(j.nombre)}</b></td>${j.s?`<td>${j.s.gp}</td><td>${fmin(j.s.mpg)}</td>${[j.s.ppg,j.s.rpg,j.s.apg,j.s.spg,j.s.vpg].map(x=>`<td>${x.toFixed(1)}</td>`).join("")}`:`<td>0</td>${`<td>–</td>`.repeat(6)}`}</tr>`).join("")}</tbody></table></div>
+    <section class="card"><h3>Cuerpo técnico</h3>${(eq.tecnico||[]).map(t=>`<div style="padding:7px 0;border-bottom:1px solid var(--line)"><b style="font-size:14px">${esc(t.nombre)}</b><div style="font-size:12px;color:var(--slate)">${esc(t.cargo)}</div></div>`).join("")||`<p style="color:var(--slate)">Sin registrar.</p>`}</section>
+    </div>`;
   },
   jugadores(){
     let ps=players();if(S.pTeam)ps=ps.filter(p=>p.team===S.pTeam);
     ps=ps.map(p=>({...p,fgp:p.fga?100*p.fgm/p.fga:-1,p3p:p.p3a?100*p.p3m/p.p3a:-1,ftp:p.fta?100*p.ftm/p.fta:-1}));
     const{k,d}=S.pSort;ps.sort((a,b)=>typeof a[k]==="string"?d*a[k].localeCompare(b[k]):d*(a[k]-b[k]));
     const C=[["nombre","Jugador","l"],["team","Equipo","l"],["gp","PJ"],["mpg","MIN",1],["ppg","PTS",1],["rpg","REB",1],["orpg","RO",1],["drpg","RD",1],["apg","AST",1],["spg","ROB",1],["bpg","TAP",1],["tpg","PER",1],["fgp","TC%",2],["p3p","3P%",2],["ftp","TL%",2],["vpg","VAL",1]];
-    const cell=(p,c)=>{const v=p[c[0]];return c[3]===2?(v<0?"–":v.toFixed(1)):c[3]?v.toFixed(1):esc(v)};
+    const cell=(p,c)=>{const v=p[c[0]];if(c[0]==="mpg")return fmin(v);return c[3]===2?(v<0?"–":v.toFixed(1)):c[3]?v.toFixed(1):esc(v)};
     return head("Temporada 2026","Estadísticas de jugadores","Promedios por partido jugado. Tocá un encabezado para ordenar.")+
     `<div class="filters"><select id="pTeam"><option value="">Todos los equipos</option>${D.equipos.map(e=>`<option ${e.nombre===S.pTeam?"selected":""}>${esc(e.nombre)}</option>`).join("")}</select><button class="btn orange" id="xls" ${fin().length?"":"disabled"}>Descargar Excel (Latin Basket)</button></div>`+
     (ps.length?`<div class="tbl"><table><thead><tr>${C.map(c=>`<th class="s ${c[2]==="l"?"l":""} ${c[0]===k?"on":""}" data-s="${c[0]}">${c[1]}${c[0]===k?(d<0?" ↓":" ↑"):""}</th>`).join("")}</tr></thead><tbody>${ps.map(p=>`<tr>${C.map(c=>`<td class="${c[2]==="l"?"l":""}">${c===C[0]?`<b>${cell(p,c)}</b>`:cell(p,c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`:`<div class="empty"><b>Sin jugadores todavía</b>Las estadísticas se llenan con cada acta oficial cargada.</div>`);
@@ -235,12 +241,16 @@ const V={
   partido(id){
     const g=D.partidos.find(x=>x.id===id);if(!g)return`<div class="empty"><b>Partido no encontrado</b><a href="#calendario">Volver al calendario</a></div>`;
     const[a,b]=score(g);
-    const box=(team,rows)=>{const t=sum(rows);return `<section class="stack" style="gap:10px"><h3 style="font-size:19px">${esc(team)}</h3><div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Jugador</th><th>MIN</th><th>PTS</th><th>2P</th><th>3P</th><th>TL</th><th>RO</th><th>RD</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th><th>PER</th><th>FP</th><th>VAL</th></tr></thead><tbody>${(rows||[]).map(r=>`<tr><td class="l">${esc(r.num)}</td><td class="l"><b>${esc(r.nombre)}</b></td><td>${n(r.min)}</td><td class="b">${pts(r)}</td><td>${n(r.p2m)}/${n(r.p2a)}</td><td>${n(r.p3m)}/${n(r.p3a)}</td><td>${n(r.ftm)}/${n(r.fta)}</td><td>${n(r.oreb)}</td><td>${n(r.dreb)}</td><td>${n(r.oreb)+n(r.dreb)}</td><td>${n(r.ast)}</td><td>${n(r.stl)}</td><td>${n(r.blk)}</td><td>${n(r.tov)}</td><td>${n(r.pf)}</td><td>${val(r)}</td></tr>`).join("")}</tbody><tfoot><tr><td></td><td class="l">Totales</td><td>${t.min}</td><td>${t.pts}</td><td>${t.p2m}/${t.p2a}</td><td>${t.p3m}/${t.p3a}</td><td>${t.ftm}/${t.fta}</td><td>${t.oreb}</td><td>${t.dreb}</td><td>${t.reb}</td><td>${t.ast}</td><td>${t.stl}</td><td>${t.blk}</td><td>${t.tov}</td><td>${t.pf}</td><td></td></tr></tfoot></table></div></section>`};
+    const box=(team,rows)=>{const t=sum(rows);return `<section class="stack" style="gap:10px"><h3 style="font-size:19px">${esc(team)}</h3><div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Jugador</th><th>MIN</th><th>PTS</th><th>2P</th><th>3P</th><th>TL</th><th>RO</th><th>RD</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th><th>PER</th><th>FP</th><th>VAL</th></tr></thead><tbody>${(rows||[]).map(r=>`<tr><td class="l">${esc(r.num)}</td><td class="l"><b>${esc(r.nombre)}</b></td><td>${fmin(r.min)}</td><td class="b">${pts(r)}</td><td>${n(r.p2m)}/${n(r.p2a)}</td><td>${n(r.p3m)}/${n(r.p3a)}</td><td>${n(r.ftm)}/${n(r.fta)}</td><td>${n(r.oreb)}</td><td>${n(r.dreb)}</td><td>${n(r.oreb)+n(r.dreb)}</td><td>${n(r.ast)}</td><td>${n(r.stl)}</td><td>${n(r.blk)}</td><td>${n(r.tov)}</td><td>${n(r.pf)}</td><td>${val(r)}</td></tr>`).join("")}</tbody><tfoot><tr><td></td><td class="l">Totales</td><td>${fmin(t.min)}</td><td>${t.pts}</td><td>${t.p2m}/${t.p2a}</td><td>${t.p3m}/${t.p3a}</td><td>${t.ftm}/${t.fta}</td><td>${t.oreb}</td><td>${t.dreb}</td><td>${t.reb}</td><td>${t.ast}</td><td>${t.stl}</td><td>${t.blk}</td><td>${t.tov}</td><td>${t.pf}</td><td></td></tr></tfoot></table></div></section>`};
     return `<div class="stack"><a href="#calendario" style="color:var(--purple);font-weight:600;text-decoration:none">← Calendario</a>
-    <div class="sb"><div class="t">${esc(g.local)}</div><div class="sc">${a} – ${b}</div><div class="t">${esc(g.visita)}</div><div class="meta">Jornada ${esc(g.jornada)} · ${esc(fdate(g.fecha))} · ${esc(g.sede||"")}</div></div>
+    <div class="sb"><div class="t">${esc(g.local)}</div><div class="sc">${a} – ${b}</div><div class="t">${esc(g.visita)}</div><div class="meta">Jornada ${esc(g.jornada)} · ${esc(fdate(g.fecha))} · ${esc(g.sede||"")}${g.parciales?`<br>Parciales: ${g.parciales.map(esc).join(" · ")}`:""}${g.arbitros?`<br>Árbitros: ${g.arbitros.map(esc).join(", ")}`:""}</div></div>
     ${box(g.local,g.boxLocal)}${box(g.visita,g.boxVisita)}</div>`;
   }
 };
+function playoffs(){
+  const P=D.playoffs||[];if(!P.length)return"";
+  return `<div class="jhead" style="margin-top:30px">Playoffs · al mejor de 3</div><div class="tbl"><table><thead><tr><th class="l">Fecha</th><th class="l">Hora</th><th class="l">Serie</th><th class="l">Encuentro</th></tr></thead><tbody>${P.map(x=>`<tr><td class="l">${esc(fdate(x.fecha))}</td><td class="l">${esc(x.hora)}</td><td class="l"><b>${esc(x.ronda)}</b></td><td class="l">${esc(x.juego)}</td></tr>`).join("")}</tbody></table></div>`;
+}
 function head(e,t,p){return `<div class="head"><div class="eyebrow">${e}</div><h2>${t}</h2><p>${p}</p></div>`}
 
 function route(){
