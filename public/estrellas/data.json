@@ -42,7 +42,323 @@
    "id": "u16m",
    "nombre": "U16 Masculino",
    "score7": "https://www.score7.io/tournaments/zpspuptwxc",
-   "rondas": []
+   "rondas": [
+    {
+     "ronda": 1,
+     "partidos": [
+      {
+       "local": "HONDURAS KING",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 18,
+       "pv": 85
+      },
+      {
+       "local": "BUFALO",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "LEONES KIDS",
+       "visita": "ENERGY",
+       "pl": 64,
+       "pv": 36
+      },
+      {
+       "local": "MACRIS",
+       "visita": "REAPERS",
+       "pl": 49,
+       "pv": 52
+      },
+      {
+       "local": "AST",
+       "visita": "ATLANTIDA",
+       "pl": null,
+       "pv": null
+      }
+     ]
+    },
+    {
+     "ronda": 2,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "BUFALO",
+       "pl": 79,
+       "pv": 13
+      },
+      {
+       "local": "LEONES KIDS",
+       "visita": "HONDURAS KING",
+       "pl": 0,
+       "pv": 20
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "MACRIS",
+       "pl": 70,
+       "pv": 57
+      },
+      {
+       "local": "ENERGY",
+       "visita": "AST",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "ATLANTIDA",
+       "visita": "REAPERS",
+       "pl": 75,
+       "pv": 54
+      }
+     ]
+    },
+    {
+     "ronda": 3,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "LEONES KIDS",
+       "pl": 48,
+       "pv": 51
+      },
+      {
+       "local": "MACRIS",
+       "visita": "BUFALO",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "AST",
+       "visita": "HONDURAS KING",
+       "pl": 71,
+       "pv": 22
+      },
+      {
+       "local": "ATLANTIDA",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 62,
+       "pv": 52
+      },
+      {
+       "local": "REAPERS",
+       "visita": "ENERGY",
+       "pl": 82,
+       "pv": 18
+      }
+     ]
+    },
+    {
+     "ronda": 4,
+     "partidos": [
+      {
+       "local": "MACRIS",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 63,
+       "pv": 30
+      },
+      {
+       "local": "AST",
+       "visita": "LEONES KIDS",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "BUFALO",
+       "visita": "ATLANTIDA",
+       "pl": 36,
+       "pv": 114
+      },
+      {
+       "local": "REAPERS",
+       "visita": "HONDURAS KING",
+       "pl": 20,
+       "pv": 0
+      },
+      {
+       "local": "ENERGY",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 41,
+       "pv": 83
+      }
+     ]
+    },
+    {
+     "ronda": 5,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "AST",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "ATLANTIDA",
+       "visita": "MACRIS",
+       "pl": 90,
+       "pv": 12
+      },
+      {
+       "local": "REAPERS",
+       "visita": "LEONES KIDS",
+       "pl": 61,
+       "pv": 55
+      },
+      {
+       "local": "ENERGY",
+       "visita": "BUFALO",
+       "pl": 67,
+       "pv": 45
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "HONDURAS KING",
+       "pl": 20,
+       "pv": 0
+      }
+     ]
+    },
+    {
+     "ronda": 6,
+     "partidos": [
+      {
+       "local": "ATLANTIDA",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "REAPERS",
+       "visita": "AST",
+       "pl": 68,
+       "pv": 40
+      },
+      {
+       "local": "ENERGY",
+       "visita": "MACRIS",
+       "pl": 18,
+       "pv": 76
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "LEONES KIDS",
+       "pl": 75,
+       "pv": 35
+      },
+      {
+       "local": "HONDURAS KING",
+       "visita": "BUFALO",
+       "pl": 14,
+       "pv": 39
+      }
+     ]
+    },
+    {
+     "ronda": 7,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "REAPERS",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "ENERGY",
+       "visita": "ATLANTIDA",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "AST",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "HONDURAS KING",
+       "visita": "MACRIS",
+       "pl": 0,
+       "pv": 20
+      },
+      {
+       "local": "BUFALO",
+       "visita": "LEONES KIDS",
+       "pl": null,
+       "pv": null
+      }
+     ]
+    },
+    {
+     "ronda": 8,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "ENERGY",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "REAPERS",
+       "pl": 60,
+       "pv": 67
+      },
+      {
+       "local": "HONDURAS KING",
+       "visita": "ATLANTIDA",
+       "pl": 0,
+       "pv": 20
+      },
+      {
+       "local": "BUFALO",
+       "visita": "AST",
+       "pl": 34,
+       "pv": 57
+      },
+      {
+       "local": "LEONES KIDS",
+       "visita": "MACRIS",
+       "pl": 47,
+       "pv": 78
+      }
+     ]
+    },
+    {
+     "ronda": 9,
+     "partidos": [
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 56,
+       "pv": 64
+      },
+      {
+       "local": "HONDURAS KING",
+       "visita": "ENERGY",
+       "pl": 0,
+       "pv": 20
+      },
+      {
+       "local": "BUFALO",
+       "visita": "REAPERS",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "LEONES KIDS",
+       "visita": "ATLANTIDA",
+       "pl": 23,
+       "pv": 100
+      },
+      {
+       "local": "MACRIS",
+       "visita": "AST",
+       "pl": null,
+       "pv": null
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "u16f",
