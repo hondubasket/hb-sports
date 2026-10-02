@@ -60,6 +60,7 @@ tr.top4 td:first-child{box-shadow:inset 3px 0 0 var(--orange)}
 .game .t{font-weight:600;font-size:14px}
 .game .t.l{color:var(--slate);font-weight:500}
 .game .s{font-family:Sora;font-weight:800;text-align:right}
+.game.wo{position:relative}.game.wo::after{content:"W.O.";position:absolute;right:46px;top:50%;transform:translateY(-50%);font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--slate);background:#F1F0F4;padding:3px 7px;border-radius:99px}
 .game .p{grid-row:1/3;grid-column:2;align-self:center;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);background:var(--orange-soft);padding:4px 8px;border-radius:99px}
 .catcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px;text-decoration:none;display:grid;gap:8px}
 .catcard:hover{border-color:var(--purple)}
@@ -104,15 +105,15 @@ function standTable(c){
   return `<div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Equipo</th><th>PJ</th><th>G</th><th>P</th><th>PF</th><th>PC</th><th>DIF</th><th>PTS</th></tr></thead><tbody>${st.map((t,i)=>`<tr class="${i<4?"top4":""}"><td class="l">${i+1}</td><td class="l"><b>${esc(tc(t.team))}</b></td><td>${t.pj}</td><td>${t.g}</td><td>${t.p}</td><td>${t.pf}</td><td>${t.pc}</td><td style="color:${t.dif>0?"var(--good)":t.dif<0?"var(--bad)":"inherit"}">${t.dif>0?"+":""}${t.dif}</td><td class="b">${t.pts}</td></tr>`).join("")}</tbody></table></div>`;
 }
 function game(p){
-  const f=played(p),w=(x,y)=>f&&x<y?"l":"";
-  return `<div class="game"><span class="t ${w(p.pl,p.pv)}">${esc(tc(p.local))}</span>${f?`<span class="s">${p.pl}</span>`:`<span class="p">Pendiente</span>`}<span class="t ${w(p.pv,p.pl)}">${esc(tc(p.visita))}</span>${f?`<span class="s">${p.pv}</span>`:""}</div>`;
+  const f=played(p),w=(x,y)=>f&&x<y?"l":"",wo=f&&((p.pl===20&&p.pv===0)||(p.pl===0&&p.pv===20));
+  return `<div class="game${wo?" wo":""}"><span class="t ${w(p.pl,p.pv)}">${esc(tc(p.local))}</span>${f?`<span class="s">${p.pl}</span>`:`<span class="p">Pendiente</span>`}<span class="t ${w(p.pv,p.pl)}">${esc(tc(p.visita))}</span>${f?`<span class="s">${p.pv}</span>`:""}</div>`;
 }
 function viewCat(c){
   if(!(c.rondas||[]).length)return `<div class="head"><div class="eyebrow">Categoría</div><h2>${esc(c.nombre)}</h2></div><div class="empty"><b>Resultados por publicar</b>La tabla y los partidos de esta categoría aparecen aquí en cuanto se carguen.</div>`;
   const g=allGames(c),pj=g.filter(played).length;
   return `<div class="stack"><div class="head"><div class="eyebrow">Categoría · ${pj} de ${g.length} partidos jugados</div><h2>${esc(c.nombre)}</h2><p>Tabla de posiciones y resultados por ronda. Victoria 2 puntos, derrota 1.</p></div>
   <div class="grid2" style="grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)">
-    <section><h3 style="font-size:19px;margin-bottom:10px">Tabla de posiciones</h3>${standTable(c)}<p class="note" style="margin-top:8px">Desempate por diferencia de puntos y luego puntos a favor.</p></section>
+    <section><h3 style="font-size:19px;margin-bottom:10px">Tabla de posiciones</h3>${standTable(c)}<p class="note" style="margin-top:8px">Desempate por diferencia de puntos y luego puntos a favor. W.O.: partido ganado por incomparecencia (20-0).</p></section>
     <section><h3 style="font-size:19px;margin-bottom:10px">Partidos por ronda</h3>${[...c.rondas].sort((a,b)=>b.ronda-a.ronda).map(r=>`<div class="round"><h4>Ronda ${r.ronda}</h4>${r.partidos.map(game).join("")}</div>`).join("")}</section>
   </div></div>`;
 }

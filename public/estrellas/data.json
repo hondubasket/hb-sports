@@ -48,7 +48,123 @@
    "id": "u16f",
    "nombre": "U16 Femenino",
    "score7": "https://www.score7.io/tournaments/dsajyo7rpp",
-   "rondas": []
+   "rondas": [
+    {
+     "ronda": 1,
+     "partidos": [
+      {
+       "local": "BUFALO",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 27,
+       "pv": 53
+      },
+      {
+       "local": "ENERGY",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 0,
+       "pv": 20
+      },
+      {
+       "local": "VILLA DE LAS NINAS",
+       "visita": "AST",
+       "pl": 59,
+       "pv": 37
+      }
+     ]
+    },
+    {
+     "ronda": 2,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "ENERGY",
+       "pl": 20,
+       "pv": 0
+      },
+      {
+       "local": "VILLA DE LAS NINAS",
+       "visita": "BUFALO",
+       "pl": 44,
+       "pv": 20
+      },
+      {
+       "local": "AST",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": null,
+       "pv": null
+      }
+     ]
+    },
+    {
+     "ronda": 3,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "VILLA DE LAS NINAS",
+       "pl": 49,
+       "pv": 59
+      },
+      {
+       "local": "AST",
+       "visita": "ENERGY",
+       "pl": 20,
+       "pv": 0
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "BUFALO",
+       "pl": 54,
+       "pv": 28
+      }
+     ]
+    },
+    {
+     "ronda": 4,
+     "partidos": [
+      {
+       "local": "AST",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 23,
+       "pv": 35
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "VILLA DE LAS NINAS",
+       "pl": 60,
+       "pv": 64
+      },
+      {
+       "local": "BUFALO",
+       "visita": "ENERGY",
+       "pl": 20,
+       "pv": 0
+      }
+     ]
+    },
+    {
+     "ronda": 5,
+     "partidos": [
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 62,
+       "pv": 60
+      },
+      {
+       "local": "BUFALO",
+       "visita": "AST",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "ENERGY",
+       "visita": "VILLA DE LAS NINAS",
+       "pl": 0,
+       "pv": 20
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "u18m",
