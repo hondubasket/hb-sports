@@ -135,9 +135,9 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
       </article>
       <article class="league" style="--c:#4B2E83">
         <div class="lhead"><img src="/img/liga.png" alt="Liga de las Estrellas"><div><small>Formativa · U10 a U18</small><h3>Liga de las Estrellas 2026</h3></div></div>
-        <div class="facts" id="estFacts"><div><b>–</b><span>Clubes</span></div><div><b>9</b><span>Categorías</span></div><div><b>–</b><span>Jugados</span></div></div>
+        <div class="facts" id="estFacts"><div><b>9</b><span>Categorías</span></div><div><b>–</b><span>Con resultados</span></div><div><b>–</b><span>Jugados</span></div></div>
         <div class="lbody" id="estBody"><p class="muted">Cargando…</p></div>
-        <div class="lfoot"><a class="btn" href="/estrellas/">Entrar a la Liga de las Estrellas →</a></div>
+        <div class="lfoot"><a class="btn" href="/estrellas/">Ver resultados de la Liga de las Estrellas →</a></div>
       </article>
     </div>
   </section>
@@ -197,20 +197,16 @@ fetch("/lnbm/data.json",{cache:"no-store"}).then(r=>r.json()).then(D=>{
   renderFeed();
 }).catch(()=>{$("#lnbmBody").innerHTML=`<p class="muted">No se pudo cargar la información.</p>`});
 
-/* ---- Liga de las Estrellas ---- */
-const CATS={u10:"U10",u12m:"U12 M",u12f:"U12 F",u14m:"U14 M",u14f:"U14 F",u16m:"U16 M",u16f:"U16 F",u18m:"U18 M",u18f:"U18 F"};
-Promise.all([fetch("/api/clubs").then(r=>r.json()).catch(()=>({})),fetch("/api/tournaments").then(r=>r.json()).catch(()=>({}))]).then(([c,t])=>{
-  const clubs=(c.clubs||[]).length,T=t.tournaments||{};
-  let played=0;const active=[];
-  Object.entries(T).forEach(([cat,tt])=>{active.push(cat);(tt.matches||[]).forEach(m=>{
-    const done=m.played&&m.hs!=null&&m.as!=null;if(done)played++;
-    FEED.push({liga:"Liga de las Estrellas",sub:(CATS[cat]||cat)+" · "+(m.phase||""),color:C_EST,date:ymd(m.date),time:m.time||"",home:m.home,away:m.away,done,hs:n(m.hs),as:n(m.as),href:"/estrellas/"});
-  })});
-  $("#estFacts").innerHTML=`<div><b>${clubs||"–"}</b><span>Clubes</span></div><div><b>9</b><span>Categorías</span></div><div><b>${played}</b><span>Jugados</span></div>`;
-  $("#estBody").innerHTML=`<div class="mini"><h4>Categorías</h4><div class="cats">${Object.entries(CATS).map(([k,v])=>`<span style="${active.includes(k)?"":"opacity:.55"}">${v}</span>`).join("")}</div></div>
-  <p class="muted">${active.length?`${active.length} categoría${active.length===1?"":"s"} con torneo en curso.`:"Los torneos por categoría se publican aquí al iniciar."} Clubes de Tegucigalpa en ramas masculina y femenina.</p>`;
-  renderFeed();
-});
+/* ---- Liga de las Estrellas (resultados de Score7) ---- */
+fetch("/estrellas/data.json",{cache:"no-store"}).then(r=>r.json()).then(E=>{
+  const tc=s=>String(s).toLowerCase().replace(/(^|\s)\S/g,m=>m.toUpperCase()).replace(/ (De|Del|La|Las|Los|Y) /g,m=>m.toLowerCase());
+  const done=p=>p.pl!=null&&p.pv!=null;let played=0,teams=new Set();const leaders=[];
+  E.categorias.forEach(c=>{const t={};(c.rondas||[]).forEach(r=>r.partidos.forEach(p=>{teams.add(p.local);teams.add(p.visita);
+    [p.local,p.visita].forEach(n=>t[n]??=(t[n]={n,g:0,p:0,d:0}));if(!done(p))return;played++;const a=t[p.local],b=t[p.visita];a.d+=p.pl-p.pv;b.d+=p.pv-p.pl;if(p.pl>p.pv){a.g++;b.p++}else{b.g++;a.p++}}));
+    const st=Object.values(t).sort((x,y)=>(2*y.g+y.p)-(2*x.g+x.p)||y.d-x.d);if(st.length&&st[0].g+st[0].p)leaders.push({cat:c.nombre,id:c.id,l:st[0]});});
+  $("#estFacts").innerHTML=`<div><b>${E.categorias.length}</b><span>Categorías</span></div><div><b>${E.categorias.filter(c=>(c.rondas||[]).length).length}</b><span>Con resultados</span></div><div><b>${played}</b><span>Jugados</span></div>`;
+  $("#estBody").innerHTML=leaders.length?`<div class="mini"><h4>Líderes por categoría</h4>${leaders.map(x=>`<a class="row" href="/estrellas/#${x.id}" style="text-decoration:none"><span class="n"><span>${esc(x.cat)}</span></span><span class="m"><b style="color:var(--ink)">${esc(tc(x.l.n))}</b> · ${x.l.g}-${x.l.p}</span></a>`).join("")}</div>`:`<p class="muted">Los resultados por categoría se publican aquí.</p>`;
+}).catch(()=>{$("#estBody").innerHTML=`<p class="muted">No se pudo cargar la información.</p>`});
 </script>
 </body>
 </html>

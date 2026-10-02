@@ -1,0 +1,328 @@
+{
+ "liga": "Liga de las Estrellas",
+ "temporada": "2026",
+ "fuente": "Score7",
+ "actualizado": "2026-10-02",
+ "puntos": {
+  "victoria": 2,
+  "derrota": 1
+ },
+ "categorias": [
+  {
+   "id": "u10",
+   "nombre": "U10",
+   "score7": "https://www.score7.io/tournaments/09dfypzoze",
+   "rondas": []
+  },
+  {
+   "id": "u12m",
+   "nombre": "U12 Masculino",
+   "score7": "https://www.score7.io/tournaments/sojcjr0pt8",
+   "rondas": []
+  },
+  {
+   "id": "u12f",
+   "nombre": "U12 Femenino",
+   "score7": "https://www.score7.io/tournaments/4kvwi90g8z",
+   "rondas": []
+  },
+  {
+   "id": "u14m",
+   "nombre": "U14 Masculino",
+   "score7": "https://www.score7.io/tournaments/xtsobxy9h3",
+   "rondas": []
+  },
+  {
+   "id": "u14f",
+   "nombre": "U14 Femenino",
+   "score7": "https://www.score7.io/tournaments/lofrvgea7z",
+   "rondas": []
+  },
+  {
+   "id": "u16m",
+   "nombre": "U16 Masculino",
+   "score7": "https://www.score7.io/tournaments/zpspuptwxc",
+   "rondas": []
+  },
+  {
+   "id": "u16f",
+   "nombre": "U16 Femenino",
+   "score7": "https://www.score7.io/tournaments/dsajyo7rpp",
+   "rondas": []
+  },
+  {
+   "id": "u18m",
+   "nombre": "U18 Masculino",
+   "score7": "https://www.score7.io/tournaments/iy1o5fzvsk",
+   "rondas": [
+    {
+     "ronda": 1,
+     "partidos": [
+      {
+       "local": "AST",
+       "visita": "REAPERS",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "HONDURAS KING",
+       "visita": "ATLANTIDA",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "MILLA SELVA",
+       "visita": "CONDEPOR",
+       "pl": 27,
+       "pv": 84
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "MACRIS",
+       "pl": 81,
+       "pv": 42
+      }
+     ]
+    },
+    {
+     "ronda": 2,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "AST",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "REAPERS",
+       "visita": "MILLA SELVA",
+       "pl": 28,
+       "pv": 47
+      },
+      {
+       "local": "ATLANTIDA",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 79,
+       "pv": 52
+      },
+      {
+       "local": "MACRIS",
+       "visita": "CONDEPOR",
+       "pl": null,
+       "pv": null
+      }
+     ]
+    },
+    {
+     "ronda": 3,
+     "partidos": [
+      {
+       "local": "HONDURAS KING",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 36,
+       "pv": 66
+      },
+      {
+       "local": "MILLA SELVA",
+       "visita": "AST",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "MACRIS",
+       "visita": "REAPERS",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "CONDEPOR",
+       "visita": "ATLANTIDA",
+       "pl": 37,
+       "pv": 53
+      }
+     ]
+    },
+    {
+     "ronda": 4,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "MILLA SELVA",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "HONDURAS KING",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "AST",
+       "visita": "MACRIS",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "ATLANTIDA",
+       "visita": "REAPERS",
+       "pl": 90,
+       "pv": 32
+      }
+     ]
+    },
+    {
+     "ronda": 5,
+     "partidos": [
+      {
+       "local": "NACIONAL DE INGENIEROS",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 78,
+       "pv": 37
+      },
+      {
+       "local": "MACRIS",
+       "visita": "MILLA SELVA",
+       "pl": 27,
+       "pv": 112
+      },
+      {
+       "local": "CONDEPOR",
+       "visita": "HONDURAS KING",
+       "pl": 76,
+       "pv": 26
+      },
+      {
+       "local": "ATLANTIDA",
+       "visita": "AST",
+       "pl": 87,
+       "pv": 17
+      }
+     ]
+    },
+    {
+     "ronda": 6,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "MACRIS",
+       "pl": 88,
+       "pv": 39
+      },
+      {
+       "local": "CONDEPOR",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 113,
+       "pv": 53
+      },
+      {
+       "local": "MILLA SELVA",
+       "visita": "ATLANTIDA",
+       "pl": 20,
+       "pv": 86
+      },
+      {
+       "local": "REAPERS",
+       "visita": "HONDURAS KING",
+       "pl": 55,
+       "pv": 31
+      }
+     ]
+    },
+    {
+     "ronda": 7,
+     "partidos": [
+      {
+       "local": "CONDEPOR",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "ATLANTIDA",
+       "visita": "MACRIS",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "REAPERS",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 34,
+       "pv": 70
+      },
+      {
+       "local": "AST",
+       "visita": "HONDURAS KING",
+       "pl": 75,
+       "pv": 25
+      }
+     ]
+    },
+    {
+     "ronda": 8,
+     "partidos": [
+      {
+       "local": "HONDUBASKET TEGUZ",
+       "visita": "ATLANTIDA",
+       "pl": 34,
+       "pv": 64
+      },
+      {
+       "local": "REAPERS",
+       "visita": "CONDEPOR",
+       "pl": 45,
+       "pv": 79
+      },
+      {
+       "local": "AST",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "HONDURAS KING",
+       "visita": "MILLA SELVA",
+       "pl": 17,
+       "pv": 103
+      }
+     ]
+    },
+    {
+     "ronda": 9,
+     "partidos": [
+      {
+       "local": "REAPERS",
+       "visita": "HONDUBASKET TEGUZ",
+       "pl": 47,
+       "pv": 26
+      },
+      {
+       "local": "AST",
+       "visita": "CONDEPOR",
+       "pl": 33,
+       "pv": 81
+      },
+      {
+       "local": "HONDURAS KING",
+       "visita": "MACRIS",
+       "pl": null,
+       "pv": null
+      },
+      {
+       "local": "MILLA SELVA",
+       "visita": "NACIONAL DE INGENIEROS",
+       "pl": 76,
+       "pv": 66
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "u18f",
+   "nombre": "U18 Femenino",
+   "score7": "https://www.score7.io/tournaments/hkst0dyxo9",
+   "rondas": []
+  }
+ ]
+}
