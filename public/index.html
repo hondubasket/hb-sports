@@ -28,6 +28,8 @@
   .nav{display:flex;gap:2px;margin-left:auto;}
   .nav button{background:none;border:none;color:var(--slate);font-size:14px;font-weight:600;padding:9px 17px;border-radius:10px;cursor:pointer;font-family:inherit;transition:all .15s;}
   .nav button:hover{color:var(--purple);background:var(--purple-soft);}
+  .nav .nav-link{color:var(--orange);font-size:14px;font-weight:700;padding:9px 17px;border-radius:10px;text-decoration:none;}
+  .nav .nav-link:hover{background:var(--orange-soft);}
   .nav button.active{color:var(--white);background:var(--purple);}
   .admin-btn{background:var(--orange);color:#fff;border:none;font-weight:700;font-size:13px;padding:10px 17px;border-radius:10px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:7px;transition:all .15s;margin-left:6px;}
   .admin-btn:hover{background:var(--orange-bright);transform:translateY(-1px);box-shadow:0 6px 18px rgba(232,97,10,.3);}
@@ -329,6 +331,7 @@
       <button data-view="calendar">Calendario</button>
       <button data-view="standings">Tablas</button>
       <button data-view="clubs">Clubes</button>
+      <a href="/lnbm/" class="nav-link">LNBM Estadísticas</a>
     </nav>
     <button class="admin-btn" id="adminToggle"><span id="adminIcon">🔒</span><span id="adminLabel">Modo gestión</span></button>
   </div>
