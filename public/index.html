@@ -107,7 +107,7 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
 <body>
 <header class="topbar"><div class="wrap">
   <a class="brand" href="/"><img src="/img/hb.png" alt="Hondubasket"><b>HB Sports<small>Ligas de Hondubasket</small></b></a>
-  <nav class="topnav"><a href="#ligas">Ligas</a><a class="opt" href="#resultados">Resultados</a><a class="opt" href="#contacto">Contacto</a></nav>
+  <nav class="topnav"><a href="#ligas">Ligas</a><a class="opt" href="#fotos">Fotos</a><a class="opt" href="#resultados">Resultados</a><a class="opt" href="#contacto">Contacto</a></nav>
 </div></header>
 
 <section class="hero">
@@ -142,6 +142,11 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
     </div>
   </section>
 
+  <section class="sec" id="fotos">
+    <div class="sechead"><div><h2>Galería</h2><p>Momentos de nuestras ligas. Tocá una foto para verla en grande.</p></div><div style="display:flex;gap:14px;font-weight:600;font-size:14px"><a href="/estrellas/#fotos" style="color:var(--orange);text-decoration:none">Fotos Liga de las Estrellas →</a><a href="/lnbm/#fotos" style="color:var(--orange);text-decoration:none">Fotos LNBM →</a></div></div>
+    <div id="homeGal"></div>
+  </section>
+
   <section class="sec" id="resultados">
     <div class="sechead"><div><h2>Resultados y próximos partidos</h2><p>Lo más reciente de todas las ligas.</p></div></div>
     <div class="feed">
@@ -156,8 +161,13 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
   <div class="contact">hondubasket@gmail.com<br>8814-1593 · @hondubasket<br>Tegucigalpa, Honduras</div>
 </div></footer>
 
+<script src="/galeria.js"></script>
 <script>
 const $=s=>document.querySelector(s);
+Promise.all(["/lnbm/","/estrellas/"].map(b=>fetch(b+"fotos.json",{cache:"no-store"}).then(r=>r.json()).then(j=>(j.fotos||[]).map(f=>({...f,src:b+f.src,titulo:(b==="/lnbm/"?"LNBM ICN · ":"Liga de las Estrellas · ")+(f.titulo||"")}))).catch(()=>[]))).then(([a,b])=>{
+  const mix=[];for(let i=0;i<Math.max(a.length,b.length);i++){if(a[i])mix.push(a[i]);if(b[i])mix.push(b[i])}
+  if(!renderGaleria(mix,"",$("#homeGal"),8))$("#fotos").hidden=true;
+});
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const n=v=>{const x=Number(v);return Number.isFinite(x)?x:0};
 const MES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];

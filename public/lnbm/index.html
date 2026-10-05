@@ -133,6 +133,7 @@ td.b{font-weight:700}
     <a href="#equipos" data-v="equipos">Equipos</a>
     <a href="#jugadores" data-v="jugadores">Jugadores</a>
     <a href="#lideres" data-v="lideres">Líderes</a>
+    <a href="#fotos" data-v="fotos">Fotos</a>
   </nav></div>
 </header>
 <main class="wrap" id="view"><div class="empty"><b>Cargando estadísticas</b>Un momento…</div></main>
@@ -140,9 +141,11 @@ td.b{font-weight:700}
 <div class="toast" id="toast" hidden></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="/galeria.js"></script>
 <script>
 const K=["min","p2m","p2a","p3m","p3a","ftm","fta","oreb","dreb","ast","stl","blk","tov","pf"];
-let D={equipos:[],partidos:[]};
+let D={equipos:[],partidos:[]},FOTOS=[];
+fetch("fotos.json",{cache:"no-store"}).then(r=>r.json()).then(f=>{FOTOS=f.fotos||[];if(location.hash==="#fotos")route()}).catch(()=>{});
 const S={pTeam:"",pSort:{k:"ppg",d:-1},cTeam:""};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -238,6 +241,10 @@ const V={
     return head("Temporada 2026","Estadísticas de jugadores","Promedios por partido jugado. Tocá un encabezado para ordenar.")+
     `<div class="filters"><select id="pTeam"><option value="">Todos los equipos</option>${D.equipos.map(e=>`<option ${e.nombre===S.pTeam?"selected":""}>${esc(e.nombre)}</option>`).join("")}</select><button class="btn orange" id="xls" ${fin().length?"":"disabled"}>Descargar Excel (Latin Basket)</button></div>`+
     (ps.length?`<div class="tbl"><table><thead><tr>${C.map(c=>`<th class="s ${c[2]==="l"?"l":""} ${c[0]===k?"on":""}" data-s="${c[0]}">${c[1]}${c[0]===k?(d<0?" ↓":" ↑"):""}</th>`).join("")}</tr></thead><tbody>${ps.map(p=>`<tr>${C.map(c=>`<td class="${c[2]==="l"?"l":""}">${c===C[0]?`<b>${cell(p,c)}</b>`:cell(p,c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`:`<div class="empty"><b>Sin jugadores todavía</b>Las estadísticas se llenan con cada acta oficial cargada.</div>`);
+  },
+  fotos(){
+    setTimeout(()=>{const el=$("#galLnbm");if(el&&!renderGaleria(FOTOS,"",el))el.innerHTML=`<div class="empty"><b>Galería en preparación</b>Las fotos de cada jornada de la LNBM se publican aquí.</div>`},0);
+    return head("Temporada 2026","Fotos","Imágenes de las jornadas de la Liga Nacional de Baloncesto Masculina ICN 2026. Tocá una foto para verla en grande.")+`<div id="galLnbm"></div>`;
   },
   lideres(){
     const ps=players(),maxGp=Math.max(0,...ps.map(p=>p.gp)),q=ps.filter(p=>p.gp>=Math.ceil(maxGp/2));

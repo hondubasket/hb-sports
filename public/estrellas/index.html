@@ -84,8 +84,10 @@ tr.top4 td:first-child{box-shadow:inset 3px 0 0 var(--orange)}
 </header>
 <main class="wrap" id="view"><div class="empty"><b>Cargando resultados</b>Un momento…</div></main>
 <footer class="foot">Datos servidos por <b>HB Sports</b> · Hondubasket · Resultados registrados en Score7<br><span id="upd"></span></footer>
+<script src="/galeria.js"></script>
 <script>
-let D={categorias:[]};
+let D={categorias:[]},FOTOS=[];
+fetch("fotos.json",{cache:"no-store"}).then(r=>r.json()).then(f=>{FOTOS=f.fotos||[];if(location.hash==="#fotos")route()}).catch(()=>{});
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const MES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
@@ -134,12 +136,13 @@ function viewAll(){
 }
 function route(){
   const h=location.hash.slice(1),c=D.categorias.find(x=>x.id===h);
-  document.querySelectorAll("#cats a").forEach(a=>a.classList.toggle("on",(a.dataset.id||"")===(c?c.id:"")));
+  document.querySelectorAll("#cats a").forEach(a=>a.classList.toggle("on",(a.dataset.id||"")===(c?c.id:h==="fotos"?"fotos":"")));
+  if(h==="fotos"){$("#view").innerHTML=`<div class="head"><div class="eyebrow">Temporada 2026</div><h2>Fotos</h2><p>Imágenes de la Liga de las Estrellas. Tocá una foto para verla en grande.</p></div><div id="galEst"></div>`;if(!renderGaleria(FOTOS,"",$("#galEst")))$("#galEst").innerHTML=`<div class="empty"><b>Galería en preparación</b>Las fotos de cada fecha se publican aquí.</div>`;return}
   $("#view").innerHTML=c?viewCat(c):viewAll();
 }
 window.addEventListener("hashchange",()=>{route();scrollTo(0,0)});
 fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{D=d;
-  $("#cats").innerHTML=`<a href="#" data-id="">Todas</a>`+D.categorias.map(c=>`<a href="#${c.id}" data-id="${c.id}" class="${(c.rondas||[]).length?"":"off"}">${esc(c.nombre.replace("Masculino","M").replace("Femenino","F"))}</a>`).join("");
+  $("#cats").innerHTML=`<a href="#" data-id="">Todas</a>`+D.categorias.map(c=>`<a href="#${c.id}" data-id="${c.id}" class="${(c.rondas||[]).length?"":"off"}">${esc(c.nombre.replace("Masculino","M").replace("Femenino","F"))}</a>`).join("")+`<a href="#fotos" data-id="fotos">Fotos</a>`;
   $("#upd").textContent=d.actualizado?`Actualizado: ${fdate(d.actualizado)}`:"";route();
 }).catch(()=>{$("#view").innerHTML=`<div class="empty"><b>No se pudieron cargar los resultados</b>Recargá la página en unos segundos.</div>`});
 </script>
