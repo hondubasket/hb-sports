@@ -102,6 +102,9 @@ a.cc:hover{border-color:var(--orange)}
 .cc b{font-family:Sora;font-size:16px;overflow-wrap:anywhere}
 .cc span{font-size:13.5px;color:var(--slate)}
 .cc span a{color:var(--purple);font-weight:600}
+.cc .wabtn{display:inline-block;margin-top:6px;background:#1FA855;color:#fff;font-weight:700;padding:8px 12px;border-radius:9px;width:max-content}
+.wafloat{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;width:56px;height:56px;border-radius:50%;background:#1FA855;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.wafloat:hover{filter:brightness(.95)}.wafloat svg{width:30px;height:30px;fill:#fff}
 footer{background:var(--purple-dark);color:#CFC6E6}
 footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center;padding-block:30px}
 .flogos{display:flex;align-items:center;gap:16px}
@@ -168,7 +171,8 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
       <a class="cc" href="mailto:hondubasket@gmail.com"><small>Correo</small><b>hondubasket@gmail.com</b><span>Escribinos por correo</span></a>
       <a class="cc" href="tel:+50488141593"><small>Teléfono</small><b>+504 8814-1593</b><span>Tocá para llamar</span></a>
       <div class="cc"><small>Redes sociales</small><b>@hondubasket</b><span><a href="https://www.facebook.com/hondubasket" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/hondubasket" target="_blank" rel="noopener">Instagram</a></span></div>
-      <div class="cc"><small>Ubicación</small><b>Tegucigalpa, Honduras</b><span>Francisco Morazán</span></div>
+      <a class="cc" href="https://wa.me/50488141593?text=Hola%20Hondubasket" target="_blank" rel="noopener"><small>WhatsApp</small><b>+504 8814-1593</b><span class="wabtn">Escribinos por WhatsApp</span></a>
+      <div class="cc"><small>Ubicación</small><b>Tegucigalpa, Honduras</b><span>Francisco Morazán, Honduras, Centroamérica</span></div>
     </div>
   </section>
 </div></main>
@@ -177,6 +181,7 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
   <div class="flogos"><img src="/img/hb.png" alt="Hondubasket"><img src="/img/fenabah.png" alt="FENABAH"><div><b>HB Sports</b><br><span style="font-size:13px">Una plataforma de Honduras Broadcasting · Hondubasket</span></div></div>
   <div class="contact">hondubasket@gmail.com<br>8814-1593 · @hondubasket<br>Tegucigalpa, Honduras</div>
 </div></footer>
+<a class="wafloat" href="https://wa.me/50488141593?text=Hola%20Hondubasket" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.5-.3z"/></svg></a>
 
 <script src="/galeria.js"></script>
 <script>
