@@ -2,7 +2,7 @@
  "liga": "Liga de las Estrellas",
  "temporada": "2026",
  "fuente": "Score7",
- "actualizado": "2026-10-02",
+ "actualizado": "2026-10-04",
  "puntos": {
   "victoria": 2,
   "derrota": 1,
@@ -99,6 +99,16 @@
       }
      ]
     }
+   ],
+   "playoffs": [
+    {
+     "fase": "Semifinal",
+     "juego": 1,
+     "local": "NACIONAL DE INGENIEROS",
+     "visita": "HONDUBASKET TEGUZ",
+     "pl": 46,
+     "pv": 2
+    }
    ]
   },
   {
@@ -194,6 +204,16 @@
        "wo": true
       }
      ]
+    }
+   ],
+   "playoffs": [
+    {
+     "fase": "Semifinal",
+     "juego": 1,
+     "local": "NACIONAL DE INGENIEROS",
+     "visita": "ENERGY",
+     "pl": 68,
+     "pv": 21
     }
    ]
   },
@@ -465,8 +485,8 @@
       {
        "local": "NACIONAL DE INGENIEROS",
        "visita": "PANTERAS",
-       "pl": null,
-       "pv": null
+       "pl": 67,
+       "pv": 19
       },
       {
        "local": "VILLA DE LOS NINOS",
@@ -1218,8 +1238,8 @@
       {
        "local": "NACIONAL DE INGENIEROS",
        "visita": "HONDURAS KING",
-       "pl": null,
-       "pv": null
+       "pl": 97,
+       "pv": 47
       },
       {
        "local": "AST",

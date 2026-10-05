@@ -115,13 +115,13 @@ function viewCat(c){
   return `<div class="stack"><div class="head"><div class="eyebrow">Categoría · ${pj} de ${g.length} partidos jugados</div><h2>${esc(c.nombre)}</h2><p>Tabla de posiciones y resultados por ronda. Victoria 2 puntos, derrota 1, derrota por W.O. 0 (reglamento FIBA).</p></div>
   <div class="grid2" style="grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)">
     <section><h3 style="font-size:19px;margin-bottom:10px">Tabla de posiciones</h3>${standTable(c)}<p class="note" style="margin-top:8px">Desempate por diferencia de puntos y luego puntos a favor. W.O.: partido ganado por incomparecencia (20-0); el equipo que no se presenta suma 0 puntos.</p></section>
-    <section><h3 style="font-size:19px;margin-bottom:10px">Partidos por ronda</h3>${[...c.rondas].sort((a,b)=>b.ronda-a.ronda).map(r=>`<div class="round"><h4>Ronda ${r.ronda}</h4>${r.partidos.map(game).join("")}</div>`).join("")}</section>
+    <section>${(c.playoffs||[]).length?`<h3 style="font-size:19px;margin-bottom:10px">Playoffs</h3><div class="round">${c.playoffs.map(p=>`<h4 style="margin-top:6px">${esc(p.fase)} · Juego ${esc(p.juego)}</h4>${game(p)}`).join("")}</div><h3 style="font-size:19px;margin:22px 0 10px">Fase regular · partidos por ronda</h3>`:`<h3 style="font-size:19px;margin-bottom:10px">Partidos por ronda</h3>`}${[...c.rondas].sort((a,b)=>b.ronda-a.ronda).map(r=>`<div class="round"><h4>Ronda ${r.ronda}</h4>${r.partidos.map(game).join("")}</div>`).join("")}</section>
   </div></div>`;
 }
 function viewAll(){
   return `<div class="stack"><div class="head"><div class="eyebrow">Temporada 2026</div><h2>Todas las categorías</h2><p>Elegí una categoría para ver su tabla de posiciones y todos sus resultados.</p></div>
   <div class="grid3">${D.categorias.map(c=>{const g=allGames(c),pj=g.filter(played).length,st=table(c);const lead=pj?st[0]:null;
-    return `<a class="catcard" href="#${c.id}"><span>${g.length?`<span class="pill">${pj} jugados</span>`:`<span class="pill wait">Por publicar</span>`}</span><h3>${esc(c.nombre)}</h3>${lead?`<span class="ldr">Líder: ${esc(tc(lead.team))}</span><span class="m">${lead.g}-${lead.p} · ${lead.pts} pts</span>`:`<span class="m">Resultados próximamente</span>`}</a>`}).join("")}</div></div>`;
+    return `<a class="catcard" href="#${c.id}"><span>${g.length?`<span class="pill">${(c.playoffs||[]).length?"Playoffs":pj+" jugados"}</span>`:`<span class="pill wait">Por publicar</span>`}</span><h3>${esc(c.nombre)}</h3>${lead?`<span class="ldr">Líder: ${esc(tc(lead.team))}</span><span class="m">${lead.g}-${lead.p} · ${lead.pts} pts</span>`:`<span class="m">Resultados próximamente</span>`}</a>`}).join("")}</div></div>`;
 }
 function route(){
   const h=location.hash.slice(1),c=D.categorias.find(x=>x.id===h);
