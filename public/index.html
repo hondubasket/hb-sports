@@ -55,7 +55,7 @@ main .wrap{padding-block:40px 70px}
 .sechead p{color:var(--slate);margin-top:4px}
 
 /* league cards */
-.leagues{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:22px}
+.leagues{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:22px}
 .league{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
 .lhead{display:flex;align-items:center;gap:16px;padding:22px 22px 18px;border-bottom:4px solid var(--c)}
 .lhead img{height:64px;width:auto;max-width:150px;object-fit:contain;flex:none}
@@ -130,6 +130,7 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
       <a class="chip" href="/lnbm/">Liga Nacional Masculina ICN</a>
       <a class="chip" href="/lnbf/">Liga Nacional Femenina</a>
       <a class="chip" href="/estrellas/">Liga de las Estrellas</a>
+      <a class="chip" href="/tour3x3/">Tour Nacional 3x3</a>
     </div>
   </div>
 </section>
@@ -156,7 +157,13 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
         <div class="lbody" id="estBody"><p class="muted">Cargando…</p></div>
         <div class="lfoot"><a class="btn" href="/estrellas/">Ver resultados de la Liga de las Estrellas →</a></div>
       </article>
-    </div>
+          <article class="league" style="--c:#009CD7">
+        <div class="lhead"><img src="/tour3x3/img/logo-tour.jpg" alt="Tour Nacional de 3x3" style="border-radius:12px;height:64px;width:64px;object-fit:cover"><div><small>3x3 · Avalado por FENABAH</small><h3>Tour Nacional de 3x3 Honduras 2026</h3></div></div>
+        <div class="facts" id="tourFacts"><div><b>33</b><span>Eventos</span></div><div><b>8</b><span>Zonas</span></div><div><b>Dic</b><span>Gran Torneo</span></div></div>
+        <div class="lbody" id="tourBody"><p class="muted">Cargando…</p></div>
+        <div class="lfoot"><a class="btn" href="/tour3x3/">Ver el Tour Nacional de 3x3 →</a></div>
+      </article>
+</div>
   </section>
 
   <section class="sec" id="fotos">
@@ -193,7 +200,7 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
 <script src="/galeria.js"></script>
 <script>
 const $=s=>document.querySelector(s);
-Promise.all(["/lnbm/","/lnbf/","/estrellas/"].map(b=>fetch(b+"fotos.json",{cache:"no-store"}).then(r=>r.json()).then(j=>(j.fotos||[]).map(f=>({...f,src:b+f.src,titulo:({"/lnbm/":"LNBM ICN · ","/lnbf/":"LNBF · "}[b]||"Liga de las Estrellas · ")+(f.titulo||"")}))).catch(()=>[]))).then(L=>{
+Promise.all(["/lnbm/","/lnbf/","/estrellas/","/tour3x3/"].map(b=>fetch(b+"fotos.json",{cache:"no-store"}).then(r=>r.json()).then(j=>(j.fotos||[]).map(f=>({...f,src:b+f.src,titulo:({"/lnbm/":"LNBM ICN · ","/lnbf/":"LNBF · ","/tour3x3/":"Tour 3x3 · "}[b]||"Liga de las Estrellas · ")+(f.titulo||"")}))).catch(()=>[]))).then(L=>{
   const mix=[];for(let i=0;i<Math.max(...L.map(x=>x.length));i++)L.forEach(x=>{if(x[i])mix.push(x[i])});
   if(!renderGaleria(mix,"",$("#homeGal"),8,true))$("#fotos").hidden=true;
 });
@@ -237,6 +244,13 @@ function loadNacional(B,ID,LIGA,COLOR){fetch(B+"data.json",{cache:"no-store"}).t
 }).catch(()=>{$("#"+ID+"Body").innerHTML=`<p class="muted">No se pudo cargar la información.</p>`});}
 loadNacional("/lnbm/","lnbm","LNBM ICN",C_LNBM);
 loadNacional("/lnbf/","lnbf","LNBF",C_LNBF);
+
+/* ---- Tour Nacional 3x3 ---- */
+fetch("/tour3x3/data.json",{cache:"no-store"}).then(r=>r.json()).then(T=>{
+  const fin=T.paradas.filter(p=>p.estado==="finalizada"),next=T.paradas.filter(p=>p.estado!=="finalizada"&&(p.fecha||"")>=today).sort((a,b)=>a.fecha.localeCompare(b.fecha))[0];
+  $("#tourFacts").innerHTML=`<div><b>${T.resumen.eventos}</b><span>Eventos</span></div><div><b>${T.resumen.zonas}</b><span>Zonas</span></div><div><b>${fin.length||"–"}</b><span>Jugadas</span></div>`;
+  $("#tourBody").innerHTML=`<div class="mini"><h4>Gran Torneo Nacional</h4><div class="row"><span class="n"><span>${esc(T.granFinal.sede)}</span></span><span class="m">${esc(T.granFinal.fechas)}</span></div></div>${next?`<div class="mini"><h4>Próxima parada</h4><div class="row"><span class="n"><span>${esc(next.nombre)}</span></span><span class="m">${esc(fdate(next.fecha))}</span></div></div>`:`<p class="muted">${esc(T.resumen.periodo)} · paradas por zona en todo el país.</p>`}`;
+}).catch(()=>{$("#tourBody").innerHTML=`<p class="muted">No se pudo cargar la información.</p>`});
 
 /* ---- Liga de las Estrellas (resultados de Score7) ---- */
 fetch("/estrellas/data.json",{cache:"no-store"}).then(r=>r.json()).then(E=>{

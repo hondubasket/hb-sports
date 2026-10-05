@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tour Nacional de 3x3 Honduras 2026 | HB Sports</title>
+<meta name="description" content="Tour Nacional de 3x3 Honduras 2026 de FENABAH: paradas por zona, resultados, ranking y Gran Torneo Nacional.">
+<link rel="icon" href="img/logo-tour.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap">
+<style>
+:root{--cyan:#009CD7;--cyan-soft:#E3F4FB;--char:#0B1218;--ink:#141B22;--slate:#5E6873;--line:#E1E6EB;--paper:#F6F8FA;--radius:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,'Segoe UI',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Sora','Inter',sans-serif;letter-spacing:-.02em;line-height:1.15}
+a{color:inherit}
+.top{background:var(--char);color:#fff;border-bottom:4px solid var(--cyan)}
+.top-in{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.top .b{display:flex;align-items:center;gap:12px;text-decoration:none}
+.top .b img{width:46px;height:46px;border-radius:10px;object-fit:cover}
+.top .b small{display:block;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.top .b strong{font-family:Sora;font-size:17px}
+.top nav{display:flex;gap:4px;flex-wrap:wrap}
+.top nav a{text-decoration:none;color:#C7D0D8;font-weight:600;font-size:14px;padding:8px 12px;border-radius:8px}
+.top nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.hero{background:var(--char);color:#fff}
+.hero .in{max-width:1200px;margin:0 auto;padding:36px 20px 44px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:34px;align-items:center}
+.hero h1{font-size:clamp(30px,5vw,48px);font-weight:800;text-wrap:balance}
+.hero h1 span{color:var(--cyan)}
+.hero p{color:#C7D0D8;margin-top:12px;max-width:52ch;font-size:16px}
+.hero .org{display:inline-flex;align-items:center;gap:10px;margin-top:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:8px 14px 8px 8px;font-size:13px;color:#C7D0D8}
+.hero .org img{width:38px;height:38px;border-radius:8px;object-fit:cover}
+.hero .org b{color:#fff}
+.hero .poster{width:100%;max-width:380px;justify-self:end;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+@media(max-width:760px){.hero .in{grid-template-columns:1fr}.hero .poster{justify-self:start;max-width:300px}}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:22px}
+.facts div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px}
+.facts b{display:block;font-family:Sora;font-size:24px;color:#fff}
+.facts span{font-size:12.5px;color:#C7D0D8}
+.wrap{max-width:1200px;margin:0 auto;padding:34px 20px 70px}
+.sec{margin-bottom:42px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
+.sec h2{font-size:26px;font-weight:800;color:var(--char)}
+.sec>p{color:var(--slate);margin:6px 0 16px;max-width:70ch}
+.empty{padding:28px 18px;text-align:center;color:var(--slate);border:1px dashed var(--line);border-radius:var(--radius);background:#fff}
+.empty b{display:block;color:var(--ink);font-family:Sora;font-size:16px;margin-bottom:4px}
+.final{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:linear-gradient(110deg,var(--char),#12303F);color:#fff;border-radius:18px;padding:22px;border-bottom:5px solid var(--cyan)}
+.final .d{font-family:Sora;font-weight:800;font-size:clamp(28px,5vw,42px);color:var(--cyan);line-height:1}
+.final .d small{display:block;font-size:13px;color:#C7D0D8;font-family:Inter;font-weight:600;margin-top:4px}
+.final h3{font-size:22px}
+.final p{color:#C7D0D8;font-size:14px;margin-top:4px}
+@media(max-width:560px){.final{grid-template-columns:1fr}}
+.paradas{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.parada{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:grid;gap:6px}
+.parada .z{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
+.parada h3{font-size:17px}
+.parada .m{font-size:13px;color:var(--slate)}
+.pill{display:inline-block;width:max-content;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:99px;background:var(--cyan-soft);color:#00739F}
+.pill.prox{background:#F1F3F5;color:var(--slate)}
+.champ{font-size:13.5px;border-top:1px solid var(--line);padding-top:8px;margin-top:4px}
+.champ div{display:flex;justify-content:space-between;gap:10px}
+.champ span{color:var(--slate)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:9px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
+th{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--slate);background:#F1F4F7}
+th.l,td.l{text-align:left}
+tbody tr:last-child td{border-bottom:0}
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 14px;font:600 13px Inter,sans-serif;cursor:pointer;color:var(--ink)}
+.tabs button.on{background:var(--char);color:#fff;border-color:var(--char)}
+.aliados{background:#0F1D27;border-radius:16px;padding:14px;overflow:hidden}
+.aliados img{width:100%;display:block}
+.foot{border-top:1px solid var(--line);padding:22px 20px;text-align:center;color:var(--slate);font-size:13px}
+.foot b{color:#00739F}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="b" href="#"><img src="img/logo-tour.jpg" alt="Tour Nacional de 3x3"><span><small>FENABAH · Temporada 2026</small><strong>Tour Nacional de 3x3</strong></span></a>
+  <nav><a href="#paradas">Paradas</a><a href="#ranking">Ranking</a><a href="#final">Gran Torneo</a><a href="#fotos">Fotos</a><a href="/">← HB Sports</a></nav>
+</div></header>
+
+<section class="hero"><div class="in">
+  <div>
+    <div class="eyebrow">Baloncesto 3x3 · Honduras</div>
+    <h1>Tour Nacional de <span>3x3</span> Honduras 2026</h1>
+    <p>El circuito nacional de baloncesto 3x3 recorre el país por zonas y cierra con el Gran Torneo Nacional en Tegucigalpa.</p>
+    <div class="org"><img src="img/fenabah.jpg" alt="FENABAH"><span>Organiza y avala<br><b>Federación Nacional de Baloncesto de Honduras</b></span></div>
+    <div class="facts" id="facts"></div>
+  </div>
+  <img class="poster" src="img/poster.jpg" alt="Afiche oficial del Tour Nacional de 3x3 Honduras">
+</div></section>
+
+<main class="wrap">
+  <section class="sec" id="final"><div class="eyebrow">Cierre del tour</div><div id="finalBox"></div></section>
+  <section class="sec" id="paradas"><div class="eyebrow">Calendario</div><h2>Paradas del tour</h2><p>Cada parada con su zona, sede, fecha y campeones por categoría.</p><div id="paradasBox"></div></section>
+  <section class="sec" id="ranking"><div class="eyebrow">Clasificación</div><h2>Ranking nacional</h2><p>Puntos acumulados en las paradas del tour.</p><div id="rankBox"></div></section>
+  <section class="sec" id="fotos"><div class="eyebrow">Galería</div><h2>Fotos</h2><p>Tocá una foto para verla en grande.</p><div id="galBox"></div></section>
+  <section class="sec"><div class="eyebrow">Aliados y patrocinadores</div><h2>Con el apoyo de</h2><p></p><div class="aliados"><img src="img/aliados.jpg" alt="Aliados y patrocinadores del Tour Nacional de 3x3"></div></section>
+</main>
+<footer class="foot">Datos oficiales servidos por <b>HB Sports</b> · Hondubasket · Tour Nacional de 3x3 · FENABAH<br><span id="upd"></span></footer>
+<script src="/galeria.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const MES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+const fdate=d=>{if(!d)return"";const[y,m,dd]=d.split("-");return `${+dd} ${MES[+m-1]} ${y}`};
+let RK=[],cat="";
+function rankTable(){
+  const cats=[...new Set(RK.map(r=>r.categoria))];if(!cat)cat=cats[0];
+  const rows=RK.filter(r=>r.categoria===cat).sort((a,b)=>b.puntos-a.puntos);
+  return `${cats.length>1?`<div class="tabs">${cats.map(c=>`<button class="${c===cat?"on":""}" data-c="${esc(c)}">${esc(c)}</button>`).join("")}</div>`:""}
+  <div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Equipo</th><th class="l">Zona</th><th>Paradas</th><th>Títulos</th><th>Puntos</th></tr></thead><tbody>${rows.map((r,i)=>`<tr><td class="l">${i+1}</td><td class="l"><b>${esc(r.equipo)}</b></td><td class="l">${esc(r.zona||"")}</td><td>${r.paradas??""}</td><td>${r.titulos??""}</td><td><b>${r.puntos}</b></td></tr>`).join("")}</tbody></table></div>`;
+}
+fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(D=>{
+  const jug=D.paradas.filter(p=>p.estado==="finalizada").length;
+  $("#facts").innerHTML=`<div><b>${D.resumen.eventos}</b><span>Eventos</span></div><div><b>${D.resumen.zonas}</b><span>Zonas</span></div><div><b>${jug||"–"}</b><span>Paradas jugadas</span></div><div><b style="font-size:16px;padding-top:6px">${esc(D.resumen.periodo)}</b><span>Temporada</span></div>`;
+  const F=D.granFinal;
+  $("#finalBox").innerHTML=`<div class="final"><div class="d">12–13<small>diciembre 2026</small></div><div><h3>${esc(F.nombre)}</h3><p>${esc(F.sede)} · ${esc(F.fechas)}. Cierre del Tour Nacional de 3x3 con los mejores equipos de las paradas.</p></div></div>`;
+  $("#paradasBox").innerHTML=D.paradas.length?`<div class="paradas">${[...D.paradas].sort((a,b)=>(a.fecha||"").localeCompare(b.fecha||"")).map(p=>`<div class="parada"><span class="z">${esc(p.zona||"")}</span><h3>${esc(p.nombre)}</h3><span class="m">${esc(p.sede||"")}${p.fecha?" · "+esc(fdate(p.fecha)):""}</span><span class="pill ${p.estado==="finalizada"?"":"prox"}">${p.estado==="finalizada"?"Finalizada":"Próxima"}</span>${(p.campeones||[]).length?`<div class="champ">${p.campeones.map(c=>`<div><span>${esc(c.categoria)}</span><b>${esc(c.equipo)}</b></div>`).join("")}</div>`:""}</div>`).join("")}</div>`:`<div class="empty"><b>Calendario de paradas en preparación</b>Las ${D.resumen.eventos} paradas en ${D.resumen.zonas} zonas se publican aquí con sus resultados.</div>`;
+  RK=D.ranking||[];$("#rankBox").innerHTML=RK.length?rankTable():`<div class="empty"><b>Ranking por publicar</b>Se actualiza después de cada parada del tour.</div>`;
+  $("#upd").textContent=D.actualizado?`Actualizado: ${fdate(D.actualizado)}`:"";
+});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(b){cat=b.dataset.c;$("#rankBox").innerHTML=rankTable()}});
+fetch("fotos.json",{cache:"no-store"}).then(r=>r.json()).then(f=>{if(!renderGaleria(f.fotos||[],"",$("#galBox")))$("#galBox").innerHTML=`<div class="empty"><b>Galería en preparación</b>Las fotos de cada parada se publican aquí.</div>`}).catch(()=>{});
+</script>
+</body>
+</html>
