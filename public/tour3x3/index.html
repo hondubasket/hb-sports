@@ -85,7 +85,7 @@ tbody tr:last-child td{border-bottom:0}
   <div>
     <div class="eyebrow">Baloncesto 3x3 · Honduras</div>
     <h1>Tour Nacional de <span>3x3</span> Honduras 2026</h1>
-    <p>El circuito nacional de baloncesto 3x3 recorre el país por zonas y cierra con el Gran Torneo Nacional en Tegucigalpa.</p>
+    <p>El circuito nacional de baloncesto 3x3 recorre el país y cierra con el Gran Torneo Nacional en Tegucigalpa.</p>
     <div class="org"><img src="img/fenabah.jpg" alt="FENABAH"><span>Organiza y avala<br><b>Federación Nacional de Baloncesto de Honduras</b></span></div>
     <div class="facts" id="facts"></div>
   </div>
@@ -114,10 +114,10 @@ function rankTable(){
 }
 fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(D=>{
   const jug=D.paradas.filter(p=>p.estado==="finalizada").length;
-  $("#facts").innerHTML=`<div><b>${D.resumen.eventos}</b><span>Eventos</span></div><div><b>${D.resumen.zonas}</b><span>Zonas</span></div><div><b>${jug||"–"}</b><span>Paradas jugadas</span></div><div><b style="font-size:16px;padding-top:6px">${esc(D.resumen.periodo)}</b><span>Temporada</span></div>`;
+  $("#facts").innerHTML=`<div><b>${jug||"–"}</b><span>Paradas jugadas</span></div><div><b>${new Set(D.paradas.map(p=>p.sede)).size||"–"}</b><span>Ciudades visitadas</span></div><div><b style="font-size:16px;padding-top:6px">${esc(D.resumen.periodo)}</b><span>Temporada</span></div>`;
   const F=D.granFinal;
   $("#finalBox").innerHTML=`<div class="final"><div class="d">12–13<small>diciembre 2026</small></div><div><h3>${esc(F.nombre)}</h3><p>${esc(F.sede)} · ${esc(F.fechas)}. Cierre del Tour Nacional de 3x3 con los mejores equipos de las paradas.</p></div></div>`;
-  $("#paradasBox").innerHTML=D.paradas.length?`<div class="paradas">${[...D.paradas].sort((a,b)=>(b.fecha||"").localeCompare(a.fecha||"")).map(p=>`<div class="parada">${p.zona?`<span class="z">${esc(p.zona)}</span>`:""}<h3>${esc(p.nombre)}</h3><span class="m">${esc(p.sede||"")}${p.fecha?" · "+esc(fdate(p.fecha)):""}</span><span class="pill ${p.estado==="finalizada"?"":"prox"}">${p.estado==="finalizada"?"Finalizada":"Próxima"}</span>${(p.campeones||[]).length?`<div class="champ">${p.campeones.map(c=>`<div><span>${esc(c.categoria)}</span><b>🏆 ${esc(c.equipo)}</b></div>`).join("")}</div>`:""}</div>`).join("")}</div>`:`<div class="empty"><b>Calendario de paradas en preparación</b>Las ${D.resumen.eventos} paradas en ${D.resumen.zonas} zonas se publican aquí con sus resultados.</div>`;
+  $("#paradasBox").innerHTML=D.paradas.length?`<div class="paradas">${[...D.paradas].sort((a,b)=>(b.fecha||"").localeCompare(a.fecha||"")).map(p=>`<div class="parada">${p.zona?`<span class="z">${esc(p.zona)}</span>`:""}<h3>${esc(p.nombre)}</h3><span class="m">${esc(p.sede||"")}${p.fecha?" · "+esc(fdate(p.fecha)):""}</span><span class="pill ${p.estado==="finalizada"?"":"prox"}">${p.estado==="finalizada"?"Finalizada":"Próxima"}</span>${(p.campeones||[]).length?`<div class="champ">${p.campeones.map(c=>`<div><span>${esc(c.categoria)}</span><b>🏆 ${esc(c.equipo)}</b></div>`).join("")}</div>`:""}</div>`).join("")}</div>`:`<div class="empty"><b>Calendario de paradas en preparación</b>Las paradas se publican aquí con sus resultados.</div>`;
   const T=D.fibaTop10;
   const tb=(t,x)=>`<div><h3 style="font-size:18px;margin-bottom:10px">${t}</h3><div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Jugador${t==="Femenino"?"a":""}</th><th>Puntos FIBA</th></tr></thead><tbody>${x.jugadores.map(j=>`<tr><td class="l"><b>${j.pos}</b></td><td class="l"><b>${esc(j.nombre)}</b></td><td><b>${j.puntos.toLocaleString("es-HN")}</b></td></tr>`).join("")}</tbody></table></div></div>`;
   $("#topBox").innerHTML=T?`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:18px">${tb("Masculino",T.masculino)}${tb("Femenino",T.femenino)}</div><p style="font-size:13px;color:var(--slate);margin-top:10px">Fuente: <a href="${esc(T.masculino.url)}" target="_blank" rel="noopener">${esc(T.fuente)}</a> · consultado el ${esc(fdate(T.consultado))}.</p>`:"";

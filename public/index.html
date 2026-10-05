@@ -159,7 +159,7 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
       </article>
           <article class="league" style="--c:#009CD7">
         <div class="lhead"><img src="/tour3x3/img/logo-tour.jpg" alt="Tour Nacional de 3x3" style="border-radius:12px;height:64px;width:64px;object-fit:cover"><div><small>3x3 · Avalado por FENABAH</small><h3>Tour Nacional de 3x3 Honduras 2026</h3></div></div>
-        <div class="facts" id="tourFacts"><div><b>33</b><span>Eventos</span></div><div><b>8</b><span>Zonas</span></div><div><b>Dic</b><span>Gran Torneo</span></div></div>
+        <div class="facts" id="tourFacts"><div><b>–</b><span>Paradas jugadas</span></div><div><b>–</b><span>Ciudades</span></div><div><b>Dic</b><span>Gran Torneo</span></div></div>
         <div class="lbody" id="tourBody"><p class="muted">Cargando…</p></div>
         <div class="lfoot"><a class="btn" href="/tour3x3/">Ver el Tour Nacional de 3x3 →</a></div>
       </article>
@@ -248,8 +248,8 @@ loadNacional("/lnbf/","lnbf","LNBF",C_LNBF);
 /* ---- Tour Nacional 3x3 ---- */
 fetch("/tour3x3/data.json",{cache:"no-store"}).then(r=>r.json()).then(T=>{
   const fin=T.paradas.filter(p=>p.estado==="finalizada"),next=T.paradas.filter(p=>p.estado!=="finalizada"&&(p.fecha||"")>=today).sort((a,b)=>a.fecha.localeCompare(b.fecha))[0];
-  $("#tourFacts").innerHTML=`<div><b>${T.resumen.eventos}</b><span>Eventos</span></div><div><b>${T.resumen.zonas}</b><span>Zonas</span></div><div><b>${fin.length||"–"}</b><span>Jugadas</span></div>`;
-  $("#tourBody").innerHTML=`<div class="mini"><h4>Gran Torneo Nacional</h4><div class="row"><span class="n"><span>${esc(T.granFinal.sede)}</span></span><span class="m">${esc(T.granFinal.fechas)}</span></div></div>${fin.length?`<div class="mini"><h4>Últimos campeones · ${esc(fin.slice().sort((a,b)=>b.fecha.localeCompare(a.fecha))[0].sede)}</h4>${fin.slice().sort((a,b)=>b.fecha.localeCompare(a.fecha))[0].campeones.map(c=>`<div class="row"><span class="n"><span>${esc(c.categoria)}</span></span><span class="m"><b style="color:var(--ink)">${esc(c.equipo)}</b></span></div>`).join("")}</div>`:""}${next?`<div class="mini"><h4>Próxima parada</h4><div class="row"><span class="n"><span>${esc(next.nombre)}</span></span><span class="m">${esc(fdate(next.fecha))}</span></div></div>`:`<p class="muted">${esc(T.resumen.periodo)} · paradas por zona en todo el país.</p>`}`;
+  $("#tourFacts").innerHTML=`<div><b>${fin.length||"–"}</b><span>Paradas jugadas</span></div><div><b>${new Set(T.paradas.map(p=>p.sede)).size||"–"}</b><span>Ciudades</span></div><div><b>Dic</b><span>Gran Torneo</span></div>`;
+  $("#tourBody").innerHTML=`<div class="mini"><h4>Gran Torneo Nacional</h4><div class="row"><span class="n"><span>${esc(T.granFinal.sede)}</span></span><span class="m">${esc(T.granFinal.fechas)}</span></div></div>${fin.length?`<div class="mini"><h4>Últimos campeones · ${esc(fin.slice().sort((a,b)=>b.fecha.localeCompare(a.fecha))[0].sede)}</h4>${fin.slice().sort((a,b)=>b.fecha.localeCompare(a.fecha))[0].campeones.map(c=>`<div class="row"><span class="n"><span>${esc(c.categoria)}</span></span><span class="m"><b style="color:var(--ink)">${esc(c.equipo)}</b></span></div>`).join("")}</div>`:""}${next?`<div class="mini"><h4>Próxima parada</h4><div class="row"><span class="n"><span>${esc(next.nombre)}</span></span><span class="m">${esc(fdate(next.fecha))}</span></div></div>`:`<p class="muted">${esc(T.resumen.periodo)} · paradas en todo el país.</p>`}`;
 }).catch(()=>{$("#tourBody").innerHTML=`<p class="muted">No se pudo cargar la información.</p>`});
 
 /* ---- Liga de las Estrellas (resultados de Score7) ---- */
