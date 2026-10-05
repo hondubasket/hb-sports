@@ -78,7 +78,7 @@ tbody tr:last-child td{border-bottom:0}
 <body>
 <header class="top"><div class="top-in">
   <a class="b" href="#"><img src="img/logo-tour.jpg" alt="Tour Nacional de 3x3"><span><small>FENABAH · Temporada 2026</small><strong>Tour Nacional de 3x3</strong></span></a>
-  <nav><a href="#paradas">Paradas</a><a href="#ranking">Ranking</a><a href="#final">Gran Torneo</a><a href="#fotos">Fotos</a><a href="/">← HB Sports</a></nav>
+  <nav><a href="#paradas">Paradas</a><a href="#top10">Top 10</a><a href="#ranking">Ranking</a><a href="#final">Gran Torneo</a><a href="#fotos">Fotos</a><a href="/">← HB Sports</a></nav>
 </div></header>
 
 <section class="hero"><div class="in">
@@ -95,6 +95,7 @@ tbody tr:last-child td{border-bottom:0}
 <main class="wrap">
   <section class="sec" id="final"><div class="eyebrow">Cierre del tour</div><div id="finalBox"></div></section>
   <section class="sec" id="paradas"><div class="eyebrow">Calendario</div><h2>Paradas del tour</h2><p>Paradas realizadas con sus campeones por categoría, de la más reciente a la primera.</p><div id="paradasBox"></div></section>
+  <section class="sec" id="top10"><div class="eyebrow">Ranking FIBA 3x3</div><h2>Top 10 nacional masculino</h2><p>Los 10 jugadores hondureños mejor ubicados en el ranking individual masculino de FIBA 3x3.</p><div id="topBox"></div></section>
   <section class="sec" id="ranking"><div class="eyebrow">Clasificación</div><h2>Ranking nacional</h2><p>Puntos acumulados en las paradas del tour.</p><div id="rankBox"></div></section>
   <section class="sec" id="fotos"><div class="eyebrow">Galería</div><h2>Fotos</h2><p>Tocá una foto para verla en grande.</p><div id="galBox"></div></section>
 </main>
@@ -118,6 +119,8 @@ fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(D=>{
   const F=D.granFinal;
   $("#finalBox").innerHTML=`<div class="final"><div class="d">12–13<small>diciembre 2026</small></div><div><h3>${esc(F.nombre)}</h3><p>${esc(F.sede)} · ${esc(F.fechas)}. Cierre del Tour Nacional de 3x3 con los mejores equipos de las paradas.</p></div></div>`;
   $("#paradasBox").innerHTML=D.paradas.length?`<div class="paradas">${[...D.paradas].sort((a,b)=>(b.fecha||"").localeCompare(a.fecha||"")).map(p=>`<div class="parada">${p.zona?`<span class="z">${esc(p.zona)}</span>`:""}<h3>${esc(p.nombre)}</h3><span class="m">${esc(p.sede||"")}${p.fecha?" · "+esc(fdate(p.fecha)):""}</span><span class="pill ${p.estado==="finalizada"?"":"prox"}">${p.estado==="finalizada"?"Finalizada":"Próxima"}</span>${(p.campeones||[]).length?`<div class="champ">${p.campeones.map(c=>`<div><span>${esc(c.categoria)}</span><b>🏆 ${esc(c.equipo)}</b></div>`).join("")}</div>`:""}</div>`).join("")}</div>`:`<div class="empty"><b>Calendario de paradas en preparación</b>Las ${D.resumen.eventos} paradas en ${D.resumen.zonas} zonas se publican aquí con sus resultados.</div>`;
+  const T=D.fibaTop10Masculino;
+  $("#topBox").innerHTML=T?`<div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Jugador</th><th>Ranking mundial (masc.)</th><th>Puntos FIBA</th></tr></thead><tbody>${T.jugadores.map(j=>`<tr><td class="l"><b>${j.pos}</b></td><td class="l"><b>${esc(j.nombre)}</b></td><td>${j.rankMundial.toLocaleString("es-HN")}</td><td><b>${j.puntos.toLocaleString("es-HN")}</b></td></tr>`).join("")}</tbody></table></div><p style="font-size:13px;color:var(--slate);margin-top:8px">Fuente: <a href="${esc(T.url)}" target="_blank" rel="noopener">${esc(T.fuente)}</a> · consultado el ${esc(fdate(T.consultado))}.</p>`:"";
   RK=D.ranking||[];$("#rankBox").innerHTML=RK.length?rankTable():`<div class="empty"><b>Ranking por publicar</b>Se actualiza después de cada parada del tour.</div>`;
   $("#upd").textContent=D.actualizado?`Actualizado: ${fdate(D.actualizado)}`:"";
 });
