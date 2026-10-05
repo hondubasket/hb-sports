@@ -261,6 +261,10 @@
      "nombre": "Henry Jared Morales Santos"
     },
     {
+     "num": "2",
+     "nombre": "Miles Weber"
+    },
+    {
      "num": "6",
      "nombre": "Pedro Daniel Mendoza Amador"
     },
@@ -271,6 +275,10 @@
     {
      "num": "8",
      "nombre": "Cristhian Joel Donaire Donaire"
+    },
+    {
+     "num": "10",
+     "nombre": "Jonathan King"
     },
     {
      "num": "11",
@@ -295,6 +303,14 @@
     {
      "num": "24",
      "nombre": "Samir Jonathan Cabrera Romero"
+    },
+    {
+     "num": "25",
+     "nombre": "Lezter Martinez"
+    },
+    {
+     "num": "30",
+     "nombre": "Drazen Tobar"
     }
    ],
    "tecnico": [
