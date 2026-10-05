@@ -4,6 +4,10 @@
 .gal button{all:unset;cursor:zoom-in;display:block;border-radius:12px;overflow:hidden;aspect-ratio:3/2;background:#e9e7ef;position:relative}
 .gal button:focus-visible{outline:3px solid #E8610A;outline-offset:2px}
 .gal img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.gal button.v{aspect-ratio:4/5}
+.gal button.v img{object-position:center 25%}
+.gal.sq button,.gal.sq button.v{aspect-ratio:1}
+.gal.sq img{object-position:center 30%}
 .gal button:hover img{transform:scale(1.04)}
 .gal span{position:absolute;left:0;right:0;bottom:0;padding:18px 10px 8px;color:#fff;font:600 12.5px Inter,system-ui,sans-serif;background:linear-gradient(transparent,rgba(0,0,0,.65))}
 .lb{position:fixed;inset:0;background:rgba(10,8,20,.92);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px}
@@ -22,9 +26,9 @@
     document.addEventListener('keydown',e=>{if(box.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowLeft'){i=(i-1+cur.length)%cur.length;show()}if(e.key==='ArrowRight'){i=(i+1)%cur.length;show()}})}
     box.hidden=false;show()}
   function close(){box.hidden=true}
-  window.renderGaleria=function(fotos,base,el,limit){
+  window.renderGaleria=function(fotos,base,el,limit,sq){
     const list=fotos.map(f=>({...f,url:(base||"")+f.src}));const shown=limit?list.slice(0,limit):list;
-    el.innerHTML=shown.length?`<div class="gal">${shown.map((f,n)=>`<button data-n="${n}" aria-label="Ver foto: ${esc(f.titulo||"")}"><img src="${esc(f.url)}" alt="${esc(f.titulo||"")}" loading="lazy">${f.titulo?`<span>${esc(f.titulo)}</span>`:""}</button>`).join("")}</div>`:"";
+    el.innerHTML=shown.length?`<div class="gal${sq?" sq":""}">${shown.map((f,n)=>`<button class="${f.v?"v":""}" data-n="${n}" aria-label="Ver foto: ${esc(f.titulo||"")}"><img src="${esc(f.url)}" alt="${esc(f.titulo||"")}" loading="lazy">${f.titulo?`<span>${esc(f.titulo)}</span>`:""}</button>`).join("")}</div>`:"";
     el.querySelectorAll('.gal button').forEach(b=>b.addEventListener('click',()=>open(list,+b.dataset.n)));
     return shown.length;
   };

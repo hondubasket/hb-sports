@@ -1,1 +1,44 @@
-{"fotos":[]}
+{
+ "fotos": [
+  {
+   "src": "fotos/llegada.jpg",
+   "titulo": "Llegada al coliseo",
+   "v": true
+  },
+  {
+   "src": "fotos/unah-hondubasket.jpg",
+   "titulo": "UNAH vs Hondubasket",
+   "v": true
+  },
+  {
+   "src": "fotos/hondubasket-9.jpg",
+   "titulo": "Hondubasket",
+   "v": true
+  },
+  {
+   "src": "fotos/unah-tiro.jpg",
+   "titulo": "UNAH",
+   "v": true
+  },
+  {
+   "src": "fotos/tapon.jpg",
+   "titulo": "Acción bajo el aro",
+   "v": true
+  },
+  {
+   "src": "fotos/ingenieros-pase.jpg",
+   "titulo": "Nacional de Ingenieros vs Policía Nacional",
+   "v": true
+  },
+  {
+   "src": "fotos/ingenieros-aro.jpg",
+   "titulo": "Nacional de Ingenieros",
+   "v": true
+  },
+  {
+   "src": "fotos/ingenieros-rebote.jpg",
+   "titulo": "Nacional de Ingenieros",
+   "v": true
+  }
+ ]
+}

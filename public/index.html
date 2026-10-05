@@ -166,7 +166,7 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
 const $=s=>document.querySelector(s);
 Promise.all(["/lnbm/","/estrellas/"].map(b=>fetch(b+"fotos.json",{cache:"no-store"}).then(r=>r.json()).then(j=>(j.fotos||[]).map(f=>({...f,src:b+f.src,titulo:(b==="/lnbm/"?"LNBM ICN · ":"Liga de las Estrellas · ")+(f.titulo||"")}))).catch(()=>[]))).then(([a,b])=>{
   const mix=[];for(let i=0;i<Math.max(a.length,b.length);i++){if(a[i])mix.push(a[i]);if(b[i])mix.push(b[i])}
-  if(!renderGaleria(mix,"",$("#homeGal"),8))$("#fotos").hidden=true;
+  if(!renderGaleria(mix,"",$("#homeGal"),8,true))$("#fotos").hidden=true;
 });
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const n=v=>{const x=Number(v);return Number.isFinite(x)?x:0};
