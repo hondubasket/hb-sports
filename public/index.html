@@ -95,6 +95,13 @@ main .wrap{padding-block:40px 70px}
 .game .when{color:var(--slate);font-size:13px;text-align:right;white-space:nowrap}
 a.game:hover .t{color:var(--purple)}
 
+.ccards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.cc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:grid;gap:4px;text-decoration:none;color:var(--ink)}
+a.cc:hover{border-color:var(--orange)}
+.cc small{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.cc b{font-family:Sora;font-size:16px;overflow-wrap:anywhere}
+.cc span{font-size:13.5px;color:var(--slate)}
+.cc span a{color:var(--purple);font-weight:600}
 footer{background:var(--purple-dark);color:#CFC6E6}
 footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center;padding-block:30px}
 .flogos{display:flex;align-items:center;gap:16px}
@@ -154,9 +161,19 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
       <div class="panel"><h3>Próximos partidos</h3><div id="nextFeed"><p class="muted">Cargando…</p></div></div>
     </div>
   </section>
+  <section class="sec" id="contacto">
+    <div class="sechead"><div><h2>Contacto</h2><p>Escribinos para inscribir tu liga o torneo en HB Sports, coberturas, transmisiones o patrocinios.</p></div></div>
+    <div class="ccards">
+      <div class="cc"><small>Empresa</small><b>Honduras Broadcasting S. de R.L.</b><span>Marca comercial: Hondubasket</span><span>Hondubasket · Honduvolley · HB Sports · HB Overlays</span></div>
+      <a class="cc" href="mailto:hondubasket@gmail.com"><small>Correo</small><b>hondubasket@gmail.com</b><span>Escribinos por correo</span></a>
+      <a class="cc" href="tel:+50488141593"><small>Teléfono</small><b>+504 8814-1593</b><span>Tocá para llamar</span></a>
+      <div class="cc"><small>Redes sociales</small><b>@hondubasket</b><span><a href="https://www.facebook.com/hondubasket" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/hondubasket" target="_blank" rel="noopener">Instagram</a></span></div>
+      <div class="cc"><small>Ubicación</small><b>Tegucigalpa, Honduras</b><span>Francisco Morazán</span></div>
+    </div>
+  </section>
 </div></main>
 
-<footer id="contacto"><div class="wrap">
+<footer><div class="wrap">
   <div class="flogos"><img src="/img/hb.png" alt="Hondubasket"><img src="/img/fenabah.png" alt="FENABAH"><div><b>HB Sports</b><br><span style="font-size:13px">Una plataforma de Honduras Broadcasting · Hondubasket</span></div></div>
   <div class="contact">hondubasket@gmail.com<br>8814-1593 · @hondubasket<br>Tegucigalpa, Honduras</div>
 </div></footer>
