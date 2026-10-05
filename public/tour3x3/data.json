@@ -1,9 +1,122 @@
 {
  "nombre": "Tour Nacional de 3x3 Honduras 2026",
  "organiza": "FENABAH",
- "resumen": {"eventos": 33, "zonas": 8, "periodo": "Agosto – Diciembre 2026"},
- "granFinal": {"nombre": "Gran Torneo Nacional", "fechas": "12 y 13 de diciembre de 2026", "sede": "Tegucigalpa"},
+ "resumen": {
+  "eventos": 33,
+  "zonas": 8,
+  "periodo": "Agosto – Diciembre 2026"
+ },
+ "granFinal": {
+  "nombre": "Gran Torneo Nacional",
+  "fechas": "12 y 13 de diciembre de 2026",
+  "sede": "Tegucigalpa"
+ },
  "actualizado": "2026-10-05",
- "paradas": [],
+ "paradas": [
+  {
+   "nombre": "Parada San Pedro Sula",
+   "sede": "San Pedro Sula",
+   "fecha": "2026-08-22",
+   "estado": "finalizada",
+   "campeones": [
+    {
+     "categoria": "Masculino",
+     "equipo": "NFN"
+    }
+   ]
+  },
+  {
+   "nombre": "Parada Siguatepeque",
+   "sede": "Siguatepeque",
+   "fecha": "2026-08-30",
+   "estado": "finalizada",
+   "campeones": [
+    {
+     "categoria": "Femenino",
+     "equipo": "Mini Pekas"
+    },
+    {
+     "categoria": "Masculino",
+     "equipo": "Laky Gang"
+    }
+   ]
+  },
+  {
+   "nombre": "Parada Tegucigalpa",
+   "sede": "Tegucigalpa",
+   "fecha": "2026-09-05",
+   "estado": "finalizada",
+   "campeones": [
+    {
+     "categoria": "Femenino",
+     "equipo": "3AM"
+    },
+    {
+     "categoria": "Masculino",
+     "equipo": "Lobos UPN"
+    }
+   ]
+  },
+  {
+   "nombre": "Parada Puerto Cortés",
+   "sede": "Puerto Cortés",
+   "fecha": "2026-09-13",
+   "estado": "finalizada",
+   "campeones": [
+    {
+     "categoria": "Femenino",
+     "equipo": "Angels"
+    },
+    {
+     "categoria": "Masculino",
+     "equipo": "Zorros"
+    }
+   ]
+  },
+  {
+   "nombre": "Parada Juticalpa",
+   "sede": "Juticalpa",
+   "fecha": "2026-09-19",
+   "estado": "finalizada",
+   "campeones": [
+    {
+     "categoria": "Masculino",
+     "equipo": "Kings of Kings"
+    }
+   ]
+  },
+  {
+   "nombre": "Parada Choluteca",
+   "sede": "Choluteca",
+   "fecha": "2026-09-20",
+   "estado": "finalizada",
+   "campeones": [
+    {
+     "categoria": "Femenino",
+     "equipo": "Golden Warrior"
+    },
+    {
+     "categoria": "Masculino",
+     "equipo": "2H2L"
+    }
+   ]
+  },
+  {
+   "nombre": "Parada Danlí",
+   "sede": "Danlí",
+   "fecha": "2026-09-27",
+   "estado": "finalizada",
+   "campeones": [
+    {
+     "categoria": "Femenino",
+     "equipo": "Stars 0704"
+    },
+    {
+     "categoria": "Masculino",
+     "equipo": "Panthers"
+    }
+   ]
+  }
+ ],
  "ranking": []
 }

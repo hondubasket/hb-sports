@@ -51,7 +51,7 @@ a{color:inherit}
 .final p{color:#C7D0D8;font-size:14px;margin-top:4px}
 @media(max-width:560px){.final{grid-template-columns:1fr}}
 .paradas{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.parada{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:grid;gap:6px}
+.parada{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:grid;gap:6px;align-content:start}
 .parada .z{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
 .parada h3{font-size:17px}
 .parada .m{font-size:13px;color:var(--slate)}
@@ -94,7 +94,7 @@ tbody tr:last-child td{border-bottom:0}
 
 <main class="wrap">
   <section class="sec" id="final"><div class="eyebrow">Cierre del tour</div><div id="finalBox"></div></section>
-  <section class="sec" id="paradas"><div class="eyebrow">Calendario</div><h2>Paradas del tour</h2><p>Cada parada con su zona, sede, fecha y campeones por categoría.</p><div id="paradasBox"></div></section>
+  <section class="sec" id="paradas"><div class="eyebrow">Calendario</div><h2>Paradas del tour</h2><p>Paradas realizadas con sus campeones por categoría, de la más reciente a la primera.</p><div id="paradasBox"></div></section>
   <section class="sec" id="ranking"><div class="eyebrow">Clasificación</div><h2>Ranking nacional</h2><p>Puntos acumulados en las paradas del tour.</p><div id="rankBox"></div></section>
   <section class="sec" id="fotos"><div class="eyebrow">Galería</div><h2>Fotos</h2><p>Tocá una foto para verla en grande.</p><div id="galBox"></div></section>
 </main>
@@ -117,7 +117,7 @@ fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(D=>{
   $("#facts").innerHTML=`<div><b>${D.resumen.eventos}</b><span>Eventos</span></div><div><b>${D.resumen.zonas}</b><span>Zonas</span></div><div><b>${jug||"–"}</b><span>Paradas jugadas</span></div><div><b style="font-size:16px;padding-top:6px">${esc(D.resumen.periodo)}</b><span>Temporada</span></div>`;
   const F=D.granFinal;
   $("#finalBox").innerHTML=`<div class="final"><div class="d">12–13<small>diciembre 2026</small></div><div><h3>${esc(F.nombre)}</h3><p>${esc(F.sede)} · ${esc(F.fechas)}. Cierre del Tour Nacional de 3x3 con los mejores equipos de las paradas.</p></div></div>`;
-  $("#paradasBox").innerHTML=D.paradas.length?`<div class="paradas">${[...D.paradas].sort((a,b)=>(a.fecha||"").localeCompare(b.fecha||"")).map(p=>`<div class="parada"><span class="z">${esc(p.zona||"")}</span><h3>${esc(p.nombre)}</h3><span class="m">${esc(p.sede||"")}${p.fecha?" · "+esc(fdate(p.fecha)):""}</span><span class="pill ${p.estado==="finalizada"?"":"prox"}">${p.estado==="finalizada"?"Finalizada":"Próxima"}</span>${(p.campeones||[]).length?`<div class="champ">${p.campeones.map(c=>`<div><span>${esc(c.categoria)}</span><b>${esc(c.equipo)}</b></div>`).join("")}</div>`:""}</div>`).join("")}</div>`:`<div class="empty"><b>Calendario de paradas en preparación</b>Las ${D.resumen.eventos} paradas en ${D.resumen.zonas} zonas se publican aquí con sus resultados.</div>`;
+  $("#paradasBox").innerHTML=D.paradas.length?`<div class="paradas">${[...D.paradas].sort((a,b)=>(b.fecha||"").localeCompare(a.fecha||"")).map(p=>`<div class="parada">${p.zona?`<span class="z">${esc(p.zona)}</span>`:""}<h3>${esc(p.nombre)}</h3><span class="m">${esc(p.sede||"")}${p.fecha?" · "+esc(fdate(p.fecha)):""}</span><span class="pill ${p.estado==="finalizada"?"":"prox"}">${p.estado==="finalizada"?"Finalizada":"Próxima"}</span>${(p.campeones||[]).length?`<div class="champ">${p.campeones.map(c=>`<div><span>${esc(c.categoria)}</span><b>🏆 ${esc(c.equipo)}</b></div>`).join("")}</div>`:""}</div>`).join("")}</div>`:`<div class="empty"><b>Calendario de paradas en preparación</b>Las ${D.resumen.eventos} paradas en ${D.resumen.zonas} zonas se publican aquí con sus resultados.</div>`;
   RK=D.ranking||[];$("#rankBox").innerHTML=RK.length?rankTable():`<div class="empty"><b>Ranking por publicar</b>Se actualiza después de cada parada del tour.</div>`;
   $("#upd").textContent=D.actualizado?`Actualizado: ${fdate(D.actualizado)}`:"";
 });
