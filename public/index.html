@@ -128,6 +128,7 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
     <p>Calendarios, resultados, posiciones y estadísticas oficiales de cada competencia que organizamos y producimos.</p>
     <div class="chips" id="chips">
       <a class="chip" href="/lnbm/">Liga Nacional Masculina ICN</a>
+      <a class="chip" href="/lnbf/">Liga Nacional Femenina</a>
       <a class="chip" href="/estrellas/">Liga de las Estrellas</a>
     </div>
   </div>
@@ -143,6 +144,12 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
         <div class="lbody" id="lnbmBody"><p class="muted">Cargando…</p></div>
         <div class="lfoot"><a class="btn" href="/lnbm/">Ver estadísticas de la LNBM →</a></div>
       </article>
+      <article class="league" style="--c:#3E9FB8">
+        <div class="lhead"><img src="/lnbf/img/lnbf.png" alt="LNBF"><div><small>Mayor femenina</small><h3>Liga Nacional de Baloncesto Femenino 2026</h3></div></div>
+        <div class="facts" id="lnbfFacts"><div><b>–</b><span>Equipos</span></div><div><b>–</b><span>Jugados</span></div><div><b>–</b><span>Jornada</span></div></div>
+        <div class="lbody" id="lnbfBody"><p class="muted">Cargando…</p></div>
+        <div class="lfoot"><a class="btn" href="/lnbf/">Ver estadísticas de la LNBF →</a></div>
+      </article>
       <article class="league" style="--c:#4B2E83">
         <div class="lhead"><img src="/img/liga.png" alt="Liga de las Estrellas"><div><small>Formativa · U10 a U18</small><h3>Liga de las Estrellas 2026</h3></div></div>
         <div class="facts" id="estFacts"><div><b>9</b><span>Categorías</span></div><div><b>–</b><span>Con resultados</span></div><div><b>–</b><span>Jugados</span></div></div>
@@ -153,7 +160,7 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
   </section>
 
   <section class="sec" id="fotos">
-    <div class="sechead"><div><h2>Galería</h2><p>Momentos de nuestras ligas. Tocá una foto para verla en grande.</p></div><div style="display:flex;gap:14px;font-weight:600;font-size:14px"><a href="/estrellas/#fotos" style="color:var(--orange);text-decoration:none">Fotos Liga de las Estrellas →</a><a href="/lnbm/#fotos" style="color:var(--orange);text-decoration:none">Fotos LNBM →</a></div></div>
+    <div class="sechead"><div><h2>Galería</h2><p>Momentos de nuestras ligas. Tocá una foto para verla en grande.</p></div><div style="display:flex;gap:14px;font-weight:600;font-size:14px"><a href="/estrellas/#fotos" style="color:var(--orange);text-decoration:none">Fotos Liga de las Estrellas →</a><a href="/lnbm/#fotos" style="color:var(--orange);text-decoration:none">Fotos LNBM →</a><a href="/lnbf/#fotos" style="color:var(--orange);text-decoration:none">Fotos LNBF →</a></div></div>
     <div id="homeGal"></div>
   </section>
 
@@ -186,8 +193,8 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
 <script src="/galeria.js"></script>
 <script>
 const $=s=>document.querySelector(s);
-Promise.all(["/lnbm/","/estrellas/"].map(b=>fetch(b+"fotos.json",{cache:"no-store"}).then(r=>r.json()).then(j=>(j.fotos||[]).map(f=>({...f,src:b+f.src,titulo:(b==="/lnbm/"?"LNBM ICN · ":"Liga de las Estrellas · ")+(f.titulo||"")}))).catch(()=>[]))).then(([a,b])=>{
-  const mix=[];for(let i=0;i<Math.max(a.length,b.length);i++){if(a[i])mix.push(a[i]);if(b[i])mix.push(b[i])}
+Promise.all(["/lnbm/","/lnbf/","/estrellas/"].map(b=>fetch(b+"fotos.json",{cache:"no-store"}).then(r=>r.json()).then(j=>(j.fotos||[]).map(f=>({...f,src:b+f.src,titulo:({"/lnbm/":"LNBM ICN · ","/lnbf/":"LNBF · "}[b]||"Liga de las Estrellas · ")+(f.titulo||"")}))).catch(()=>[]))).then(L=>{
+  const mix=[];for(let i=0;i<Math.max(...L.map(x=>x.length));i++)L.forEach(x=>{if(x[i])mix.push(x[i])});
   if(!renderGaleria(mix,"",$("#homeGal"),8,true))$("#fotos").hidden=true;
 });
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -196,7 +203,7 @@ const MES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","di
 const ymd=d=>{if(!d)return"";if(typeof d==="string")return d.slice(0,10);const x=new Date(d);return isNaN(x)?"":x.toISOString().slice(0,10)};
 const fdate=d=>{d=ymd(d);if(!d)return"Por definir";const[y,m,dd]=d.split("-");return `${+dd} ${MES[+m-1]}`};
 const today=new Date(Date.now()-6*3600e3).toISOString().slice(0,10);
-const C_LNBM="#EC8400",C_EST="#4B2E83";
+const C_LNBM="#EC8400",C_EST="#4B2E83",C_LNBF="#3E9FB8";
 let FEED=[];
 
 function renderFeed(){
@@ -211,23 +218,25 @@ function renderFeed(){
   $("#nextFeed").innerHTML=next.length?next.map(item).join(""):`<p class="muted">No hay partidos programados por ahora.</p>`;
 }
 
-/* ---- LNBM ---- */
-fetch("/lnbm/data.json",{cache:"no-store"}).then(r=>r.json()).then(D=>{
-  const logo=t=>{const e=D.equipos.find(x=>x.nombre===t);return e?.logo?"/lnbm/"+e.logo:""};
+/* ---- Ligas nacionales (LNBM / LNBF) ---- */
+function loadNacional(B,ID,LIGA,COLOR){fetch(B+"data.json",{cache:"no-store"}).then(r=>r.json()).then(D=>{
+  const logo=t=>{const e=D.equipos.find(x=>x.nombre===t);return e?.logo?B+e.logo:""};
   const pts=r=>2*n(r.p2m)+3*n(r.p3m)+n(r.ftm);
   const sc=(g,s)=>(g[s]||[]).reduce((a,r)=>a+pts(r),0);
   const fin=D.partidos.filter(g=>g.estado==="final");
   const jor=fin.length?Math.max(...fin.map(g=>n(g.jornada))):0;
-  $("#lnbmFacts").innerHTML=`<div><b>${D.equipos.length}</b><span>Equipos</span></div><div><b>${fin.length}</b><span>Jugados</span></div><div><b>${jor||"–"}</b><span>Jornada</span></div>`;
+  $("#"+ID+"Facts").innerHTML=`<div><b>${D.equipos.length||"–"}</b><span>Equipos</span></div><div><b>${D.equipos.length?fin.length:"–"}</b><span>Jugados</span></div><div><b>${jor||"–"}</b><span>Jornada</span></div>`;
   const t={};D.equipos.forEach(e=>t[e.nombre]={team:e.nombre,g:0,p:0,pf:0,pc:0});
   fin.forEach(g=>{const a=sc(g,"boxLocal")||n(g.ptsLocal),b=sc(g,"boxVisita")||n(g.ptsVisita),A=t[g.local],B=t[g.visita];if(!A||!B)return;A.pf+=a;A.pc+=b;B.pf+=b;B.pc+=a;if(a>b){A.g++;B.p++}else{B.g++;A.p++}});
   const st=Object.values(t).sort((x,y)=>(2*y.g+y.p)-(2*x.g+x.p)||(y.pf-y.pc)-(x.pf-x.pc)).slice(0,5);
   const next=D.partidos.filter(g=>g.estado!=="final"&&g.fecha>=today).sort((a,b)=>a.fecha.localeCompare(b.fecha))[0];
-  $("#lnbmBody").innerHTML=`<div class="mini"><h4>Tabla de posiciones</h4>${st.map((x,i)=>`<div class="row"><span class="n">${i+1}. <img class="tl" src="${logo(x.team)}" alt=""><span>${esc(x.team)}</span></span><span class="m">${x.g}-${x.p} · <b style="color:var(--ink)">${2*x.g+x.p} pts</b></span></div>`).join("")}</div>
+  $("#"+ID+"Body").innerHTML=`${!D.partidos.length?`<p class="muted">Calendario, equipos y estadísticas próximamente.</p>`:""}<div class="mini"${st.length?"":" hidden"}><h4>Tabla de posiciones</h4>${st.map((x,i)=>`<div class="row"><span class="n">${i+1}. <img class="tl" src="${logo(x.team)}" alt=""><span>${esc(x.team)}</span></span><span class="m">${x.g}-${x.p} · <b style="color:var(--ink)">${2*x.g+x.p} pts</b></span></div>`).join("")}</div>
   ${next?`<div class="mini"><h4>Próximo partido</h4><div class="row"><span class="n"><span>${esc(next.local)} vs ${esc(next.visita)}</span></span><span class="m">${esc(fdate(next.fecha))} · ${esc(next.hora)}</span></div></div>`:""}`;
-  D.partidos.forEach(g=>FEED.push({liga:"LNBM ICN",sub:"Jornada "+g.jornada,color:C_LNBM,date:g.fecha,time:g.hora,home:g.local,away:g.visita,hl:logo(g.local),al:logo(g.visita),done:g.estado==="final",hs:sc(g,"boxLocal")||n(g.ptsLocal),as:sc(g,"boxVisita")||n(g.ptsVisita),href:g.estado==="final"?`/lnbm/#partido-${g.id}`:"/lnbm/#calendario"}));
+  D.partidos.forEach(g=>FEED.push({liga:LIGA,sub:"Jornada "+g.jornada,color:COLOR,date:g.fecha,time:g.hora,home:g.local,away:g.visita,hl:logo(g.local),al:logo(g.visita),done:g.estado==="final",hs:sc(g,"boxLocal")||n(g.ptsLocal),as:sc(g,"boxVisita")||n(g.ptsVisita),href:g.estado==="final"?`${B}#partido-${g.id}`:B+"#calendario"}));
   renderFeed();
-}).catch(()=>{$("#lnbmBody").innerHTML=`<p class="muted">No se pudo cargar la información.</p>`});
+}).catch(()=>{$("#"+ID+"Body").innerHTML=`<p class="muted">No se pudo cargar la información.</p>`});}
+loadNacional("/lnbm/","lnbm","LNBM ICN",C_LNBM);
+loadNacional("/lnbf/","lnbf","LNBF",C_LNBF);
 
 /* ---- Liga de las Estrellas (resultados de Score7) ---- */
 fetch("/estrellas/data.json",{cache:"no-store"}).then(r=>r.json()).then(E=>{
