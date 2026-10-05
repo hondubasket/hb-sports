@@ -109,13 +109,22 @@ function game(p){
   const f=played(p),w=(x,y)=>f&&x<y?"l":"",wo=isWO(p);
   return `<div class="game${wo?" wo":""}"><span class="t ${w(p.pl,p.pv)}">${esc(tc(p.local))}</span>${f?`<span class="s">${p.pl}</span>`:`<span class="p">Pendiente</span>`}<span class="t ${w(p.pv,p.pl)}">${esc(tc(p.visita))}</span>${f?`<span class="s">${p.pv}</span>`:""}</div>`;
 }
+function serieHTML(S){
+  const w={[S.a]:0,[S.b]:0};S.juegos.filter(played).forEach(g=>{w[g.pl>g.pv?g.local:g.visita]++});
+  const done=w[S.a]>=2||w[S.b]>=2,win=w[S.a]>=2?S.a:S.b;
+  const games=S.juegos.map(g=>`<h4 style="margin-top:8px;font-size:12.5px;color:var(--slate)">Juego ${esc(g.juego)}</h4>${game(g)}`).join("");
+  const next=done?"":`<h4 style="margin-top:8px;font-size:12.5px;color:var(--slate)">Juego ${S.juegos.length+1}</h4><div class="game"><span class="t">${esc(tc(S.a))}</span><span class="p">Por programar</span><span class="t">${esc(tc(S.b))}</span></div>`;
+  return `<div class="card" style="margin-bottom:12px;padding:14px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap"><h4 style="font-family:Sora;font-size:15px;color:var(--purple)">${esc(S.serie)}</h4><span class="pill">${esc(S.formato)}</span></div>
+  <div style="display:grid;grid-template-columns:1fr auto;gap:2px 10px;margin:10px 0 4px;font-weight:600"><span>${esc(tc(S.a))}</span><b style="font-family:Sora">${w[S.a]}</b><span>${esc(tc(S.b))}</span><b style="font-family:Sora">${w[S.b]}</b></div>
+  <p class="note">${done?`Gana la serie: <b>${esc(tc(win))}</b>`:`Serie ${Math.max(w[S.a],w[S.b])}-${Math.min(w[S.a],w[S.b])} · gana quien llegue a 2 victorias`}</p>${games}${next}</div>`;
+}
 function viewCat(c){
   if(!(c.rondas||[]).length)return `<div class="head"><div class="eyebrow">Categoría</div><h2>${esc(c.nombre)}</h2></div><div class="empty"><b>Resultados por publicar</b>La tabla y los partidos de esta categoría aparecen aquí en cuanto se carguen.</div>`;
   const g=allGames(c),pj=g.filter(played).length;
   return `<div class="stack"><div class="head"><div class="eyebrow">Categoría · ${pj} de ${g.length} partidos jugados</div><h2>${esc(c.nombre)}</h2><p>Tabla de posiciones y resultados por ronda. Victoria 2 puntos, derrota 1, derrota por W.O. 0 (reglamento FIBA).</p></div>
   <div class="grid2" style="grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)">
     <section><h3 style="font-size:19px;margin-bottom:10px">Tabla de posiciones</h3>${standTable(c)}<p class="note" style="margin-top:8px">Desempate por diferencia de puntos y luego puntos a favor. W.O.: partido ganado por incomparecencia (20-0); el equipo que no se presenta suma 0 puntos.</p></section>
-    <section>${(c.playoffs||[]).length?`<h3 style="font-size:19px;margin-bottom:10px">Playoffs</h3><div class="round">${c.playoffs.map(p=>`<h4 style="margin-top:6px">${esc(p.fase)} · Juego ${esc(p.juego)}</h4>${game(p)}`).join("")}</div><h3 style="font-size:19px;margin:22px 0 10px">Fase regular · partidos por ronda</h3>`:`<h3 style="font-size:19px;margin-bottom:10px">Partidos por ronda</h3>`}${[...c.rondas].sort((a,b)=>b.ronda-a.ronda).map(r=>`<div class="round"><h4>Ronda ${r.ronda}</h4>${r.partidos.map(game).join("")}</div>`).join("")}</section>
+    <section>${(c.playoffs||[]).length?`<h3 style="font-size:19px;margin-bottom:10px">Playoffs</h3><div class="round">${c.playoffs.map(serieHTML).join("")}</div><h3 style="font-size:19px;margin:22px 0 10px">Fase regular · partidos por ronda</h3>`:`<h3 style="font-size:19px;margin-bottom:10px">Partidos por ronda</h3>`}${[...c.rondas].sort((a,b)=>b.ronda-a.ronda).map(r=>`<div class="round"><h4>Ronda ${r.ronda}</h4>${r.partidos.map(game).join("")}</div>`).join("")}</section>
   </div></div>`;
 }
 function viewAll(){
