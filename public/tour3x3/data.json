@@ -119,71 +119,118 @@
   }
  ],
  "ranking": [],
- "fibaTop10Masculino": {
+ "fibaTop10": {
   "fuente": "FIBA 3x3 · play.fiba3x3.com",
-  "url": "https://play.fiba3x3.com/players?show=men",
   "consultado": "2026-10-05",
-  "jugadores": [
-   {
-    "pos": 1,
-    "nombre": "Jose Ernesto Rapalo July",
-    "rankMundial": 2820,
-    "puntos": 2540
-   },
-   {
-    "pos": 2,
-    "nombre": "Edgardo Jose García Nuñez",
-    "rankMundial": 2919,
-    "puntos": 2414
-   },
-   {
-    "pos": 3,
-    "nombre": "Andres Ernesto Maradiaga Valeriano",
-    "rankMundial": 3063,
-    "puntos": 2289
-   },
-   {
-    "pos": 4,
-    "nombre": "Néstor Alejandro Maradiaga Valeriano",
-    "rankMundial": 3071,
-    "puntos": 2282
-   },
-   {
-    "pos": 5,
-    "nombre": "Luis Enrique Martinez Corrales",
-    "rankMundial": 3078,
-    "puntos": 2276
-   },
-   {
-    "pos": 6,
-    "nombre": "Alwyn Amaniel Rivaz Gonzalez",
-    "rankMundial": 3481,
-    "puntos": 1969
-   },
-   {
-    "pos": 7,
-    "nombre": "Joseph Salomon Castro Frederick",
-    "rankMundial": 3529,
-    "puntos": 1949
-   },
-   {
-    "pos": 8,
-    "nombre": "Aaron Antonio Lacayo Tabora",
-    "rankMundial": 3763,
-    "puntos": 1800
-   },
-   {
-    "pos": 9,
-    "nombre": "Saad Mena Zepeda",
-    "rankMundial": 4280,
-    "puntos": 1570
-   },
-   {
-    "pos": 10,
-    "nombre": "Jared Oneal Kelly Alvarez",
-    "rankMundial": 4438,
-    "puntos": 1514
-   }
-  ]
+  "masculino": {
+   "url": "https://play.fiba3x3.com/players?show=men",
+   "jugadores": [
+    {
+     "pos": 1,
+     "nombre": "Jose Ernesto Rapalo July",
+     "puntos": 2540
+    },
+    {
+     "pos": 2,
+     "nombre": "Edgardo Jose García Nuñez",
+     "puntos": 2414
+    },
+    {
+     "pos": 3,
+     "nombre": "Andres Ernesto Maradiaga Valeriano",
+     "puntos": 2289
+    },
+    {
+     "pos": 4,
+     "nombre": "Néstor Alejandro Maradiaga Valeriano",
+     "puntos": 2282
+    },
+    {
+     "pos": 5,
+     "nombre": "Luis Enrique Martinez Corrales",
+     "puntos": 2276
+    },
+    {
+     "pos": 6,
+     "nombre": "Alwyn Amaniel Rivaz Gonzalez",
+     "puntos": 1969
+    },
+    {
+     "pos": 7,
+     "nombre": "Joseph Salomon Castro Frederick",
+     "puntos": 1949
+    },
+    {
+     "pos": 8,
+     "nombre": "Aaron Antonio Lacayo Tabora",
+     "puntos": 1800
+    },
+    {
+     "pos": 9,
+     "nombre": "Saad Mena Zepeda",
+     "puntos": 1570
+    },
+    {
+     "pos": 10,
+     "nombre": "Jared Oneal Kelly Alvarez",
+     "puntos": 1514
+    }
+   ]
+  },
+  "femenino": {
+   "url": "https://play.fiba3x3.com/players?show=women",
+   "jugadores": [
+    {
+     "pos": 1,
+     "nombre": "Ankara Alejandra Reichle Collier",
+     "puntos": 1573
+    },
+    {
+     "pos": 2,
+     "nombre": "Giulianna Amanda Guerrero Marzocco",
+     "puntos": 1495
+    },
+    {
+     "pos": 3,
+     "nombre": "Claire Allinjanin Handal Rodas",
+     "puntos": 1486
+    },
+    {
+     "pos": 4,
+     "nombre": "Samantha Evangeli Luque Aguilera",
+     "puntos": 1476
+    },
+    {
+     "pos": 5,
+     "nombre": "Stephany Dayan García Acosta",
+     "puntos": 1465
+    },
+    {
+     "pos": 6,
+     "nombre": "María Celeste Fuentes Borjas",
+     "puntos": 1449
+    },
+    {
+     "pos": 7,
+     "nombre": "Tirsa Nahomy Garcia Gomez",
+     "puntos": 1442
+    },
+    {
+     "pos": 8,
+     "nombre": "Lesly Mariel Colon Castillo",
+     "puntos": 1402
+    },
+    {
+     "pos": 9,
+     "nombre": "Saydi Lineth Escalante Carrasco",
+     "puntos": 1274
+    },
+    {
+     "pos": 10,
+     "nombre": "Andrea Monserrat Diaz Claros",
+     "puntos": 1212
+    }
+   ]
+  }
  }
 }
