@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estadísticas | Liga Nacional de Baloncesto Femenino 2026</title>
+<title>Estadísticas | Liga Nacional de Baloncesto Femenino ICN 2026</title>
 <meta name="description" content="Estadísticas oficiales de la LNBF 2026: calendario, resultados, box scores, jugadores, líderes y posiciones. Datos servidos por HB Sports.">
 <link rel="icon" href="img/lnbf.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -123,7 +123,7 @@ td.b{font-weight:700}
 <body>
 <header class="top"><div class="top-in">
   <div class="brand">
-    <div class="brandl"><img src="img/lnbf.png" alt="LNBF"><div><small>Temporada 2026 · Estadísticas oficiales</small><h1>Liga Nacional de Baloncesto Femenino 2026</h1></div></div>
+    <div class="brandl"><img src="img/lnbf.png" alt="LNBF"><div><small>Temporada 2026 · Estadísticas oficiales</small><h1>Liga Nacional de Baloncesto Femenino ICN 2026</h1></div></div>
     <a class="back" href="/">← HB Sports</a>
   </div></div>
   <div class="navbar"><nav id="nav">
@@ -244,7 +244,7 @@ const V={
   },
   fotos(){
     setTimeout(()=>{const el=$("#galLnbm");if(el&&!renderGaleria(FOTOS,"",el))el.innerHTML=`<div class="empty"><b>Galería en preparación</b>Las fotos de cada jornada de la LNBF se publican aquí.</div>`},0);
-    return head("Temporada 2026","Fotos","Imágenes de las jornadas de la Liga Nacional de Baloncesto Femenino 2026. Tocá una foto para verla en grande.")+`<div id="galLnbm"></div>`;
+    return head("Temporada 2026","Fotos","Imágenes de las jornadas de la Liga Nacional de Baloncesto Femenino ICN 2026. Tocá una foto para verla en grande.")+`<div id="galLnbm"></div>`;
   },
   lideres(){
     const ps=players(),maxGp=Math.max(0,...ps.map(p=>p.gp)),q=ps.filter(p=>p.gp>=Math.ceil(maxGp/2));
