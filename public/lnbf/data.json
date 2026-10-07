@@ -54,7 +54,8 @@
      "nombre": "Karloman Bejarano",
      "cargo": "Entrenador Principal"
     }
-   ]
+   ],
+   "logo": "img/teguz-504.png"
   },
   {
    "nombre": "Teguz Juvenil",
@@ -130,7 +131,8 @@
      "nombre": "Neylin Centeno",
      "cargo": "Entrenador Principal"
     }
-   ]
+   ],
+   "logo": "img/teguz-juvenil.png"
   },
   {
    "nombre": "Nacional de Ingenieros",
@@ -210,7 +212,8 @@
      "nombre": "Juan Reyes",
      "cargo": "Entrenador Principal"
     }
-   ]
+   ],
+   "logo": "img/nacional-de-ingenieros.png"
   },
   {
    "nombre": "Siguatepeque",
@@ -290,7 +293,8 @@
      "nombre": "Guillermo Consuegra",
      "cargo": "Entrenador Principal"
     }
-   ]
+   ],
+   "logo": "img/siguatepeque.png"
   }
  ],
  "partidos": [
