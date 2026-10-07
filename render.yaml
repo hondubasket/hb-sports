@@ -18,11 +18,3 @@ services:
         value: tblnUhNw4kpVuuhem
       - key: ADMIN_PIN
         value: hb2026
-      - key: SUBS_BASE
-        sync: false
-      - key: SUBS_TABLE
-        value: Suscriptores
-      - key: GMAIL_USER
-        value: hondubasket@gmail.com
-      - key: GMAIL_APP_PASSWORD
-        sync: false
