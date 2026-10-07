@@ -104,6 +104,13 @@ a.cc:hover{border-color:var(--orange)}
 .cc span{font-size:13.5px;color:var(--slate)}
 .cc span a{color:var(--purple);font-weight:600}
 .cc .wabtn{display:inline-block;margin-top:6px;background:#1FA855;color:#fff;font-weight:700;padding:8px 12px;border-radius:9px;width:max-content}
+.yt{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px;background:linear-gradient(135deg,#1a1a1a,#2b0b0b);color:#fff;border-radius:var(--radius);padding:24px 26px;text-decoration:none}
+.yt .ic{width:64px;height:64px;border-radius:16px;background:#FF0000;display:grid;place-items:center}.yt .ic svg{width:36px;height:36px;fill:#fff}
+.yt small{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FF6B6B}
+.yt h2{font-family:Sora;font-size:22px;margin:4px 0}.yt p{color:#D9D9D9;font-size:14.5px;margin:0}
+.yt .go{background:#FF0000;color:#fff;font-weight:700;padding:12px 18px;border-radius:12px;white-space:nowrap}
+.yt:hover .go{filter:brightness(.92)}
+@media(max-width:700px){.yt{grid-template-columns:auto 1fr}.yt .go{grid-column:1/-1;text-align:center}}
 .wafloat{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;width:56px;height:56px;border-radius:50%;background:#1FA855;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .wafloat:hover{filter:brightness(.95)}.wafloat svg{width:30px;height:30px;fill:#fff}
 footer{background:var(--purple-dark);color:#CFC6E6}
@@ -118,7 +125,7 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
 <body>
 <header class="topbar"><div class="wrap">
   <a class="brand" href="/"><img src="/img/hb.png" alt=""><b>HONDUBASKET</b></a>
-  <nav class="topnav"><a href="#ligas">Ligas</a><a class="opt" href="#fotos">Fotos</a><a class="opt" href="#resultados">Resultados</a><a class="opt" href="#contacto">Contacto</a></nav>
+  <nav class="topnav"><a href="#ligas">Ligas</a><a class="opt" href="#envivo">En vivo</a><a class="opt" href="#fotos">Fotos</a><a class="opt" href="#resultados">Resultados</a><a class="opt" href="#contacto">Contacto</a></nav>
 </div></header>
 
 <section class="hero">
@@ -132,6 +139,7 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
       <a class="chip" href="/lnbf/">Liga Nacional Femenina ICN</a>
       <a class="chip" href="/estrellas/">Liga de las Estrellas</a>
       <a class="chip" href="/tour3x3/">Tour Nacional 3x3</a>
+      <a class="chip" href="https://www.youtube.com/@hondubasket" target="_blank" rel="noopener">▶ Transmisiones en YouTube</a>
     </div>
   </div>
 </section>
@@ -167,6 +175,10 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
 </div>
   </section>
 
+  <section class="sec" id="envivo">
+    <a class="yt" href="https://www.youtube.com/@hondubasket" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></span><div><small>Transmisiones en vivo</small><h2>Hondu Basket en YouTube</h2><p>Todos nuestros eventos se transmiten en nuestro canal. Suscribite para no perderte ningún partido.</p></div><span class="go">Ver el canal →</span></a>
+  </section>
+
   <section class="sec" id="fotos">
     <div class="sechead"><div><h2>Galería</h2><p>Momentos de nuestras ligas. Tocá una foto para verla en grande.</p></div><div style="display:flex;gap:14px;font-weight:600;font-size:14px"><a href="/estrellas/#fotos" style="color:var(--orange);text-decoration:none">Fotos Liga de las Estrellas →</a><a href="/lnbm/#fotos" style="color:var(--orange);text-decoration:none">Fotos LNBM →</a><a href="/lnbf/#fotos" style="color:var(--orange);text-decoration:none">Fotos LNBF →</a></div></div>
     <div id="homeGal"></div>
@@ -184,7 +196,7 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
     <div class="ccards">
       <a class="cc" href="mailto:hondubasket@gmail.com"><small>Correo</small><b>hondubasket@gmail.com</b><span>Escribinos por correo</span></a>
       <a class="cc" href="tel:+50488141593"><small>Teléfono</small><b>+504 8814-1593</b><span>Tocá para llamar</span></a>
-      <div class="cc"><small>Redes sociales</small><b>@hondubasket</b><span><a href="https://www.facebook.com/hondubasket" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/hondubasket" target="_blank" rel="noopener">Instagram</a></span></div>
+      <div class="cc"><small>Redes sociales</small><b>@hondubasket</b><span><a href="https://www.facebook.com/hondubasket" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/hondubasket" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@hondubasket" target="_blank" rel="noopener">YouTube</a></span></div>
       <a class="cc" href="https://wa.me/50494806303?text=Hola%20Hondubasket" target="_blank" rel="noopener"><small>WhatsApp</small><b>+504 9480-6303</b><span class="wabtn">Escribinos por WhatsApp</span></a>
       <div class="cc"><small>Ubicación</small><b>Tegucigalpa, Honduras</b><span>Francisco Morazán, Honduras, Centroamérica</span></div>
     </div>
@@ -193,7 +205,7 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
 
 <footer><div class="wrap">
   <div class="flogos"><img src="/img/hb.png" alt="Hondubasket"><img src="/img/fenabah.png" alt="FENABAH"><div><b>HB Sports</b><br><span style="font-size:13px">Una plataforma de Honduras Broadcasting · Hondubasket</span></div></div>
-  <div class="contact">hondubasket@gmail.com<br>8814-1593 · @hondubasket<br>Tegucigalpa, Honduras</div>
+  <div class="contact">hondubasket@gmail.com<br>8814-1593 · @hondubasket<br><a href="https://www.youtube.com/@hondubasket" target="_blank" rel="noopener" style="color:#fff">YouTube: Hondu Basket</a><br>Tegucigalpa, Honduras</div>
 </div></footer>
 <a class="wafloat" href="https://wa.me/50494806303?text=Hola%20Hondubasket" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.5-.3z"/></svg></a>
 
