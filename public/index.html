@@ -200,9 +200,9 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
 <script src="/galeria.js"></script>
 <script>
 const $=s=>document.querySelector(s);
-Promise.all(["/lnbm/","/lnbf/","/estrellas/","/tour3x3/"].map(b=>fetch(b+"fotos.json",{cache:"no-store"}).then(r=>r.json()).then(j=>(j.fotos||[]).map(f=>({...f,src:b+f.src,titulo:({"/lnbm/":"LNBM ICN · ","/lnbf/":"LNBF · ","/tour3x3/":"Tour 3x3 · "}[b]||"Liga de las Estrellas · ")+(f.titulo||"")}))).catch(()=>[]))).then(L=>{
+Promise.all(["/lnbf/","/lnbm/","/estrellas/","/tour3x3/"].map(b=>fetch(b+"fotos.json",{cache:"no-store"}).then(r=>r.json()).then(j=>(j.fotos||[]).map(f=>({...f,src:b+f.src,titulo:({"/lnbm/":"LNBM ICN · ","/lnbf/":"LNBF · ","/tour3x3/":"Tour 3x3 · "}[b]||"Liga de las Estrellas · ")+(f.titulo||"")}))).catch(()=>[]))).then(L=>{
   const mix=[];for(let i=0;i<Math.max(...L.map(x=>x.length));i++)L.forEach(x=>{if(x[i])mix.push(x[i])});
-  if(!renderGaleria(mix,"",$("#homeGal"),8,true))$("#fotos").hidden=true;
+  if(!renderGaleria(mix,"",$("#homeGal"),12,true))$("#fotos").hidden=true;
 });
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const n=v=>{const x=Number(v);return Number.isFinite(x)?x:0};
