@@ -1,1 +1,73 @@
-{"fotos": []}
+{
+ "fotos": [
+  {
+   "src": "fotos/campeonas-1.jpg",
+   "titulo": "Campeonas LNBF 2026",
+   "v": true
+  },
+  {
+   "src": "fotos/campeonas-2.jpg",
+   "titulo": "Campeonas LNBF 2026",
+   "v": true
+  },
+  {
+   "src": "fotos/ingenieros-tiro-libre.jpg",
+   "titulo": "Nacional de Ingenieros",
+   "v": true
+  },
+  {
+   "src": "fotos/teguz-7.jpg",
+   "titulo": "Teguz",
+   "v": true
+  },
+  {
+   "src": "fotos/ingenieros-tiro.jpg",
+   "titulo": "Nacional de Ingenieros",
+   "v": true
+  },
+  {
+   "src": "fotos/ingenieros-cancha.jpg",
+   "titulo": "Nacional de Ingenieros",
+   "v": true
+  },
+  {
+   "src": "fotos/teguz-15.jpg",
+   "titulo": "Teguz",
+   "v": true
+  },
+  {
+   "src": "fotos/siguatepeque-tiro-libre.jpg",
+   "titulo": "Siguatepeque",
+   "v": true
+  },
+  {
+   "src": "fotos/siguatepeque-lanzamiento.jpg",
+   "titulo": "Siguatepeque",
+   "v": true
+  },
+  {
+   "src": "fotos/siguatepeque-rebote.jpg",
+   "titulo": "Siguatepeque",
+   "v": true
+  },
+  {
+   "src": "fotos/teguz-11.jpg",
+   "titulo": "Teguz",
+   "v": true
+  },
+  {
+   "src": "fotos/teguz-41.jpg",
+   "titulo": "Teguz",
+   "v": true
+  },
+  {
+   "src": "fotos/teguz-34.jpg",
+   "titulo": "Teguz vs Siguatepeque",
+   "v": true
+  },
+  {
+   "src": "fotos/presentacion.jpg",
+   "titulo": "Presentación de la LNBF 2026"
+  }
+ ]
+}
