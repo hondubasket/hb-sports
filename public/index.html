@@ -111,6 +111,17 @@ a.cc:hover{border-color:var(--orange)}
 .yt .go{background:#FF0000;color:#fff;font-weight:700;padding:12px 18px;border-radius:12px;white-space:nowrap}
 .yt:hover .go{filter:brightness(.92)}
 @media(max-width:700px){.yt{grid-template-columns:auto 1fr}.yt .go{grid-column:1/-1;text-align:center}}
+.subs{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;display:grid;grid-template-columns:1fr 1.3fr;gap:22px;align-items:center}
+.subs h3{font-family:Sora;font-size:19px;margin:0 0 6px}.subs p{color:var(--slate);font-size:14.5px;margin:0}
+.subs form{display:grid;gap:10px}.subs .row{display:flex;gap:8px;flex-wrap:wrap}
+.subs input[type=email]{flex:1 1 220px;min-width:0;font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;outline:none}
+.subs input[type=email]:focus{border-color:#FF0000}
+.subs button{font:inherit;font-weight:700;font-size:15px;background:#FF0000;color:#fff;border:0;border-radius:10px;padding:12px 18px;cursor:pointer}
+.subs button:disabled{opacity:.6;cursor:wait}
+.subs .ligas{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;color:var(--slate)}.subs .ligas label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.subs .msg{font-size:14px;font-weight:600;min-height:1em}.subs .msg.ok{color:#1F8A4C}.subs .msg.err{color:#C62828}
+.subs .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+@media(max-width:760px){.subs{grid-template-columns:1fr}}
 .wafloat{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;width:56px;height:56px;border-radius:50%;background:#1FA855;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .wafloat:hover{filter:brightness(.95)}.wafloat svg{width:30px;height:30px;fill:#fff}
 footer{background:var(--purple-dark);color:#CFC6E6}
@@ -177,6 +188,20 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
 
   <section class="sec" id="envivo">
     <a class="yt" href="https://www.youtube.com/@hondubasket" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></span><div><small>Transmisiones en vivo</small><h2>Hondu Basket en YouTube</h2><p>Todos nuestros eventos se transmiten en nuestro canal. Suscribite para no perderte ningún partido.</p></div><span class="go">Ver el canal →</span></a>
+    <div class="subs" id="avisos">
+      <div><h3>🔔 Avisame cuando empiece un partido</h3><p>Dejanos tu correo y te enviamos el enlace de la transmisión en YouTube justo antes de cada partido.</p></div>
+      <form id="subForm" novalidate>
+        <div class="row"><input type="email" name="email" placeholder="tucorreo@ejemplo.com" autocomplete="email" required aria-label="Correo electrónico"><button type="submit">Suscribirme</button></div>
+        <div class="ligas" aria-label="Ligas">
+          <label><input type="checkbox" name="ligas" value="LNBM" checked> LNBM</label>
+          <label><input type="checkbox" name="ligas" value="LNBF" checked> LNBF</label>
+          <label><input type="checkbox" name="ligas" value="Liga de las Estrellas" checked> Liga de las Estrellas</label>
+          <label><input type="checkbox" name="ligas" value="Tour 3x3" checked> Tour 3x3</label>
+        </div>
+        <input class="hp" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="msg" id="subMsg" role="status"></div>
+      </form>
+    </div>
   </section>
 
   <section class="sec" id="fotos">
@@ -209,6 +234,22 @@ footer .contact{font-size:14px;line-height:1.8;text-align:right}
 </div></footer>
 <a class="wafloat" href="https://wa.me/50494806303?text=Hola%20Hondubasket" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.5-.3z"/></svg></a>
 
+<script>
+document.getElementById("subForm").addEventListener("submit",async e=>{
+  e.preventDefault();const f=e.target,m=document.getElementById("subMsg"),b=f.querySelector("button");
+  const email=f.email.value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email)){m.className="msg err";m.textContent="Escribí un correo válido.";return}
+  const ligas=[...f.querySelectorAll("input[name=ligas]:checked")].map(x=>x.value);
+  if(!ligas.length){m.className="msg err";m.textContent="Elegí al menos una liga.";return}
+  b.disabled=true;m.className="msg";m.textContent="Guardando…";
+  try{const r=await fetch("/api/suscribir",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email,ligas,web:f.web.value})});
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(d.error||"No pudimos guardar tu suscripción.");
+    m.className="msg ok";m.textContent=d.nuevo===false?"Listo, actualizamos tus ligas.":"¡Listo! Te avisaremos por correo cuando empiece cada partido.";f.email.value="";
+  }catch(err){m.className="msg err";m.textContent=err.message}
+  b.disabled=false;
+});
+</script>
 <script src="/galeria.js"></script>
 <script>
 const $=s=>document.querySelector(s);

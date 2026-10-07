@@ -114,3 +114,48 @@ Guarda tu token a la mano (empieza con `pat...`), lo necesitarás en la Parte 3.
 ---
 
 ¡Listo! Con esto HB Sports queda público, automático y permanente.
+
+---
+
+## Avisos de transmisión por correo
+
+La gente se suscribe desde el inicio (sección **En vivo**) y vos mandás el aviso desde **hb-sports.onrender.com/avisos/** con el PIN de administración.
+
+### 1. Tabla de suscriptores en Airtable
+
+Sin esto los correos se guardan en el servidor y se pierden cada vez que Render vuelve a desplegar.
+
+1. En una base de Airtable (puede ser la de clubes), creá una tabla llamada **Suscriptores** con estos campos, escritos exactamente así:
+   - `Email` (texto de una línea)
+   - `Ligas` (texto de una línea)
+   - `Token` (texto de una línea)
+   - `Fecha` (texto de una línea)
+   - `Activo` (casilla de verificación)
+2. Confirmá que tu token de Airtable tenga acceso a esa base (permisos de lectura y escritura).
+3. Copiá el ID de la base (empieza con `app...`, está en la URL de Airtable).
+
+### 2. Contraseña de aplicación de Gmail
+
+1. Entrá a **myaccount.google.com** con `hondubasket@gmail.com`.
+2. **Seguridad** → activá la **Verificación en dos pasos** si no la tenés.
+3. Buscá **Contraseñas de aplicaciones**, creá una llamada `HB Sports` y copiá las 16 letras.
+
+### 3. Variables en Render
+
+En Render → servicio **hb-sports** → **Environment**, agregá:
+
+| Variable | Valor |
+|---|---|
+| `SUBS_BASE` | el ID de la base (`app...`) |
+| `GMAIL_APP_PASSWORD` | las 16 letras de la contraseña de aplicación |
+
+Guardá; Render reinicia solo. En **/avisos/** ya no deben aparecer advertencias.
+
+### 4. Mandar un aviso
+
+1. Entrá a **/avisos/** con el PIN.
+2. En **Próximos partidos**, tocá **Preparar aviso** en el partido.
+3. Pegá el enlace de la transmisión de YouTube (o dejalo vacío para usar `youtube.com/@hondubasket/live`).
+4. **Enviar aviso**. Solo les llega a quienes se suscribieron a esa liga, y cada correo trae su enlace para darse de baja.
+
+Gmail permite unos 500 correos por día.
