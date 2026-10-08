@@ -251,7 +251,7 @@ function loadNacional(B,ID,LIGA,COLOR){fetch(B+"data.json",{cache:"no-store"}).t
   const next=D.partidos.filter(g=>g.estado!=="final"&&g.fecha>=today).sort((a,b)=>a.fecha.localeCompare(b.fecha))[0];
   $("#"+ID+"Body").innerHTML=`${!D.partidos.length?`<p class="muted">Calendario, equipos y estadísticas próximamente.</p>`:""}<div class="mini"${st.length?"":" hidden"}><h4>Tabla de posiciones</h4>${st.map((x,i)=>`<div class="row"><span class="n">${i+1}. <img class="tl" src="${logo(x.team)}" alt=""><span>${esc(x.team)}</span></span><span class="m">${x.g}-${x.p} · <b style="color:var(--ink)">${2*x.g+x.p} pts</b></span></div>`).join("")}</div>
   ${next?`<div class="mini"><h4>Próximo partido</h4><div class="row"><span class="n"><span>${esc(next.local)} vs ${esc(next.visita)}</span></span><span class="m">${esc(fdate(next.fecha))} · ${esc(next.hora)}</span></div></div>`:""}`;
-  D.partidos.forEach(g=>FEED.push({liga:LIGA,sub:"Jornada "+g.jornada,color:COLOR,date:g.fecha,time:g.hora,home:g.local,away:g.visita,hl:logo(g.local),al:logo(g.visita),done:g.estado==="final",hs:sc(g,"boxLocal")||n(g.ptsLocal),as:sc(g,"boxVisita")||n(g.ptsVisita),href:g.estado==="final"?`${B}#partido-${g.id}`:B+"#calendario"}));
+  D.partidos.forEach(g=>FEED.push({liga:LIGA,sub:"Jornada "+g.jornada,color:COLOR,date:g.fecha,time:g.hora,home:g.local,away:g.visita,hl:logo(g.local),al:logo(g.visita),done:g.estado==="final",hs:sc(g,"boxLocal")||n(g.ptsLocal),as:sc(g,"boxVisita")||n(g.ptsVisita),href:`${B}#partido-${g.id}`}));
   renderFeed();
 }).catch(()=>{$("#"+ID+"Body").innerHTML=`<p class="muted">No se pudo cargar la información.</p>`});}
 loadNacional("/lnbm/","lnbm","LNBM ICN",C_LNBM);
