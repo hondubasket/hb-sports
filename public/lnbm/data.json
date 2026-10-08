@@ -2657,7 +2657,17 @@
      "tov": 2,
      "pf": 0
     }
-   ]
+   ],
+   "equipoLocal": {
+    "oreb": 4,
+    "dreb": 5,
+    "tov": 0
+   },
+   "equipoVisita": {
+    "oreb": 0,
+    "dreb": 2,
+    "tov": 0
+   }
   },
   {
    "id": "j3-sig-hb",
@@ -3086,7 +3096,17 @@
      "tov": 0,
      "pf": 0
     }
-   ]
+   ],
+   "equipoLocal": {
+    "oreb": 0,
+    "dreb": 2,
+    "tov": 2
+   },
+   "equipoVisita": {
+    "oreb": 4,
+    "dreb": 3,
+    "tov": 0
+   }
   },
   {
    "id": "j4-unah-sig",

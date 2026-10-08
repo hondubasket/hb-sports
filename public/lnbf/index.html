@@ -176,7 +176,7 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 const n=v=>{const x=Number(v);return Number.isFinite(x)?x:0};
 const pts=r=>2*n(r.p2m)+3*n(r.p3m)+n(r.ftm);
 const val=r=>pts(r)+n(r.oreb)+n(r.dreb)+n(r.ast)+n(r.stl)+n(r.blk)-(n(r.p2a)+n(r.p3a)-n(r.p2m)-n(r.p3m))-(n(r.fta)-n(r.ftm))-n(r.tov);
-const sum=b=>{const t={pts:0};K.forEach(k=>t[k]=0);(b||[]).forEach(r=>{K.forEach(k=>t[k]+=n(r[k]));t.pts+=pts(r)});t.reb=t.oreb+t.dreb;return t};
+const sum=b=>{const t={pts:0};K.forEach(k=>t[k]=0);(b||[]).forEach(r=>{K.forEach(k=>t[k]+=k==="min"?Math.round(n(r.min)*60)/60:n(r[k]));t.pts+=pts(r)});t.reb=t.oreb+t.dreb;return t};
 const fmin=m=>{const t=Math.round(n(m)*60);return `${Math.floor(t/60)}:${String(t%60).padStart(2,"0")}`};
 const pct=(m,a)=>a?(100*m/a).toFixed(1):"–";
 const MES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
@@ -184,6 +184,9 @@ const fdate=d=>{if(!d)return"Por definir";const[y,m,dd]=d.split("-");return `${+
 const LOGO=t=>(D.equipos.find(e=>e.nombre===t)||{}).logo;
 const lg=(t,c="")=>{const u=LOGO(t);return u?`<img class="tl ${c}" src="${esc(u)}" alt="" loading="lazy">`:""};
 const tn=(t,c="")=>`<span class="tn">${lg(t,c)}<span>${esc(t)}</span></span>`;
+const EQ=["oreb","dreb","tov"];
+const eqOf=(g,L)=>(L?g.equipoLocal:g.equipoVisita)||null;
+const tsum=(g,L)=>{const t=sum(L?g.boxLocal:g.boxVisita),e=eqOf(g,L)||{};EQ.forEach(k=>t[k]+=n(e[k]));t.reb=t.oreb+t.dreb;return t};
 const fin=()=>D.partidos.filter(g=>g.estado==="final");
 const score=g=>[sum(g.boxLocal).pts||n(g.ptsLocal),sum(g.boxVisita).pts||n(g.ptsVisita)];
 let tt;const toast=m=>{const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,2600)};
@@ -192,7 +195,7 @@ const YT='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0
 function teamSeason(team){
   const s={pj:0,g:0,p:0,pf:0,pc:0};K.forEach(k=>s[k]=0);
   for(const g of fin()){const home=g.local===team;if(!home&&g.visita!==team)continue;
-    const[a,b]=score(g),mine=home?a:b,opp=home?b:a,t=sum(home?g.boxLocal:g.boxVisita);
+    const[a,b]=score(g),mine=home?a:b,opp=home?b:a,t=tsum(g,home);
     s.pj++;s.pf+=mine;s.pc+=opp;if(mine>opp)s.g++;else if(opp>mine)s.p++;K.forEach(k=>s[k]+=t[k]);}
   const d=s.pj||1;
   return{...s,ppg:s.pf/d,oppg:s.pc/d,rpg:(s.oreb+s.dreb)/d,apg:s.ast/d,spg:s.stl/d,bpg:s.blk/d,tpg:s.tov/d,fg:s.p2a+s.p3a?100*(s.p2m+s.p3m)/(s.p2a+s.p3a):null,tp:s.p3a?100*s.p3m/s.p3a:null,ft:s.fta?100*s.ftm/s.fta:null};
@@ -269,7 +272,7 @@ const V={
   equipos(){
     const st=standings(),ps=players();
     const rows=D.equipos.map(e=>{const gs=fin().filter(g=>g.local===e.nombre||g.visita===e.nombre),t={pts:0};K.forEach(k=>t[k]=0);
-      gs.forEach(g=>{const s=sum(g.local===e.nombre?g.boxLocal:g.boxVisita);t.pts+=s.pts;K.forEach(k=>t[k]+=s[k])});const c=gs.length||1;
+      gs.forEach(g=>{const s=tsum(g,g.local===e.nombre);t.pts+=s.pts;K.forEach(k=>t[k]+=s[k])});const c=gs.length||1;
       return{e,pj:gs.length,ppg:t.pts/c,rpg:(t.oreb+t.dreb)/c,apg:t.ast/c,spg:t.stl/c,bpg:t.blk/c,tpg:t.tov/c,fg:pct(t.p2m+t.p3m,t.p2a+t.p3a),p3:pct(t.p3m,t.p3a),ft:pct(t.ftm,t.fta)}});
     const sel=S.cTeam||D.equipos[0]?.nombre,eq=D.equipos.find(e=>e.nombre===sel)||{},stat=new Map(ps.filter(p=>p.team===sel).map(p=>[String(p.num),p]));
     const plant=(eq.plantilla||[]).map(j=>({...j,s:stat.get(String(j.num))}));
@@ -320,19 +323,19 @@ const V={
   partido(id){
     const g=D.partidos.find(x=>x.id===id);if(!g)return`<div class="empty"><b>Partido no encontrado</b><a href="#calendario">Volver al calendario</a></div>`;
     const f=g.estado==="final",[a,b]=score(g);
-    const box=(team,rows)=>{const t=sum(rows);return `<section class="stack" style="gap:10px"><h3 style="font-size:19px">${tn(team)}</h3><div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Jugador</th><th>MIN</th><th>PTS</th><th>2P</th><th>3P</th><th>TL</th><th>RO</th><th>RD</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th><th>PER</th><th>FP</th><th>VAL</th></tr></thead><tbody>${(rows||[]).map(r=>`<tr><td class="l">${esc(r.num)}</td><td class="l"><b>${esc(r.nombre)}</b></td><td>${fmin(r.min)}</td><td class="b">${pts(r)}</td><td>${n(r.p2m)}/${n(r.p2a)}</td><td>${n(r.p3m)}/${n(r.p3a)}</td><td>${n(r.ftm)}/${n(r.fta)}</td><td>${n(r.oreb)}</td><td>${n(r.dreb)}</td><td>${n(r.oreb)+n(r.dreb)}</td><td>${n(r.ast)}</td><td>${n(r.stl)}</td><td>${n(r.blk)}</td><td>${n(r.tov)}</td><td>${n(r.pf)}</td><td>${val(r)}</td></tr>`).join("")}</tbody><tfoot><tr><td></td><td class="l">Totales</td><td>${fmin(t.min)}</td><td>${t.pts}</td><td>${t.p2m}/${t.p2a}</td><td>${t.p3m}/${t.p3a}</td><td>${t.ftm}/${t.fta}</td><td>${t.oreb}</td><td>${t.dreb}</td><td>${t.reb}</td><td>${t.ast}</td><td>${t.stl}</td><td>${t.blk}</td><td>${t.tov}</td><td>${t.pf}</td><td></td></tr></tfoot></table></div></section>`};
+    const box=(team,rows,eq)=>{const t=sum(rows);if(eq){EQ.forEach(k=>t[k]+=n(eq[k]));t.reb=t.oreb+t.dreb}const eqRow=eq&&EQ.some(k=>n(eq[k]))?`<tr style="color:var(--slate)"><td class="l"></td><td class="l"><i>Equipo</i></td><td></td><td></td><td></td><td></td><td></td><td>${n(eq.oreb)}</td><td>${n(eq.dreb)}</td><td>${n(eq.oreb)+n(eq.dreb)}</td><td></td><td></td><td></td><td>${n(eq.tov)}</td><td></td><td></td></tr>`:"";return `<section class="stack" style="gap:10px"><h3 style="font-size:19px">${tn(team)}</h3><div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Jugador</th><th>MIN</th><th>PTS</th><th>2P</th><th>3P</th><th>TL</th><th>RO</th><th>RD</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th><th>PER</th><th>FP</th><th>VAL</th></tr></thead><tbody>${(rows||[]).map(r=>`<tr><td class="l">${esc(r.num)}</td><td class="l"><b>${esc(r.nombre)}</b></td><td>${fmin(r.min)}</td><td class="b">${pts(r)}</td><td>${n(r.p2m)}/${n(r.p2a)}</td><td>${n(r.p3m)}/${n(r.p3a)}</td><td>${n(r.ftm)}/${n(r.fta)}</td><td>${n(r.oreb)}</td><td>${n(r.dreb)}</td><td>${n(r.oreb)+n(r.dreb)}</td><td>${n(r.ast)}</td><td>${n(r.stl)}</td><td>${n(r.blk)}</td><td>${n(r.tov)}</td><td>${n(r.pf)}</td><td>${val(r)}</td></tr>`).join("")}${eqRow}</tbody><tfoot><tr><td></td><td class="l">Totales</td><td>${fmin(Math.round(t.min))}</td><td>${t.pts}</td><td>${t.p2m}/${t.p2a}</td><td>${t.p3m}/${t.p3a}</td><td>${t.ftm}/${t.fta}</td><td>${t.oreb}</td><td>${t.dreb}</td><td>${t.reb}</td><td>${t.ast}</td><td>${t.stl}</td><td>${t.blk}</td><td>${t.tov}</td><td>${t.pf}</td><td></td></tr></tfoot></table></div></section>`};
     const meta=`Jornada ${esc(g.jornada)} · ${esc(fdate(g.fecha))}${g.hora?" · "+esc(g.hora):""}${g.sede||D.sedePrincipal?" · "+esc(g.sede||D.sedePrincipal):""}`;
     const sb=`<div class="sb"><div class="t">${lg(g.local)}<span>${esc(g.local)}</span></div>${f?`<div class="sc">${a} – ${b}</div>`:`<div class="vs">VS</div>`}<div class="t"><span>${esc(g.visita)}</span>${lg(g.visita)}</div><div class="meta">${meta}${f&&g.parciales?`<br>Parciales: ${g.parciales.map(esc).join(" · ")}`:""}${g.arbitros?`<br>Árbitros: ${g.arbitros.map(esc).join(", ")}`:""}</div></div>`;
     const yt=`<a class="ytgo" href="https://www.youtube.com/@hondubasket/${f?"streams":"live"}" target="_blank" rel="noopener">${YT}${f?"Ver la transmisión en YouTube":"Ver en vivo en YouTube"}</a>`;
     const back=`<a href="#calendario" style="color:var(--purple);font-weight:600;text-decoration:none">← Calendario</a>`;
     if(f){
-      const A=sum(g.boxLocal),B=sum(g.boxVisita),fg=t=>t.p2a+t.p3a?100*(t.p2m+t.p3m)/(t.p2a+t.p3a):null;
+      const A=tsum(g,true),B=tsum(g,false),fg=t=>t.p2a+t.p3a?100*(t.p2m+t.p3m)/(t.p2a+t.p3a):null;
       return `<div class="stack">${back}${sb}${yt}
       <section class="card"><h3 style="font-size:17px;margin-bottom:10px">Líderes del partido</h3><div class="lead"><div><h4>${tn(g.local,"sm")}</h4><ul>${gameLeaders(g.boxLocal)}</ul></div><div><h4>${tn(g.visita,"sm")}</h4><ul>${gameLeaders(g.boxVisita)}</ul></div></div></section>
       <section class="card"><h3 style="font-size:17px;margin-bottom:10px">Comparación del partido</h3>${compare(g.local,g.visita,[
         ["Tiros de campo",fg(A),fg(B),fp],["Triples",A.p3a?100*A.p3m/A.p3a:null,B.p3a?100*B.p3m/B.p3a:null,fp],["Tiros libres",A.fta?100*A.ftm/A.fta:null,B.fta?100*B.ftm/B.fta:null,fp],
         ["Rebotes",A.reb,B.reb,fi],["Reb. ofensivos",A.oreb,B.oreb,fi],["Asistencias",A.ast,B.ast,fi],["Robos",A.stl,B.stl,fi],["Tapones",A.blk,B.blk,fi],["Pérdidas",A.tov,B.tov,fi,true]])}</section>
-      ${box(g.local,g.boxLocal)}${box(g.visita,g.boxVisita)}</div>`;
+      ${box(g.local,g.boxLocal,eqOf(g,true))}${box(g.visita,g.boxVisita,eqOf(g,false))}</div>`;
     }
     const SA=teamSeason(g.local),SB=teamSeason(g.visita),has=SA.pj||SB.pj;
     const prev=fin().filter(x=>(x.local===g.local&&x.visita===g.visita)||(x.local===g.visita&&x.visita===g.local));
@@ -374,7 +377,8 @@ function exportXlsx(){
   const row=r=>[r.num,r.nombre,n(r.min),pts(r),n(r.p2m),n(r.p2a),n(r.p3m),n(r.p3a),n(r.ftm),n(r.fta),n(r.oreb),n(r.dreb),n(r.oreb)+n(r.dreb),n(r.ast),n(r.stl),n(r.blk),n(r.tov),n(r.pf)];
   const games=[["GameID","Round","Date","Venue","Home","Away","Home PTS","Away PTS"],...f.map(g=>{const[a,b]=score(g);return[gid(g),g.jornada,g.fecha,g.sede||"",g.local,g.visita,a,b]})];
   const boxes=[["GameID","Round","Date","Team","Opponent","H/A",...H]];
-  f.forEach(g=>{(g.boxLocal||[]).forEach(r=>boxes.push([gid(g),g.jornada,g.fecha,g.local,g.visita,"H",...row(r)]));(g.boxVisita||[]).forEach(r=>boxes.push([gid(g),g.jornada,g.fecha,g.visita,g.local,"A",...row(r)]))});
+  f.forEach(g=>{(g.boxLocal||[]).forEach(r=>boxes.push([gid(g),g.jornada,g.fecha,g.local,g.visita,"H",...row(r)]));(g.boxVisita||[]).forEach(r=>boxes.push([gid(g),g.jornada,g.fecha,g.visita,g.local,"A",...row(r)]));
+    [[true,g.local,g.visita,"H"],[false,g.visita,g.local,"A"]].forEach(([L,tm,op,ha])=>{const e=eqOf(g,L);if(e&&EQ.some(k=>n(e[k])))boxes.push([gid(g),g.jornada,g.fecha,tm,op,ha,"","TEAM",0,0,0,0,0,0,0,0,n(e.oreb),n(e.dreb),n(e.oreb)+n(e.dreb),0,0,0,n(e.tov),0])})});
   const ps=players().sort((a,b)=>a.team.localeCompare(b.team)||b.ppg-a.ppg),r1=x=>Math.round(x*10)/10;
   const tot=[["Team","No","Player","GP","MIN","PTS","2PM","2PA","3PM","3PA","FTM","FTA","OREB","DREB","REB","AST","STL","BLK","TO","PF","EFF"],...ps.map(p=>[p.team,p.num,p.nombre,p.gp,p.min,p.pts,p.p2m,p.p2a,p.p3m,p.p3a,p.ftm,p.fta,p.oreb,p.dreb,p.reb,p.ast,p.stl,p.blk,p.tov,p.pf,p.val])];
   const avg=[["Team","No","Player","GP","MPG","PPG","RPG","APG","SPG","BPG","TOPG","FG%","3P%","FT%","EFF"],...ps.map(p=>[p.team,p.num,p.nombre,p.gp,r1(p.mpg),r1(p.ppg),r1(p.rpg),r1(p.apg),r1(p.spg),r1(p.bpg),r1(p.tpg),p.fga?r1(100*p.fgm/p.fga):"",p.p3a?r1(100*p.p3m/p.p3a):"",p.fta?r1(100*p.ftm/p.fta):"",r1(p.vpg)])];
