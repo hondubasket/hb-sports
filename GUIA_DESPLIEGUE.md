@@ -114,3 +114,31 @@ Guarda tu token a la mano (empieza con `pat...`), lo necesitarás en la Parte 3.
 ---
 
 ¡Listo! Con esto HB Sports queda público, automático y permanente.
+
+---
+
+## Sitio de estadísticas sin "modo dormido"
+
+El servicio web gratuito de Render se apaga después de 15 minutos sin visitas. La siguiente visita ve una pantalla de "despertando" que tarda hasta un minuto, y los programas automáticos (como el de Latin Basket) se quedan atrapados en esa pantalla.
+
+Todas las páginas públicas (inicio, LNBM, LNBF, Liga de las Estrellas y Tour 3x3) son archivos fijos, así que se publican como **Static Site**, que es gratis, carga al instante y nunca se duerme.
+
+1. En **render.com** → **New +** → **Static Site**.
+2. Elegí el repositorio **hb-sports**.
+3. Llenalo así:
+   - **Name:** `hb-sports-estadisticas`
+   - **Branch:** `main`
+   - **Build Command:** dejalo vacío
+   - **Publish Directory:** `public`
+4. **Create Static Site**. En uno o dos minutos queda en `https://hb-sports-estadisticas.onrender.com` (si el nombre está ocupado, Render le agrega unas letras al final).
+5. Dentro del sitio nuevo → **Redirects/Rewrites** → agregá:
+   - Source: `/api/*` · Destination: `https://hb-sports.onrender.com/api/*` · Action: **Rewrite**
+
+   Esto es solo para la página de gestión de la Liga de las Estrellas.
+
+Cada vez que se sube un cambio a `main`, el sitio estático se actualiza solo.
+
+**Enlaces para Latin Basket:**
+- Estadísticas LNBM: `https://hb-sports-estadisticas.onrender.com/lnbm/`
+- Datos en bruto (JSON): `https://hb-sports-estadisticas.onrender.com/lnbm/data.json`
+- Excel: botón de exportación en la página de la LNBM

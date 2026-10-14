@@ -18,3 +18,16 @@ services:
         value: tblnUhNw4kpVuuhem
       - key: ADMIN_PIN
         value: hb2026
+
+  # Sitio público de estadísticas: archivos estáticos servidos por CDN.
+  # Gratis y nunca se duerme (a diferencia del servicio web del plan free).
+  - type: web
+    name: hb-sports-estadisticas
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: ./public
+    routes:
+      # La gestión de la Liga de las Estrellas sigue usando la API del servidor
+      - type: rewrite
+        source: /api/*
+        destination: https://hb-sports.onrender.com/api/*
