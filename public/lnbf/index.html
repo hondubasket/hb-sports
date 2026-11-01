@@ -259,7 +259,7 @@ const V={
       <section class="card"><h3>Últimos resultados</h3>${last.length?`<div class="games">${last.map(gameRow).join("")}</div>`:`<p style="color:var(--slate)">Los resultados aparecen al cargar las actas oficiales.</p>`}</section>
     </div>
     <section><div class="head"><div class="eyebrow">Clasificación</div><h2>Tabla de posiciones</h2></div>${standTable()}</section>
-    <div class="grid3">${board("Anotadores","PPJ",top("ppg"),p=>p.ppg.toFixed(1),p=>p.pts+" pts")}${board("Reboteadores","RPJ",top("rpg"),p=>p.rpg.toFixed(1),p=>p.reb+" reb")}${board("Asistidores","APJ",top("apg"),p=>p.apg.toFixed(1),p=>p.ast+" ast")}</div>
+    <div class="grid3">${board("Anotadores","Puntos",top("pts"),p=>p.pts,p=>p.ppg.toFixed(1)+" por partido")}${board("Reboteadores","Rebotes",top("reb"),p=>p.reb,p=>p.rpg.toFixed(1)+" por partido")}${board("Asistidores","Asistencias",top("ast"),p=>p.ast,p=>p.apg.toFixed(1)+" por partido")}</div>
     </div>`;
   },
   calendario(){
@@ -302,19 +302,19 @@ const V={
   },
   lideres(){
     const ps=players(),maxGp=Math.max(0,...ps.map(p=>p.gp)),q=ps.filter(p=>p.gp>=Math.ceil(maxGp/2));
-    const top=(k,arr=q)=>[...arr].sort((a,b)=>b[k]-a[k]).slice(0,10);
+    const top=(k,arr=ps)=>[...arr].sort((a,b)=>b[k]-a[k]||a.gp-b.gp).slice(0,10);
     const pq=(m,a,min)=>q.filter(p=>p[a]>=min).map(p=>({...p,_p:100*p[m]/p[a]})).sort((a,b)=>b._p-a._p).slice(0,10);
-    return head("Temporada 2026","Líderes","Top 10 por promedio. Para clasificar hay que haber jugado al menos la mitad de los partidos del líder en juegos.")+
+    return head("Temporada 2026","Líderes","Top 10 por totales de la temporada. Debajo de cada total aparece el promedio por partido. Los porcentajes piden un mínimo de intentos y haber jugado al menos la mitad de los partidos.")+
     `<div class="grid3">
-    ${board("Puntos","Por partido",top("ppg"),p=>p.ppg.toFixed(1),p=>p.pts+" totales")}
-    ${board("Rebotes","Por partido",top("rpg"),p=>p.rpg.toFixed(1),p=>p.reb+" totales")}
-    ${board("Asistencias","Por partido",top("apg"),p=>p.apg.toFixed(1),p=>p.ast+" totales")}
-    ${board("Robos","Por partido",top("spg"),p=>p.spg.toFixed(1),p=>p.stl+" totales")}
-    ${board("Tapones","Por partido",top("bpg"),p=>p.bpg.toFixed(1),p=>p.blk+" totales")}
-    ${board("Valoración","Por partido",top("vpg"),p=>p.vpg.toFixed(1),p=>p.val+" totales")}
-    ${board("Rebotes ofensivos","Por partido",top("orpg"),p=>p.orpg.toFixed(1),p=>p.oreb+" totales")}
-    ${board("Minutos","Por partido",top("mpg"),p=>p.mpg.toFixed(1),p=>p.min+" totales")}
-    ${board("Triples anotados","Total",top("p3m",ps),p=>p.p3m,p=>p.p3a+" intentos")}
+    ${board("Puntos","Total",top("pts"),p=>p.pts,p=>p.ppg.toFixed(1)+" por partido")}
+    ${board("Rebotes","Total",top("reb"),p=>p.reb,p=>p.rpg.toFixed(1)+" por partido")}
+    ${board("Asistencias","Total",top("ast"),p=>p.ast,p=>p.apg.toFixed(1)+" por partido")}
+    ${board("Robos","Total",top("stl"),p=>p.stl,p=>p.spg.toFixed(1)+" por partido")}
+    ${board("Tapones","Total",top("blk"),p=>p.blk,p=>p.bpg.toFixed(1)+" por partido")}
+    ${board("Valoración","Total",top("val"),p=>p.val,p=>p.vpg.toFixed(1)+" por partido")}
+    ${board("Rebotes ofensivos","Total",top("oreb"),p=>p.oreb,p=>p.orpg.toFixed(1)+" por partido")}
+    ${board("Minutos","Total",top("min"),p=>Math.round(p.min),p=>p.mpg.toFixed(1)+" por partido")}
+    ${board("Triples anotados","Total",top("p3m"),p=>p.p3m,p=>p.p3a+" intentos")}
     ${board("% Tiros de campo","Mín. 10 intentos",pq("fgm","fga",10),p=>p._p.toFixed(1),p=>p.fgm+"/"+p.fga)}
     ${board("% Triples","Mín. 5 intentos",pq("p3m","p3a",5),p=>p._p.toFixed(1),p=>p.p3m+"/"+p.p3a)}
     ${board("% Tiros libres","Mín. 5 intentos",pq("ftm","fta",5),p=>p._p.toFixed(1),p=>p.ftm+"/"+p.fta)}
