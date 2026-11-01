@@ -221,7 +221,7 @@ function seasonLeaders(team){
 function players(){
   const map=new Map();
   for(const g of fin())for(const[side,team]of[["boxLocal",g.local],["boxVisita",g.visita]])for(const r of g[side]||[]){
-    if(!r.nombre)continue;const key=team+"|"+(r.num!==undefined&&r.num!==""?"#"+r.num:r.nombre.trim().toLowerCase());let p=map.get(key);
+    if(!r.nombre)continue;const key=team+"|"+r.nombre.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");let p=map.get(key);
     if(!p){p={team,nombre:r.nombre.trim(),num:r.num||"",gp:0,pts:0,val:0};K.forEach(k=>p[k]=0);map.set(key,p)}
     p.gp++;p.pts+=pts(r);p.val+=val(r);K.forEach(k=>p[k]+=n(r[k]));if(r.num)p.num=r.num;
   }
