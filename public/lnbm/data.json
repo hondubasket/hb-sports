@@ -3,7 +3,7 @@
  "sigla": "LNBM",
  "temporada": "2026",
  "sedePrincipal": "Coliseo Nacional de Ingenieros",
- "actualizado": "2026-10-31",
+ "actualizado": "2026-11-01",
  "equipos": [
   {
    "nombre": "Hondubasket",
@@ -7618,7 +7618,7 @@
    "id": "j9-sig-unah",
    "jornada": 9,
    "fase": "Vuelta 2",
-   "fecha": "2026-10-31",
+   "fecha": "2026-11-01",
    "hora": "2:00 PM",
    "sede": "Coliseo Nacional de Ingenieros",
    "local": "Siguatepeque",
@@ -7981,7 +7981,7 @@
    "id": "j9-hb-pn",
    "jornada": 9,
    "fase": "Vuelta 2",
-   "fecha": "2026-10-31",
+   "fecha": "2026-11-01",
    "hora": "4:00 PM",
    "sede": "Coliseo Nacional de Ingenieros",
    "local": "Hondubasket",
