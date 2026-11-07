@@ -69,6 +69,16 @@ a.game:hover{border-color:var(--purple)}
 .tag{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:99px;white-space:nowrap}
 .tag.fin{background:var(--lime-soft);color:#4E7300}
 .tag.prog{background:var(--orange-soft);color:var(--orange)}
+.po-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+@media(max-width:760px){.po-grid{grid-template-columns:1fr}}
+.po-col{display:grid;gap:12px}.po-lbl{font-family:Sora;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+.po-card{padding:14px 16px}.po-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}.po-h b{font-family:Sora;font-size:16px;color:var(--navy)}.po-h span{font-size:12.5px;color:var(--slate);font-weight:600}
+.po-t{display:grid;grid-template-columns:28px 1fr auto 28px;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.po-t.out{opacity:.45}.po-seed{font-weight:800;color:var(--orange);font-size:13px}.po-t small{color:var(--slate);font-size:12px;font-weight:600}
+.po-w{font-family:Sora;font-size:20px;text-align:right}.po-tbd{color:var(--slate);font-style:italic;font-size:14px}
+.po-adv{margin-top:6px;background:var(--orange-soft);color:#8a4b00;font-weight:700;font-size:13px;border-radius:8px;padding:6px 10px}
+.po-g{list-style:none;margin:8px 0 0;padding:8px 0 0;border-top:1px dashed var(--line);display:grid;gap:5px}
+.po-g li{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--slate)}.po-g li i{font-style:normal;font-size:11px;background:var(--purple-soft);padding:1px 6px;border-radius:6px;margin-left:4px}
 .jhead{font-family:Sora;font-weight:700;font-size:15px;margin:18px 0 8px;color:var(--navy)}
 .game{grid-template-columns:110px 1fr auto auto}
 @media(max-width:560px){.game{grid-template-columns:1fr auto auto}.game .when{grid-column:1/-1;display:flex;gap:8px}.game .when b{display:inline}}
@@ -259,6 +269,7 @@ const V={
       <section class="card"><h3>Últimos resultados</h3>${last.length?`<div class="games">${last.map(gameRow).join("")}</div>`:`<p style="color:var(--slate)">Los resultados aparecen al cargar las actas oficiales.</p>`}</section>
     </div>
     <section><div class="head"><div class="eyebrow">Clasificación</div><h2>Tabla de posiciones</h2></div>${standTable()}</section>
+    ${playoffs()}
     <div class="grid3">${board("Anotadores","Puntos",top("pts"),p=>p.pts,p=>p.ppg.toFixed(1)+" por partido")}${board("Reboteadores","Rebotes",top("reb"),p=>p.reb,p=>p.rpg.toFixed(1)+" por partido")}${board("Asistidores","Asistencias",top("ast"),p=>p.ast,p=>p.apg.toFixed(1)+" por partido")}</div>
     </div>`;
   },
@@ -268,7 +279,7 @@ const V={
     const byJ={};list.forEach(g=>(byJ[g.jornada]??=[]).push(g));
     return head("Temporada 2026","Calendario y resultados","Tocá cualquier partido: los finalizados muestran su box score y los programados la previa con la comparación de los equipos.")+Object.entries(byJ).map(([j,gs])=>`<div class="jhead">Jornada ${esc(j)} · ${esc(fdate(gs[0].fecha))}${gs[0].descansa?` <span style="color:var(--slate);font-weight:500;font-size:13px">· Descansa: ${esc(gs[0].descansa)}</span>`:""}</div><div class="games">${gs.map(gameRow).join("")}</div>`).join("")+playoffs();
   },
-  posiciones(){return head("Temporada 2026","Tabla de posiciones","Sistema FIBA: 2 puntos por victoria y 1 por derrota. Desempate por diferencia de puntos.")+standTable()},
+  posiciones(){return head("Temporada 2026","Tabla de posiciones","Sistema FIBA: 2 puntos por victoria y 1 por derrota. Desempate por diferencia de puntos.")+standTable()+playoffs()},
   equipos(){
     const st=standings(),ps=players();
     const rows=D.equipos.map(e=>{const gs=fin().filter(g=>g.local===e.nombre||g.visita===e.nombre),t={pts:0};K.forEach(k=>t[k]=0);
@@ -349,9 +360,31 @@ const V={
     </div>`;
   }
 };
+/* ---- Playoffs: cruces automáticos desde la tabla final ---- */
+const PO_KEY=r=>/semifinal 1/i.test(r)?"SF1":/semifinal 2/i.test(r)?"SF2":/tercer/i.test(r)?"3L":/final/i.test(r)?"F":"";
+function bracket(){
+  const P=(D.playoffs||[]).map(x=>({...x,k:PO_KEY(x.ronda)}));if(!P.length)return null;
+  const reg=D.partidos.filter(g=>!/playoff|semifinal|final/i.test(g.fase||"")),done=reg.length&&reg.every(g=>g.estado==="final");
+  const st=standings(),seed=i=>done&&st[i]?st[i].team:null,rec=t=>{const x=st.find(y=>y.team===t);return x?`${x.g}-${x.p}`:""};
+  const series=(k,A,B,need=2)=>{const games=P.filter(x=>x.k===k);let wa=0,wb=0;
+    games.forEach(x=>{if(x.estado!=="final"||!A||!B)return;const[pa,pb]=x.local===B?[x.ptsVisita,x.ptsLocal]:[x.ptsLocal,x.ptsVisita];if(pa>pb)wa++;else if(pb>pa)wb++});
+    const win=wa>=need?A:wb>=need?B:null,lose=win?(win===A?B:A):null;return{k,A,B,wa,wb,win,lose,games}};
+  const s1=series("SF1",seed(0),seed(3)),s2=series("SF2",seed(1),seed(2));
+  const fi=series("F",s1.win,s2.win),te=series("3L",s1.lose,s2.lose,1);
+  return{done,s1,s2,fi,te,rec,seedOf:t=>st.findIndex(y=>y.team===t)+1};
+}
+function seriesCard(title,sub,s,B,phA,phB){
+  const line=(t,w,ph)=>`<div class="po-t ${s.win&&s.win!==t?"out":""}">${t?`<span class="po-seed">${B.done?B.seedOf(t)+"°":""}</span>${tn(t,"sm")}<small>${B.rec(t)}</small>`:`<span class="po-seed"></span><span class="po-tbd">${esc(ph)}</span>`}<b class="po-w">${t&&s.games.some(x=>x.estado==="final")?w:""}</b></div>`;
+  const gl=s.games.map(x=>{const f=x.estado==="final";
+    return `<li><span>${esc(x.juego.replace(/\s*\(si es necesario\)/i,""))}${/necesario/i.test(x.juego)?' <i>si es necesario</i>':""}</span><span>${f?`<b>${esc(x.local)} ${x.ptsLocal} – ${x.ptsVisita} ${esc(x.visita)}</b>`:`${esc(fdate(x.fecha))} · ${esc(x.hora)}`}</span></li>`}).join("");
+  return `<section class="card po-card"><div class="po-h"><b>${title}</b><span>${sub}</span></div>${line(s.A,s.wa,phA)}${line(s.B,s.wb,phB)}${s.win?`<div class="po-adv">${esc(s.win)} ${title==="Final"?"es campeón":title==="Tercer lugar"?"gana el tercer lugar":"avanza a la final"}</div>`:""}<ul class="po-g">${gl}</ul></section>`;
+}
 function playoffs(){
-  const P=D.playoffs||[];if(!P.length)return"";
-  return `<div class="jhead" style="margin-top:30px">Playoffs · al mejor de 3</div><div class="tbl"><table><thead><tr><th class="l">Fecha</th><th class="l">Hora</th><th class="l">Serie</th><th class="l">Encuentro</th></tr></thead><tbody>${P.map(x=>`<tr><td class="l">${esc(fdate(x.fecha))}</td><td class="l">${esc(x.hora)}</td><td class="l"><b>${esc(x.ronda)}</b></td><td class="l">${esc(x.juego)}</td></tr>`).join("")}</tbody></table></div>`;
+  const B=bracket();if(!B)return"";
+  const note=B.done?"Cruces definidos por la tabla final de la fase regular. Series al mejor de 3: avanza el primero en ganar 2 partidos.":"Los cruces se definen al terminar la fase regular. Series al mejor de 3.";
+  return `<div class="po"><div class="head" style="margin-top:8px"><div class="eyebrow">Playoffs</div><h2>Semifinales y final</h2><p>${note}</p></div>
+  <div class="po-grid"><div class="po-col"><div class="po-lbl">Semifinales</div>${seriesCard("Semifinal 1","1° vs 4°",B.s1,B,"1° lugar","4° lugar")}${seriesCard("Semifinal 2","2° vs 3°",B.s2,B,"2° lugar","3° lugar")}</div>
+  <div class="po-col"><div class="po-lbl">Final</div>${seriesCard("Final","Al mejor de 3",B.fi,B,"Ganador Semifinal 1","Ganador Semifinal 2")}<div class="po-lbl">Tercer lugar</div>${seriesCard("Tercer lugar","Partido único",B.te,B,"Perdedor Semifinal 1","Perdedor Semifinal 2")}</div></div></div>`;
 }
 function head(e,t,p){return `<div class="head"><div class="eyebrow">${e}</div><h2>${t}</h2><p>${p}</p></div>`}
 
