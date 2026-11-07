@@ -185,7 +185,7 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const n=v=>{const x=Number(v);return Number.isFinite(x)?x:0};
 const pts=r=>2*n(r.p2m)+3*n(r.p3m)+n(r.ftm);
-const val=r=>pts(r)+n(r.oreb)+n(r.dreb)+n(r.ast)+n(r.stl)+n(r.blk)-(n(r.p2a)+n(r.p3a)-n(r.p2m)-n(r.p3m))-(n(r.fta)-n(r.ftm))-n(r.tov);
+const val=r=>pts(r)+n(r.oreb)+n(r.dreb)+n(r.ast)+n(r.stl)+n(r.blk)-n(r.tov);   // Valoración: PTS+REB+AST+ROB+TAP−PER
 const sum=b=>{const t={pts:0};K.forEach(k=>t[k]=0);(b||[]).forEach(r=>{K.forEach(k=>t[k]+=k==="min"?Math.round(n(r.min)*60)/60:n(r[k]));t.pts+=pts(r)});t.reb=t.oreb+t.dreb;return t};
 const fmin=m=>{const t=Math.round(n(m)*60);return `${Math.floor(t/60)}:${String(t%60).padStart(2,"0")}`};
 const pct=(m,a)=>a?(100*m/a).toFixed(1):"–";
