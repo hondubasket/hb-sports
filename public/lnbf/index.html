@@ -260,12 +260,12 @@ function board(title,unit,list,v,sub){
 
 const V={
   inicio(){
-    const up=D.partidos.filter(g=>g.estado!=="final").sort((a,b)=>(a.fecha||"9").localeCompare(b.fecha||"9")).slice(0,5);
+    const up=[...D.partidos.filter(g=>g.estado!=="final").map(g=>({g,f:g.fecha||"9",h:g.hora||""})),...poUpcoming().map(p=>({p,f:p.fecha||"9",h:p.hora||""}))].sort((a,b)=>a.f.localeCompare(b.f)||tmin(a.h)-tmin(b.h)).slice(0,12);
     const last=fin().sort((a,b)=>(b.fecha||"").localeCompare(a.fecha||"")).slice(0,5);
     const ps=players(),top=k=>[...ps].sort((a,b)=>b[k]-a[k]).slice(0,5);
     return `<div class="stack">
     <div class="grid2">
-      <section class="card"><h3>Próximos partidos</h3>${up.length?`<div class="games">${up.map(gameRow).join("")}</div>`:`<p style="color:var(--slate)">El calendario se publica aquí jornada por jornada.</p>`}</section>
+      <section class="card"><h3>Próximos partidos</h3>${up.length?`<div class="games">${up.map(u=>u.g?gameRow(u.g):poRow(u.p)).join("")}</div>${up.some(u=>u.p&&u.p.necesario)?`<p style="color:var(--slate);font-size:12.5px;margin-top:8px">* Solo si es necesario.</p>`:""}`:`<p style="color:var(--slate)">El calendario se publica aquí jornada por jornada.</p>`}</section>
       <section class="card"><h3>Últimos resultados</h3>${last.length?`<div class="games">${last.map(gameRow).join("")}</div>`:`<p style="color:var(--slate)">Los resultados aparecen al cargar las actas oficiales.</p>`}</section>
     </div>
     <section><div class="head"><div class="eyebrow">Clasificación</div><h2>Tabla de posiciones</h2></div>${standTable()}</section>
@@ -362,6 +362,7 @@ const V={
 };
 /* ---- Playoffs: cruces automáticos desde la tabla final ---- */
 const PO_KEY=r=>/semifinal 1/i.test(r)?"SF1":/semifinal 2/i.test(r)?"SF2":/tercer/i.test(r)?"3L":/final/i.test(r)?"F":"";
+const tmin=h=>{const m=/(\d+):(\d+)\s*(AM|PM)?/i.exec(h||"");if(!m)return 9999;let x=+m[1]%12;if(/pm/i.test(m[3]||""))x+=12;return x*60+ +m[2]};
 function bracket(){
   const P=(D.playoffs||[]).map(x=>({...x,k:PO_KEY(x.ronda)}));if(!P.length)return null;
   const reg=D.partidos.filter(g=>!/playoff|semifinal|final/i.test(g.fase||"")),done=reg.length&&reg.every(g=>g.estado==="final");
@@ -372,6 +373,22 @@ function bracket(){
   const s1=series("SF1",seed(0),seed(3)),s2=series("SF2",seed(1),seed(2));
   const fi=series("F",s1.win,s2.win),te=series("3L",s1.lose,s2.lose,1);
   return{done,s1,s2,fi,te,rec,seedOf:t=>st.findIndex(y=>y.team===t)+1};
+}
+// Juegos de playoffs pendientes, con equipos si ya se conocen
+function poUpcoming(){
+  const B=bracket();if(!B)return[];
+  const ph={SF1:["1° lugar","4° lugar"],SF2:["2° lugar","3° lugar"],F:["Ganador Semifinal 1","Ganador Semifinal 2"],"3L":["Perdedor Semifinal 1","Perdedor Semifinal 2"]};
+  const out=[];
+  for(const s of [B.s1,B.s2,B.fi,B.te]){if(s.win)continue;
+    for(const x of s.games){if(x.estado==="final")continue;
+      out.push({fecha:x.fecha,hora:x.hora,serie:x.ronda.replace(/\s*\(.*\)/,""),juego:x.juego,a:s.A,b:s.B,pa:ph[s.k][0],pb:ph[s.k][1],necesario:/necesario/i.test(x.juego)})}}
+  return out;
+}
+function poRow(x){
+  const t=(n,p)=>n?tn(n,"sm"):`<span style="color:var(--slate);font-style:italic">${esc(p)}</span>`;
+  return `<a class="game" href="#posiciones" aria-label="${esc(x.serie)} ${esc(x.juego)}"><div class="when"><b>${esc(fdate(x.fecha))}</b>${esc(x.hora||"")} · ${esc(x.serie)}</div>
+  <div class="mu"><div>${t(x.a,x.pa)}</div><div>${t(x.b,x.pb)}</div></div>
+  <span class="tag prog">${esc(x.juego.replace(/\s*\(si es necesario\)/i,""))}${x.necesario?"*":""}</span><span class="go" aria-hidden="true">›</span></a>`;
 }
 function seriesCard(title,sub,s,B,phA,phB){
   const line=(t,w,ph)=>`<div class="po-t ${s.win&&s.win!==t?"out":""}">${t?`<span class="po-seed">${B.done?B.seedOf(t)+"°":""}</span>${tn(t,"sm")}<small>${B.rec(t)}</small>`:`<span class="po-seed"></span><span class="po-tbd">${esc(ph)}</span>`}<b class="po-w">${t&&s.games.some(x=>x.estado==="final")?w:""}</b></div>`;

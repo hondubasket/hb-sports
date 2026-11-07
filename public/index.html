@@ -227,7 +227,8 @@ let FEED=[];
 
 function renderFeed(){
   const last=FEED.filter(g=>g.done).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,6);
-  const next=FEED.filter(g=>!g.done&&g.date&&g.date>=today).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).slice(0,6);
+  const tm=h=>{const m=/(\d+):(\d+)\s*(AM|PM)?/i.exec(h||"");if(!m)return 9999;let x=+m[1]%12;if(/pm/i.test(m[3]||""))x+=12;return x*60+ +m[2]};
+  const next=FEED.filter(g=>!g.done&&g.date&&g.date>=today).sort((a,b)=>a.date.localeCompare(b.date)||tm(a.time)-tm(b.time)).slice(0,10);
   const item=g=>{const w=(x,y)=>g.done&&x<y?"l":"";
     const inner=`<span class="tag" style="--lc:${g.color}">${esc(g.liga)} · ${esc(g.sub)}</span>
       <span class="t ${w(g.hs,g.as)}">${g.hl?`<img class="tl" src="${g.hl}" alt="">`:""}${esc(g.home)}</span>${g.done?`<span class="sc">${g.hs}</span>`:`<span class="when">${esc(fdate(g.date))}</span>`}
@@ -248,9 +249,22 @@ function loadNacional(B,ID,LIGA,COLOR){fetch(B+"data.json",{cache:"no-store"}).t
   const t={};D.equipos.forEach(e=>t[e.nombre]={team:e.nombre,g:0,p:0,pf:0,pc:0});
   fin.forEach(g=>{const a=sc(g,"boxLocal")||n(g.ptsLocal),b=sc(g,"boxVisita")||n(g.ptsVisita),A=t[g.local],B=t[g.visita];if(!A||!B)return;A.pf+=a;A.pc+=b;B.pf+=b;B.pc+=a;if(a>b){A.g++;B.p++}else{B.g++;A.p++}});
   const st=Object.values(t).sort((x,y)=>(2*y.g+y.p)-(2*x.g+x.p)||(y.pf-y.pc)-(x.pf-x.pc)).slice(0,5);
-  const next=D.partidos.filter(g=>g.estado!=="final"&&g.fecha>=today).sort((a,b)=>a.fecha.localeCompare(b.fecha))[0];
+  let next=D.partidos.filter(g=>g.estado!=="final"&&g.fecha>=today).sort((a,b)=>a.fecha.localeCompare(b.fecha))[0];
   $("#"+ID+"Body").innerHTML=`${!D.partidos.length?`<p class="muted">Calendario, equipos y estadísticas próximamente.</p>`:""}<div class="mini"${st.length?"":" hidden"}><h4>Tabla de posiciones</h4>${st.map((x,i)=>`<div class="row"><span class="n">${i+1}. <img class="tl" src="${logo(x.team)}" alt=""><span>${esc(x.team)}</span></span><span class="m">${x.g}-${x.p} · <b style="color:var(--ink)">${2*x.g+x.p} pts</b></span></div>`).join("")}</div>
   ${next?`<div class="mini"><h4>Próximo partido</h4><div class="row"><span class="n"><span>${esc(next.local)} vs ${esc(next.visita)}</span></span><span class="m">${esc(fdate(next.fecha))} · ${esc(next.hora)}</span></div></div>`:""}`;
+  // Playoffs: cruces desde la tabla final y avance de series
+  const full=Object.values(t).sort((x,y)=>(2*y.g+y.p)-(2*x.g+x.p)||(y.pf-y.pc)-(x.pf-x.pc)||y.pf-x.pf);
+  const done=D.partidos.length&&D.partidos.every(g=>g.estado==="final");
+  const P=(D.playoffs||[]).map(x=>({...x,k:/semifinal 1/i.test(x.ronda)?"SF1":/semifinal 2/i.test(x.ronda)?"SF2":/tercer/i.test(x.ronda)?"3L":"F"}));
+  const ser=(k,A,B,need=2)=>{let wa=0,wb=0;P.filter(x=>x.k===k&&x.estado==="final"&&A&&B).forEach(x=>{const[pa,pb]=x.local===B?[x.ptsVisita,x.ptsLocal]:[x.ptsLocal,x.ptsVisita];if(pa>pb)wa++;else if(pb>pa)wb++});const w=wa>=need?A:wb>=need?B:null;return{A,B,w,l:w?(w===A?B:A):null}};
+  const sd=i=>done&&full[i]?full[i].team:null;
+  const S={SF1:ser("SF1",sd(0),sd(3)),SF2:ser("SF2",sd(1),sd(2))};S.F=ser("F",S.SF1.w,S.SF2.w);S["3L"]=ser("3L",S.SF1.l,S.SF2.l,1);
+  const PH={SF1:["1° lugar","4° lugar"],SF2:["2° lugar","3° lugar"],F:["Ganador SF1","Ganador SF2"],"3L":["Perdedor SF1","Perdedor SF2"]};
+  P.forEach(x=>{const s=S[x.k];if(s.w||x.estado==="final")return;
+    FEED.push({liga:LIGA,sub:x.ronda.replace(/\s*\(.*\)/,"")+" · "+x.juego.replace(/\s*\(si es necesario\)/i," *"),color:COLOR,date:x.fecha,time:x.hora,home:s.A||PH[x.k][0],away:s.B||PH[x.k][1],hl:s.A?logo(s.A):"",al:s.B?logo(s.B):"",done:false,href:`${B}#posiciones`})});
+  if(!next){const tm=h=>{const m=/(\d+):(\d+)\s*(AM|PM)?/i.exec(h||"");if(!m)return 9999;let x=+m[1]%12;if(/pm/i.test(m[3]||""))x+=12;return x*60+ +m[2]};
+    const np=FEED.filter(g=>g.liga===LIGA&&!g.done&&g.date>=today).sort((a,b)=>a.date.localeCompare(b.date)||tm(a.time)-tm(b.time))[0];
+    if(np)$("#"+ID+"Body").insertAdjacentHTML("beforeend",`<div class="mini"><h4>Próximo partido · ${esc(np.sub)}</h4><div class="row"><span class="n"><span>${esc(np.home)} vs ${esc(np.away)}</span></span><span class="m">${esc(fdate(np.date))} · ${esc(np.time)}</span></div></div>`)}
   D.partidos.forEach(g=>FEED.push({liga:LIGA,sub:"Jornada "+g.jornada,color:COLOR,date:g.fecha,time:g.hora,home:g.local,away:g.visita,hl:logo(g.local),al:logo(g.visita),done:g.estado==="final",hs:sc(g,"boxLocal")||n(g.ptsLocal),as:sc(g,"boxVisita")||n(g.ptsVisita),href:`${B}#partido-${g.id}`}));
   renderFeed();
 }).catch(()=>{$("#"+ID+"Body").innerHTML=`<p class="muted">No se pudo cargar la información.</p>`});}
