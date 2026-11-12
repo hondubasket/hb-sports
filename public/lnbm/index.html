@@ -244,9 +244,10 @@ function standings(){
   return Object.values(t).map(x=>({...x,dif:x.pf-x.pc,pts:2*x.g+x.p})).sort((x,y)=>y.pts-x.pts||y.dif-x.dif||y.pf-x.pf);
 }
 
+const lbl=g=>g.jornada?"J"+g.jornada:(g.ronda||"").replace(/\s*\(.*\)/,"").replace("Semifinal","SF")+" · "+(g.juego||"").replace(/\s*\(.*\)/,"").replace("Juego ","J");
 function gameRow(g){
   const[a,b]=score(g),f=g.estado==="final",w=(x,y)=>!f||x>=y?"":"l";
-  const inner=`<div class="when"><b>${esc(fdate(g.fecha))}</b>${esc(g.hora||"")} · J${esc(g.jornada)}</div>
+  const inner=`<div class="when"><b>${esc(fdate(g.fecha))}</b>${esc(g.hora||"")} · ${esc(lbl(g))}</div>
   <div class="mu"><div class="${w(a,b)}">${tn(g.local,"sm")}<span class="s">${f?a:""}</span></div><div class="${w(b,a)}">${tn(g.visita,"sm")}<span class="s">${f?b:""}</span></div></div>
   <span class="tag ${f?"fin":"prog"}">${f?"Final":"Programado"}</span><span class="go" aria-hidden="true">›</span>`;
   return `<a class="game" href="#partido-${esc(g.id)}" aria-label="${esc(g.local)} vs ${esc(g.visita)}: ${f?"ver estadísticas del partido":"ver previa del partido"}">${inner}</a>`;
@@ -261,7 +262,7 @@ function board(title,unit,list,v,sub){
 const V={
   inicio(){
     const up=[...D.partidos.filter(g=>g.estado!=="final").map(g=>({g,f:g.fecha||"9",h:g.hora||""})),...poUpcoming().map(p=>({p,f:p.fecha||"9",h:p.hora||""}))].sort((a,b)=>a.f.localeCompare(b.f)||tmin(a.h)-tmin(b.h)).slice(0,12);
-    const last=fin().sort((a,b)=>(b.fecha||"").localeCompare(a.fecha||"")).slice(0,5);
+    const last=[...fin(),...(D.playoffs||[]).filter(x=>x.estado==="final")].sort((a,b)=>(b.fecha||"").localeCompare(a.fecha||"")||tmin(b.hora)-tmin(a.hora)).slice(0,5);
     const ps=players(),top=k=>[...ps].sort((a,b)=>b[k]-a[k]).slice(0,5);
     return `<div class="stack">
     <div class="grid2">
@@ -332,10 +333,10 @@ const V={
     </div>`;
   },
   partido(id){
-    const g=D.partidos.find(x=>x.id===id);if(!g)return`<div class="empty"><b>Partido no encontrado</b><a href="#calendario">Volver al calendario</a></div>`;
+    const g=D.partidos.find(x=>x.id===id)||(D.playoffs||[]).find(x=>x.id===id&&x.estado==="final");if(!g)return`<div class="empty"><b>Partido no encontrado</b><a href="#calendario">Volver al calendario</a></div>`;
     const f=g.estado==="final",[a,b]=score(g);
     const box=(team,rows,eq)=>{const t=sum(rows);if(eq){EQ.forEach(k=>t[k]+=n(eq[k]));t.reb=t.oreb+t.dreb}const eqRow=eq&&EQ.some(k=>n(eq[k]))?`<tr style="color:var(--slate)"><td class="l"></td><td class="l"><i>Equipo</i></td><td></td><td></td><td></td><td></td><td></td><td>${n(eq.oreb)}</td><td>${n(eq.dreb)}</td><td>${n(eq.oreb)+n(eq.dreb)}</td><td></td><td></td><td></td><td>${n(eq.tov)}</td><td>${n(eq.pf)||""}</td><td></td></tr>`:"";return `<section class="stack" style="gap:10px"><h3 style="font-size:19px">${tn(team)}</h3><div class="tbl"><table><thead><tr><th class="l">#</th><th class="l">Jugador</th><th>MIN</th><th>PTS</th><th>2P</th><th>3P</th><th>TL</th><th>RO</th><th>RD</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th><th>PER</th><th>FP</th><th>VAL</th></tr></thead><tbody>${(rows||[]).map(r=>`<tr><td class="l">${esc(r.num)}</td><td class="l"><b>${esc(r.nombre)}</b></td><td>${fmin(r.min)}</td><td class="b">${pts(r)}</td><td>${n(r.p2m)}/${n(r.p2a)}</td><td>${n(r.p3m)}/${n(r.p3a)}</td><td>${n(r.ftm)}/${n(r.fta)}</td><td>${n(r.oreb)}</td><td>${n(r.dreb)}</td><td>${n(r.oreb)+n(r.dreb)}</td><td>${n(r.ast)}</td><td>${n(r.stl)}</td><td>${n(r.blk)}</td><td>${n(r.tov)}</td><td>${n(r.pf)}</td><td>${val(r)}</td></tr>`).join("")}${eqRow}</tbody><tfoot><tr><td></td><td class="l">Totales</td><td>${fmin(Math.round(t.min))}</td><td>${t.pts}</td><td>${t.p2m}/${t.p2a}</td><td>${t.p3m}/${t.p3a}</td><td>${t.ftm}/${t.fta}</td><td>${t.oreb}</td><td>${t.dreb}</td><td>${t.reb}</td><td>${t.ast}</td><td>${t.stl}</td><td>${t.blk}</td><td>${t.tov}</td><td>${t.pf}</td><td></td></tr></tfoot></table></div></section>`};
-    const meta=`Jornada ${esc(g.jornada)} · ${esc(fdate(g.fecha))}${g.hora?" · "+esc(g.hora):""}${g.sede||D.sedePrincipal?" · "+esc(g.sede||D.sedePrincipal):""}`;
+    const meta=`${g.jornada?"Jornada "+esc(g.jornada):"Playoffs · "+esc(g.ronda.replace(/\s*\(.*\)/,""))+" · "+esc(g.juego)} · ${esc(fdate(g.fecha))}${g.hora?" · "+esc(g.hora):""}${g.sede||D.sedePrincipal?" · "+esc(g.sede||D.sedePrincipal):""}`;
     const sb=`<div class="sb"><div class="t">${lg(g.local)}<span>${esc(g.local)}</span></div>${f?`<div class="sc">${a} – ${b}</div>`:`<div class="vs">VS</div>`}<div class="t"><span>${esc(g.visita)}</span>${lg(g.visita)}</div><div class="meta">${meta}${f&&g.parciales?`<br>Parciales: ${g.parciales.map(esc).join(" · ")}`:""}${g.arbitros?`<br>Árbitros: ${g.arbitros.map(esc).join(", ")}`:""}</div></div>`;
     const yt=`<a class="ytgo" href="https://www.youtube.com/@hondubasket/${f?"streams":"live"}" target="_blank" rel="noopener">${YT}${f?"Ver la transmisión en YouTube":"Ver en vivo en YouTube"}</a>`;
     const back=`<a href="#calendario" style="color:var(--purple);font-weight:600;text-decoration:none">← Calendario</a>`;
@@ -393,7 +394,7 @@ function poRow(x){
 function seriesCard(title,sub,s,B,phA,phB){
   const line=(t,w,ph)=>`<div class="po-t ${s.win&&s.win!==t?"out":""}">${t?`<span class="po-seed">${B.done?B.seedOf(t)+"°":""}</span>${tn(t,"sm")}<small>${B.rec(t)}</small>`:`<span class="po-seed"></span><span class="po-tbd">${esc(ph)}</span>`}<b class="po-w">${t&&s.games.some(x=>x.estado==="final")?w:""}</b></div>`;
   const gl=s.games.map(x=>{const f=x.estado==="final";
-    return `<li><span>${esc(x.juego.replace(/\s*\(si es necesario\)/i,""))}${/necesario/i.test(x.juego)?' <i>si es necesario</i>':""}</span><span>${f?`<b>${esc(x.local)} ${x.ptsLocal} – ${x.ptsVisita} ${esc(x.visita)}</b>`:`${esc(fdate(x.fecha))} · ${esc(x.hora)}`}</span></li>`}).join("");
+    return `<li${f&&x.id?` style="cursor:pointer" onclick="location.hash='partido-${esc(x.id)}'"`:""}><span>${esc(x.juego.replace(/\s*\(si es necesario\)/i,""))}${/necesario/i.test(x.juego)?' <i>si es necesario</i>':""}</span><span>${f?`<b>${esc(x.local)} ${x.ptsLocal} – ${x.ptsVisita} ${esc(x.visita)}</b> <span style="color:var(--orange)">›</span>`:s.win?"No fue necesario":`${esc(fdate(x.fecha))} · ${esc(x.hora)}`}</span></li>`}).join("");
   return `<section class="card po-card"><div class="po-h"><b>${title}</b><span>${sub}</span></div>${line(s.A,s.wa,phA)}${line(s.B,s.wb,phB)}${s.win?`<div class="po-adv">${esc(s.win)} ${title==="Final"?"es campeón":title==="Tercer lugar"?"gana el tercer lugar":"avanza a la final"}</div>`:""}<ul class="po-g">${gl}</ul></section>`;
 }
 function playoffs(){

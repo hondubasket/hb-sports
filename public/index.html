@@ -260,6 +260,7 @@ function loadNacional(B,ID,LIGA,COLOR){fetch(B+"data.json",{cache:"no-store"}).t
   const sd=i=>done&&full[i]?full[i].team:null;
   const S={SF1:ser("SF1",sd(0),sd(3)),SF2:ser("SF2",sd(1),sd(2))};S.F=ser("F",S.SF1.w,S.SF2.w);S["3L"]=ser("3L",S.SF1.l,S.SF2.l,1);
   const PH={SF1:["1° lugar","4° lugar"],SF2:["2° lugar","3° lugar"],F:["Ganador SF1","Ganador SF2"],"3L":["Perdedor SF1","Perdedor SF2"]};
+  P.filter(x=>x.estado==="final").forEach(x=>FEED.push({liga:LIGA,sub:x.ronda.replace(/\s*\(.*\)/,"")+" · "+x.juego,color:COLOR,date:x.fecha,time:x.hora,home:x.local,away:x.visita,hl:logo(x.local),al:logo(x.visita),done:true,hs:n(x.ptsLocal),as:n(x.ptsVisita),href:`${B}#partido-${x.id}`}));
   P.forEach(x=>{const s=S[x.k];if(s.w||x.estado==="final")return;
     FEED.push({liga:LIGA,sub:x.ronda.replace(/\s*\(.*\)/,"")+" · "+x.juego.replace(/\s*\(si es necesario\)/i," *"),color:COLOR,date:x.fecha,time:x.hora,home:s.A||PH[x.k][0],away:s.B||PH[x.k][1],hl:s.A?logo(s.A):"",al:s.B?logo(s.B):"",done:false,href:`${B}#posiciones`})});
   if(!next){const tm=h=>{const m=/(\d+):(\d+)\s*(AM|PM)?/i.exec(h||"");if(!m)return 9999;let x=+m[1]%12;if(/pm/i.test(m[3]||""))x+=12;return x*60+ +m[2]};
