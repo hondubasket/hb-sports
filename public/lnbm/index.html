@@ -79,6 +79,9 @@ a.game:hover{border-color:var(--purple)}
 .po-adv{margin-top:6px;background:var(--orange-soft);color:#8a4b00;font-weight:700;font-size:13px;border-radius:8px;padding:6px 10px}
 .po-g{list-style:none;margin:8px 0 0;padding:8px 0 0;border-top:1px dashed var(--line);display:grid;gap:5px}
 .po-g li{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--slate)}.po-g li i{font-style:normal;font-size:11px;background:var(--purple-soft);padding:1px 6px;border-radius:6px;margin-left:4px}
+.fase{display:inline-flex;gap:4px;background:#ECEDF2;padding:4px;border-radius:12px;margin:0 0 16px}
+.fbtn{font:inherit;font-weight:700;font-size:14px;border:0;background:transparent;color:var(--slate);padding:8px 16px;border-radius:9px;cursor:pointer}
+.fbtn.on{background:#fff;color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.12)}
 .jhead{font-family:Sora;font-weight:700;font-size:15px;margin:18px 0 8px;color:var(--navy)}
 .game{grid-template-columns:110px 1fr auto auto}
 @media(max-width:560px){.game{grid-template-columns:1fr auto auto}.game .when{grid-column:1/-1;display:flex;gap:8px}.game .when b{display:inline}}
@@ -228,9 +231,12 @@ function seasonLeaders(team){
     return t?`<li><small>${l.slice(0,3)}</small><span class="who"><b>${esc(t.nombre)}</b><span>${t.gp} PJ</span></span><span class="v">${t[k].toFixed(1)}</span></li>`:""}).join("");
 }
 
-function players(){
+const poFin=()=>(D.playoffs||[]).filter(x=>x.estado==="final");
+const faseGames=()=>S.fase==="po"?poFin():fin();
+function faseSel(){if(!poFin().length)return"";const b=(v,t)=>`<button class="fbtn ${(S.fase||"reg")===v?"on":""}" data-fase="${v}">${t}</button>`;return `<div class="fase">${b("reg","Fase regular")}${b("po","Playoffs")}</div>`}
+function players(games=fin()){
   const map=new Map();
-  for(const g of fin())for(const[side,team]of[["boxLocal",g.local],["boxVisita",g.visita]])for(const r of g[side]||[]){
+  for(const g of games)for(const[side,team]of[["boxLocal",g.local],["boxVisita",g.visita]])for(const r of g[side]||[]){
     if(!r.nombre)continue;const key=team+"|"+r.nombre.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");let p=map.get(key);
     if(!p){p={team,nombre:r.nombre.trim(),num:r.num||"",gp:0,pts:0,val:0};K.forEach(k=>p[k]=0);map.set(key,p)}
     p.gp++;p.pts+=pts(r);p.val+=val(r);K.forEach(k=>p[k]+=n(r[k]));if(r.num)p.num=r.num;
@@ -299,12 +305,12 @@ const V={
     </div>`;
   },
   jugadores(){
-    let ps=players();if(S.pTeam)ps=ps.filter(p=>p.team===S.pTeam);
+    let ps=players(faseGames());if(S.pTeam)ps=ps.filter(p=>p.team===S.pTeam);
     ps=ps.map(p=>({...p,fgp:p.fga?100*p.fgm/p.fga:-1,p3p:p.p3a?100*p.p3m/p.p3a:-1,ftp:p.fta?100*p.ftm/p.fta:-1}));
     const{k,d}=S.pSort;ps.sort((a,b)=>typeof a[k]==="string"?d*a[k].localeCompare(b[k]):d*(a[k]-b[k]));
     const C=[["nombre","Jugador","l"],["team","Equipo","l"],["gp","PJ"],["mpg","MIN",1],["ppg","PTS",1],["rpg","REB",1],["orpg","RO",1],["drpg","RD",1],["apg","AST",1],["spg","ROB",1],["bpg","TAP",1],["tpg","PER",1],["fgp","TC%",2],["p3p","3P%",2],["ftp","TL%",2],["vpg","VAL",1]];
     const cell=(p,c)=>{const v=p[c[0]];if(c[0]==="mpg")return fmin(v);return c[3]===2?(v<0?"–":v.toFixed(1)):c[3]?v.toFixed(1):esc(v)};
-    return head("Temporada 2026","Estadísticas de jugadores","Promedios por partido jugado. Tocá un encabezado para ordenar.")+
+    return head("Temporada 2026","Estadísticas de jugadores"+(S.fase==="po"?" · Playoffs":""),(S.fase==="po"?"Solo partidos de playoffs. ":"Solo fase regular. ")+"Promedios por partido jugado. Tocá un encabezado para ordenar.")+faseSel()+
     `<div class="filters"><select id="pTeam"><option value="">Todos los equipos</option>${D.equipos.map(e=>`<option ${e.nombre===S.pTeam?"selected":""}>${esc(e.nombre)}</option>`).join("")}</select><button class="btn orange" id="xls" ${fin().length?"":"disabled"}>Descargar Excel (Latin Basket)</button></div>`+
     (ps.length?`<div class="tbl"><table><thead><tr>${C.map(c=>`<th class="s ${c[2]==="l"?"l":""} ${c[0]===k?"on":""}" data-s="${c[0]}">${c[1]}${c[0]===k?(d<0?" ↓":" ↑"):""}</th>`).join("")}</tr></thead><tbody>${ps.map(p=>`<tr>${C.map(c=>`<td class="${c[2]==="l"?"l":""}">${c===C[0]?`<b>${cell(p,c)}</b>`:cell(p,c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`:`<div class="empty"><b>Sin jugadores todavía</b>Las estadísticas se llenan con cada acta oficial cargada.</div>`);
   },
@@ -313,10 +319,10 @@ const V={
     return head("Temporada 2026","Fotos","Imágenes de las jornadas de la Liga Nacional de Baloncesto Masculina ICN 2026. Tocá una foto para verla en grande.")+`<div id="galLnbm"></div>`;
   },
   lideres(){
-    const ps=players(),maxGp=Math.max(0,...ps.map(p=>p.gp)),q=ps.filter(p=>p.gp>=Math.ceil(maxGp/2));
+    const ps=players(faseGames()),mi=x=>S.fase==="po"?Math.max(2,Math.ceil(x/4)):x,maxGp=Math.max(0,...ps.map(p=>p.gp)),q=ps.filter(p=>p.gp>=Math.ceil(maxGp/2));
     const top=(k,arr=ps)=>[...arr].sort((a,b)=>b[k]-a[k]||a.gp-b.gp).slice(0,10);
     const pq=(m,a,min)=>q.filter(p=>p[a]>=min).map(p=>({...p,_p:100*p[m]/p[a]})).sort((a,b)=>b._p-a._p).slice(0,10);
-    return head("Temporada 2026","Líderes","Top 10 por totales de la temporada. Debajo de cada total aparece el promedio por partido. Los porcentajes piden un mínimo de intentos y haber jugado al menos la mitad de los partidos.")+
+    return head("Temporada 2026","Líderes"+(S.fase==="po"?" · Playoffs":""),(S.fase==="po"?"Solo partidos de playoffs. ":"Solo fase regular. ")+"Top 10 por totales. Debajo de cada total aparece el promedio por partido. Los porcentajes piden un mínimo de intentos y haber jugado al menos la mitad de los partidos.")+faseSel()+
     `<div class="grid3">
     ${board("Puntos","Total",top("pts"),p=>p.pts,p=>p.ppg.toFixed(1)+" por partido")}
     ${board("Rebotes","Total",top("reb"),p=>p.reb,p=>p.rpg.toFixed(1)+" por partido")}
@@ -327,9 +333,9 @@ const V={
     ${board("Rebotes ofensivos","Total",top("oreb"),p=>p.oreb,p=>p.orpg.toFixed(1)+" por partido")}
     ${board("Minutos","Total",top("min"),p=>Math.round(p.min),p=>p.mpg.toFixed(1)+" por partido")}
     ${board("Triples anotados","Total",top("p3m"),p=>p.p3m,p=>p.p3a+" intentos")}
-    ${board("% Tiros de campo","Mín. 10 intentos",pq("fgm","fga",10),p=>p._p.toFixed(1),p=>p.fgm+"/"+p.fga)}
-    ${board("% Triples","Mín. 5 intentos",pq("p3m","p3a",5),p=>p._p.toFixed(1),p=>p.p3m+"/"+p.p3a)}
-    ${board("% Tiros libres","Mín. 5 intentos",pq("ftm","fta",5),p=>p._p.toFixed(1),p=>p.ftm+"/"+p.fta)}
+    ${board("% Tiros de campo","Mín. "+mi(10)+" intentos",pq("fgm","fga",mi(10)),p=>p._p.toFixed(1),p=>p.fgm+"/"+p.fga)}
+    ${board("% Triples","Mín. "+mi(5)+" intentos",pq("p3m","p3a",mi(5)),p=>p._p.toFixed(1),p=>p.p3m+"/"+p.p3a)}
+    ${board("% Tiros libres","Mín. "+mi(5)+" intentos",pq("ftm","fta",mi(5)),p=>p._p.toFixed(1),p=>p.ftm+"/"+p.fta)}
     </div>`;
   },
   partido(id){
@@ -417,6 +423,7 @@ window.addEventListener("hashchange",()=>{route();scrollTo(0,0)});
 document.addEventListener("change",e=>{if(e.target.id==="pTeam"){S.pTeam=e.target.value;route()}if(e.target.id==="cTeam"){S.cTeam=e.target.value;route()}});
 document.addEventListener("click",e=>{
   const th=e.target.closest("th[data-s]");if(th){const k=th.dataset.s;S.pSort=S.pSort.k===k?{k,d:-S.pSort.d}:{k,d:["nombre","team"].includes(k)?1:-1};route();return}
+  const fb=e.target.closest("[data-fase]");if(fb){S.fase=fb.dataset.fase;route();return}
   if(e.target.id==="xls")exportXlsx();
 });
 
