@@ -306,9 +306,9 @@ const V={
   },
   jugadores(){
     let ps=players(faseGames());if(S.pTeam)ps=ps.filter(p=>p.team===S.pTeam);
-    ps=ps.map(p=>({...p,fgp:p.fga?100*p.fgm/p.fga:-1,p3p:p.p3a?100*p.p3m/p.p3a:-1,ftp:p.fta?100*p.ftm/p.fta:-1}));
+    ps=ps.map(p=>({...p,fgp:p.fga?100*p.fgm/p.fga:-1,p2p:p.p2a?100*p.p2m/p.p2a:-1,p3p:p.p3a?100*p.p3m/p.p3a:-1,ftp:p.fta?100*p.ftm/p.fta:-1}));
     const{k,d}=S.pSort;ps.sort((a,b)=>typeof a[k]==="string"?d*a[k].localeCompare(b[k]):d*(a[k]-b[k]));
-    const C=[["nombre","Jugador","l"],["team","Equipo","l"],["gp","PJ"],["mpg","MIN",1],["ppg","PTS",1],["rpg","REB",1],["orpg","RO",1],["drpg","RD",1],["apg","AST",1],["spg","ROB",1],["bpg","TAP",1],["tpg","PER",1],["fgp","TC%",2],["p3p","3P%",2],["ftp","TL%",2],["vpg","VAL",1]];
+    const C=[["nombre","Jugador","l"],["team","Equipo","l"],["gp","PJ"],["mpg","MIN",1],["ppg","PTS",1],["rpg","REB",1],["orpg","RO",1],["drpg","RD",1],["apg","AST",1],["spg","ROB",1],["bpg","TAP",1],["tpg","PER",1],["fgp","TC%",2],["p2p","2P%",2],["p3p","3P%",2],["ftp","TL%",2],["vpg","VAL",1]];
     const cell=(p,c)=>{const v=p[c[0]];if(c[0]==="mpg")return fmin(v);return c[3]===2?(v<0?"–":v.toFixed(1)):c[3]?v.toFixed(1):esc(v)};
     return head("Temporada 2026","Estadísticas de jugadores"+(S.fase==="po"?" · Playoffs":""),(S.fase==="po"?"Solo partidos de playoffs. ":"Solo fase regular. ")+"Promedios por partido jugado. Tocá un encabezado para ordenar.")+faseSel()+
     `<div class="filters"><select id="pTeam"><option value="">Todos los equipos</option>${D.equipos.map(e=>`<option ${e.nombre===S.pTeam?"selected":""}>${esc(e.nombre)}</option>`).join("")}</select><button class="btn orange" id="xls" ${fin().length?"":"disabled"}>Descargar Excel (Latin Basket)</button></div>`+
@@ -332,8 +332,11 @@ const V={
     ${board("Valoración","Total",top("val"),p=>p.val,p=>p.vpg.toFixed(1)+" por partido")}
     ${board("Rebotes ofensivos","Total",top("oreb"),p=>p.oreb,p=>p.orpg.toFixed(1)+" por partido")}
     ${board("Minutos","Total",top("min"),p=>Math.round(p.min),p=>p.mpg.toFixed(1)+" por partido")}
+    ${board("Dobles anotados","Total",top("p2m"),p=>p.p2m,p=>p.p2a+" intentos")}
     ${board("Triples anotados","Total",top("p3m"),p=>p.p3m,p=>p.p3a+" intentos")}
+    ${board("Tiros libres anotados","Total",top("ftm"),p=>p.ftm,p=>p.fta+" intentos")}
     ${board("% Tiros de campo","Mín. "+mi(10)+" intentos",pq("fgm","fga",mi(10)),p=>p._p.toFixed(1),p=>p.fgm+"/"+p.fga)}
+    ${board("% Dobles","Mín. "+mi(10)+" intentos",pq("p2m","p2a",mi(10)),p=>p._p.toFixed(1),p=>p.p2m+"/"+p.p2a)}
     ${board("% Triples","Mín. "+mi(5)+" intentos",pq("p3m","p3a",mi(5)),p=>p._p.toFixed(1),p=>p.p3m+"/"+p.p3a)}
     ${board("% Tiros libres","Mín. "+mi(5)+" intentos",pq("ftm","fta",mi(5)),p=>p._p.toFixed(1),p=>p.ftm+"/"+p.fta)}
     </div>`;
